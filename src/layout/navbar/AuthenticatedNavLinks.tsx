@@ -12,7 +12,7 @@ interface AuthenticatedNavLinksParams {
 	};
 }
 
-const defaultLinks = [{ href: "#/help", text: "Help TT_TT" }];
+const defaultLinks = [{ href: "#/help", text: "Help" }];
 
 const AuthenticatedNavLinks: React.FC<AuthenticatedNavLinksParams> = ({
 	// selectionMode,
@@ -24,21 +24,15 @@ const AuthenticatedNavLinks: React.FC<AuthenticatedNavLinksParams> = ({
 	if (user.registeredEvents.length === 0) {
 		navLinks.push(
 			...defaultLinks,
-			{ href: "#/create-run", text: "Create new run!" },
-			{ href: "#/join-run", text: "Join a Run!" }
-		);
-	} else if (user.registeredEvents.length > 1 && !user.event) {
-		//Refactor why does choose event go to schedule.... 
-		navLinks.push(
-			{ href: "#/schedule", text: "Choose an Event!" },
-			{ href: "#/join-run", text: "Join a Run!" },
-			...defaultLinks
-		);
+			{ href: "#/join-run", text: "Join a Run" },
+			{ href: "#/create-run", text: "Create new run" }
+		); 
 	} else if (user.registeredEvents.length > 1 && user.event) {
 		navLinks.push(
-			{ href: "/schedule", text: "Choose an Event!" },
-			{ href: "/join-run", text: "Join a Run!" },
-			{ href: "/schedule", text: "Schedule!" },
+			{ href: "/schedule", text: "Schedule" },
+			{ href: "/data", text: "Fillers and Managers" },
+			{ href: "/join-run", text: "Join a Run" },
+			{ href: "/schedule", text: "Choose an Event" },
 			...defaultLinks
 		);
 	}

@@ -1,0 +1,46 @@
+@import "../../styles/variables";
+
+.navbar {
+	display: flex;
+	background: linear-gradient(
+		180deg,
+		$dark-luka-purple 0%,
+		$luka-purple 48%,
+		$dark-luka-purple 100%
+	);
+
+	img {
+		width: 200px;
+		padding: 10px;
+	}
+
+	&-link-wrapper {
+		width: 100%;
+		margin-right: 2%;
+		height: 100%;
+	}
+
+	ul {
+		padding: 10px;
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		list-style: none;
+		align-items: center;
+		justify-content: flex-end;
+
+		li {
+			padding: 20px;
+			font-family: "Yuruka-UB";
+			text-align: center;
+			font-size: 120%;
+			color: $darkest-luka-purple;
+
+			a {
+				&:active {
+					color: $light-luka-purple;
+				}
+			}
+		}
+	}
+}

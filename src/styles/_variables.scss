@@ -1,0 +1,49 @@
+$luka-purple: rgb(218, 182, 255);
+$lighter-luka-purple: rgb(248, 235, 252);
+$light-luka-purple: rgb(233, 212, 253);
+$miku-gray: rgb(160, 116, 205);
+$miku-gray-2: rgb(181, 147, 196);
+$background-gray: rgb(130, 125, 130);
+$dark-luka-purple: rgb(169, 120, 229);
+$darker-luka-purple: rgb(134, 62, 206);
+$darkest-luka-purple: rgb(120, 40, 200);
+$button-color: rgb(134, 62, 206);
+$button-text-color: rgb(147, 102, 192);
+$button-text-color-hover: rgb(255, 255, 255);
+$blocky-site-heading: "Yuruka-UB";
+$paragraph-text: "SkipPro-B";
+
+/* Bold, more handwrite-like, good for page headings? */
+@font-face {
+	font-family: "PopHappiness-EB";
+	src: local("FOT-PopHappinessStd-EB"),
+		url("/src/assets/fonts/FOT-PopHappinessStd-EB.ttf") format("truetype");
+}
+
+/* The most generic. Sans serif, not interesting */
+@font-face {
+	font-family: "Rodin-DB";
+	src: local("FOT-RodinNTLGPro-DB"),
+		url("/src/assets/fonts/FOT-RodinNTLGPro-DB.ttf") format("truetype");
+}
+
+/* Semi-bold comparatively, straigh lines with a small bit of calligraphy filling */
+@font-face {
+	font-family: "SkipPro-B";
+	src: local("FOT-SkipProN-B"),
+		url("/src/assets/fonts/FOT-SkipProN-B.ttf") format("truetype");
+}
+
+/* Bold, same as SkipProN but bolder, a bit generic */
+@font-face {
+	font-family: "MinchoPro-B";
+	src: local("FOT-UDMinchoPro-B"),
+		url("/src/assets/fonts/FOT-UDMinchoPro-B.ttf") format("truetype");
+}
+
+/* Ultra bold, blocky, good for site heading */
+@font-face {
+	font-family: "Yuruka-UB";
+	src: local("FOT-YurukaStd-UB"),
+		url("/src/assets/fonts/FOT-YurukaStd-UB.ttf") format("truetype");
+}

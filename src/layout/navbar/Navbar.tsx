@@ -8,10 +8,6 @@ const NavBar: React.FC = () => {
 	// });
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [selectionMode, setSelectionMode] = React.useState(false);
-	const [navLogo, setNavLogo] = React.useState({
-		src: `../img/Logo/logo.png`,
-	});
-
 	const user = {
 		loggedIn: true,
 		registeredEvents: [
@@ -24,19 +20,16 @@ const NavBar: React.FC = () => {
 	};
 
 	return (
-		<nav className="navbar navbar-expand-lg">
-			<div className="navbar-brand" onClick={handleRefresh}>
+		<nav className="navbar">
+			<div className="navbar-logo" onClick={handleRefresh}>
 				<img
-					className="back-img"
-					src={navLogo.src}
+					src="/images/Logo/logo.png"
 					alt="back arrow"
 					id="nav-logo"
-					onMouseEnter={() => setNavLogo({ src: `../img/Logo/logo-hover.png` })}
-					onMouseOut={() => setNavLogo({ src: `../img/Logo/logo.png` })}
 				/>
 			</div>
-			<div className="navbar-wrapper">
-				<ul className="navbar-nav mr-auto">
+			<div className="navbar-link-wrapper">
+				<ul className="navbar-ul">
 					{user.loggedIn && (
 						<AuthenticatedNavLinks
 							user={user}
