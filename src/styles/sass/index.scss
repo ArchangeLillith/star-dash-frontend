@@ -1,45 +1,87 @@
-@import 'config';
+@import "/src/features/home-page/homePage";
 
-* {
-  color: $primary-color-purple;
+$luka-purple: rgb(218, 182, 255);
+$lighter-luka-purple: rgb(248, 235, 252);
+$light-luka-purple: rgb(233, 212, 253);
+$miku-gray: rgb(160, 116, 205);
+$miku-gray-2: rgb(181, 147, 196);
+$background-gray: rgb(130, 125, 130);
+$dark-luka-purple: rgb(169, 120, 229);
+$darker-luka-purple: rgb(134, 62, 206);
+$darkest-luka-purple: rgb(120, 40, 200);
+$button-color: rgb(134, 62, 206);
+$button-text-color: rgb(147, 102, 192);
+$button-text-color-hover: rgb(255, 255, 255);
+$blocky-site-heading: "Yuruka-UB";
+$paragraph-text: "SkipPro-B";
+
+body {
+	background-image: linear-gradient(
+			rgba(226, 173, 255, 0.617),
+			rgba(226, 173, 255, 0.633)
+		),
+		/* your image */ url("/images/background.png");
+
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 100%;
+	background-size: cover;
 }
 
-.marathon{
-  color: red;
-  background-image: linear-gradient(
-    rgba(255, 255, 255, 0.8) 0px,
-    rgba(255, 255, 255, 0.6) 50px,
-    transparent 100px,
-    transparent 50%,
-    rgba(255, 255, 255, 0.6) 70%,
-    rgba(255, 255, 255, 0.8) 100%
-  ),
-  url("../public/images/Backgrounds/classroom.png");
+a {
+	text-decoration: none;
 }
-.welcome-card-section.marathon:hover {
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0.4) 0px,
-      rgba(255, 255, 255, 0.2) 50px,
-      transparent 100px,
-      transparent 50%,
-      rgba(255, 255, 255, 0.2) 70%,
-      rgba(255, 255, 255, 0.4) 100%
-    ),
-    url("../public/images/Backgrounds/classroom.png");
-  width: 100%;
+
+.global-h1 {
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	display: flex;
+	text-align: center;
+	font-family: $blocky-site-heading;
+	font-size: 175%;
+	color: $dark-luka-purple;
+	text-shadow: 5px 2px $luka-purple;
+	margin-top: 4%;
+	cursor: default;
 }
-.welcome-card-section {
-  max-width: 35rem;
-  width: 100%;
-  text-align: center;
-  margin: 2%;
-  height: 100%;
-  min-height: 300px;
-  border-radius: 15px;
-  transition: transform 0.3s ease-in-out, box-shadow 0.1s ease-in-out;
-  align-items: center;
+
+.global-h4 {
+	font-family: "SkipPro-B";
+	text-align: center;
 }
-.welcome-card-section:hover {
-  box-shadow: 0px 0px 10px 2px black;
-  transform: scale(110%);
+
+/* Bold, more handwrite-like, good for page headings? */
+@font-face {
+	font-family: "PopHappiness-EB";
+	src: local("FOT-PopHappinessStd-EB"),
+		url("/src/assets/fonts/FOT-PopHappinessStd-EB.ttf") format("truetype");
+}
+
+/* The most generic. Sans serif, not interesting */
+@font-face {
+	font-family: "Rodin-DB";
+	src: local("FOT-RodinNTLGPro-DB"),
+		url("/src/assets/fonts/FOT-RodinNTLGPro-DB.ttf") format("truetype");
+}
+
+/* Semi-bold comparatively, straigh lines with a small bit of calligraphy filling */
+@font-face {
+	font-family: "SkipPro-B";
+	src: local("FOT-SkipProN-B"),
+		url("/src/assets/fonts/FOT-SkipProN-B.ttf") format("truetype");
+}
+
+/* Bold, same as SkipProN but bolder, a bit generic */
+@font-face {
+	font-family: "MinchoPro-B";
+	src: local("FOT-UDMinchoPro-B"),
+		url("/src/assets/fonts/FOT-UDMinchoPro-B.ttf") format("truetype");
+}
+
+/* Ultra bold, blocky, good for site heading */
+@font-face {
+	font-family: "Yuruka-UB";
+	src: local("FOT-YurukaStd-UB"),
+		url("/src/assets/fonts/FOT-YurukaStd-UB.ttf") format("truetype");
 }
