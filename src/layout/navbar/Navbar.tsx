@@ -1,5 +1,6 @@
 import React from "react";
-import NavLinks from "./NavLinks";
+import AuthenticatedNavLinks from "./AuthenticatedNavLinks";
+import PublicNavLinks from "./PublicNavLinks";
 
 const NavBar: React.FC = () => {
 	// const [navLogo, setNavLogo] = React.useState({
@@ -22,34 +23,34 @@ const NavBar: React.FC = () => {
 		siteAdmin: false,
 	};
 
-	if (user.loggedIn) {
-		return (
-			<nav className="navbar navbar-expand-lg">
-				<div className="navbar-brand" onClick={handleRefresh}>
-					<img
-						className="back-img"
-						src={navLogo.src}
-						alt="back arrow"
-						id="nav-logo"
-						onMouseEnter={() =>
-							setNavLogo({ src: `../img/Logo/logo-hover.png` })
-						}
-						onMouseOut={() => setNavLogo({ src: `../img/Logo/logo.png` })}
-					/>
-				</div>
-				<div className="navbar-wrapper">
-					<ul className="navbar-nav mr-auto">
-						<NavLinks
+	return (
+		<nav className="navbar navbar-expand-lg">
+			<div className="navbar-brand" onClick={handleRefresh}>
+				<img
+					className="back-img"
+					src={navLogo.src}
+					alt="back arrow"
+					id="nav-logo"
+					onMouseEnter={() => setNavLogo({ src: `../img/Logo/logo-hover.png` })}
+					onMouseOut={() => setNavLogo({ src: `../img/Logo/logo.png` })}
+				/>
+			</div>
+			<div className="navbar-wrapper">
+				<ul className="navbar-nav mr-auto">
+					{user.loggedIn && (
+						<AuthenticatedNavLinks
 							user={user}
 							selectionMode={selectionMode}
 							confirmEventChange={confirmEventChange}
 						/>
-					</ul>
-				</div>
-			</nav>
-		);
-	}
+					)}
+					{!user.loggedIn && <PublicNavLinks />}
+				</ul>
+			</div>
+		</nav>
+	);
 };
+
 export default NavBar;
 
 /**
@@ -73,8 +74,6 @@ function confirmEventChange() {
 	// 	],
 	// });
 }
-
-
 
 // /**
 //  * Popup to confirm reload of page
@@ -116,26 +115,26 @@ function handleRefresh() {
 //  * @returns Full event context
 //  */
 // async function handleEventChange() {
-	// const eventAndManager = document
-	// 	.getElementById("event-select-choice")
-	// 	.value.split(/\s*,\s*/);
-	// let managerContext = await getContext(
-	// 	eventAndManager[0],
-	// 	eventAndManager[1]
-	// );
-	// const sortedAssociatedUsers = managerContext[0].associatedUsers.sort();
-	// setUser({
-	// 	...user,
-	// 	event: managerContext[0].event,
-	// 	scheduleArray: managerContext[0].schedule,
-	// 	runner: managerContext[0].runner,
-	// 	leadManager: managerContext[0].leadManager,
-	// 	associatedUsers: sortedAssociatedUsers,
-	// 	activeTeamDropdown: managerContext[0].activeTeamDropdown,
-	// 	notesPerHour: managerContext[0].notesPerHour,
-	// 	teamsPerHour: managerContext[0].teamsPerHour,
-	// });
-	// setSelectionMode(false);
+// const eventAndManager = document
+// 	.getElementById("event-select-choice")
+// 	.value.split(/\s*,\s*/);
+// let managerContext = await getContext(
+// 	eventAndManager[0],
+// 	eventAndManager[1]
+// );
+// const sortedAssociatedUsers = managerContext[0].associatedUsers.sort();
+// setUser({
+// 	...user,
+// 	event: managerContext[0].event,
+// 	scheduleArray: managerContext[0].schedule,
+// 	runner: managerContext[0].runner,
+// 	leadManager: managerContext[0].leadManager,
+// 	associatedUsers: sortedAssociatedUsers,
+// 	activeTeamDropdown: managerContext[0].activeTeamDropdown,
+// 	notesPerHour: managerContext[0].notesPerHour,
+// 	teamsPerHour: managerContext[0].teamsPerHour,
+// });
+// setSelectionMode(false);
 // }
 
 // 	/**

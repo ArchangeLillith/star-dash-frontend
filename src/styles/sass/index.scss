@@ -1,45 +1,45 @@
-@import 'config';
-
+@import "config";
+@import "../../layout/navbar/navBar";
 * {
-  color: $primary-color-purple;
+	color: $primary-color-purple;
 }
 
-.marathon{
-  color: red;
-  background-image: linear-gradient(
-    rgba(255, 255, 255, 0.8) 0px,
-    rgba(255, 255, 255, 0.6) 50px,
-    transparent 100px,
-    transparent 50%,
-    rgba(255, 255, 255, 0.6) 70%,
-    rgba(255, 255, 255, 0.8) 100%
-  ),
-  url("../public/images/Backgrounds/classroom.png");
+.marathon {
+	color: red;
+	background-image: linear-gradient(
+			rgba(255, 255, 255, 0.8) 0px,
+			rgba(255, 255, 255, 0.6) 50px,
+			transparent 100px,
+			transparent 50%,
+			rgba(255, 255, 255, 0.6) 70%,
+			rgba(255, 255, 255, 0.8) 100%
+		),
+		url("../public/images/Backgrounds/classroom.png");
 }
 .welcome-card-section.marathon:hover {
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0.4) 0px,
-      rgba(255, 255, 255, 0.2) 50px,
-      transparent 100px,
-      transparent 50%,
-      rgba(255, 255, 255, 0.2) 70%,
-      rgba(255, 255, 255, 0.4) 100%
-    ),
-    url("../public/images/Backgrounds/classroom.png");
-  width: 100%;
+	background-image: linear-gradient(
+			rgba(255, 255, 255, 0.4) 0px,
+			rgba(255, 255, 255, 0.2) 50px,
+			transparent 100px,
+			transparent 50%,
+			rgba(255, 255, 255, 0.2) 70%,
+			rgba(255, 255, 255, 0.4) 100%
+		),
+		url("../public/images/Backgrounds/classroom.png");
+	width: 100%;
 }
 .welcome-card-section {
-  max-width: 35rem;
-  width: 100%;
-  text-align: center;
-  margin: 2%;
-  height: 100%;
-  min-height: 300px;
-  border-radius: 15px;
-  transition: transform 0.3s ease-in-out, box-shadow 0.1s ease-in-out;
-  align-items: center;
+	max-width: 35rem;
+	width: 100%;
+	text-align: center;
+	margin: 2%;
+	height: 100%;
+	min-height: 300px;
+	border-radius: 15px;
+	transition: transform 0.3s ease-in-out, box-shadow 0.1s ease-in-out;
+	align-items: center;
 }
 .welcome-card-section:hover {
-  box-shadow: 0px 0px 10px 2px black;
-  transform: scale(110%);
+	box-shadow: 0px 0px 10px 2px black;
+	transform: scale(110%);
 }
