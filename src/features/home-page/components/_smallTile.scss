@@ -1,0 +1,48 @@
+$backgrounds: (
+	marathon: "street.png",
+	register: "classroom.png",
+	login: "mall.png",
+	about: "stage.png",
+	help: "shop.png",
+);
+
+@mixin gradient-bg($opacity1, $opacity2, $background-url) {
+	background-image: 
+	// linear-gradient(
+	// 		rgba(255, 255, 255, $opacity1) 0px,
+	// 		rgba(255, 255, 255, $opacity2) 50px,
+	// 		rgba(255, 255, 255, $opacity2) 70%,
+	// 		rgba(255, 255, 255, $opacity1) 100%
+	// 	),
+		url("/images/Backgrounds/#{$background-url}");
+}
+
+.welcome-card-section {
+	width: 100%;
+	max-width: 30rem;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	margin: 2%;
+	height: 100%;
+	min-height: 300px;
+	border-radius: 15px;
+	transition: transform 0.3s ease-in-out, box-shadow 0.1s ease-in-out;
+
+	a {
+		display: flex;
+		flex-direction: column;
+		margin-top: 20%;
+	}
+
+	@each $name, $image in $backgrounds {
+		&.#{$name} {
+			@include gradient-bg(0.6, 0.4, $image);
+		}
+
+		&:hover.#{$name} {
+			// @include gradient-bg(0.4, 0.2, $image);
+			transform: scale(110%);
+		}
+	}
+}
