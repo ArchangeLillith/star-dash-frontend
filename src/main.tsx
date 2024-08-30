@@ -1,7 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
-import "./index.css";
 import "./styles/sass/index.scss";
 import NavBar from "./layout/navbar/Navbar.tsx";
 
