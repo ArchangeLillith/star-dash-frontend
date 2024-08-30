@@ -1,6 +1,7 @@
 import React from "react";
 import AuthenticatedNavLinks from "./AuthenticatedNavLinks";
 import PublicNavLinks from "./PublicNavLinks";
+import { Link } from "react-router-dom";
 
 const NavBar: React.FC = () => {
 	// const [navLogo, setNavLogo] = React.useState({
@@ -22,11 +23,9 @@ const NavBar: React.FC = () => {
 	return (
 		<nav className="navbar">
 			<div className="navbar-logo" onClick={handleRefresh}>
-				<img
-					src="/images/Logo/logo.png"
-					alt="back arrow"
-					id="nav-logo"
-				/>
+				<Link to="/">
+					<img src="/images/Logo/logo.png" alt="back arrow" id="nav-logo" />
+				</Link>
 			</div>
 			<div className="navbar-link-wrapper">
 				<ul className="navbar-ul">

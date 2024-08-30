@@ -12,7 +12,7 @@ interface AuthenticatedNavLinksParams {
 	};
 }
 
-const defaultLinks = [{ href: "#/help", text: "Help" }];
+const defaultLinks = [{ href: "/help", text: "Help" }];
 
 const AuthenticatedNavLinks: React.FC<AuthenticatedNavLinksParams> = ({
 	// selectionMode,
@@ -24,21 +24,21 @@ const AuthenticatedNavLinks: React.FC<AuthenticatedNavLinksParams> = ({
 	if (user.registeredEvents.length === 0) {
 		navLinks.push(
 			...defaultLinks,
-			{ href: "#/join-run", text: "Join a Run" },
-			{ href: "#/create-run", text: "Create new run" }
-		); 
+			{ href: "/join-run", text: "Join a Run" },
+			{ href: "/create-run", text: "Create new run" }
+		);
 	} else if (user.registeredEvents.length > 1 && user.event) {
 		navLinks.push(
 			{ href: "/schedule", text: "Schedule" },
 			{ href: "/data", text: "Fillers and Managers" },
 			{ href: "/join-run", text: "Join a Run" },
-			{ href: "/schedule", text: "Choose an Event" },
+			{ href: "/event", text: "Choose an Event" },
 			...defaultLinks
 		);
 	}
 	if (user.siteAdmin) {
 		navLinks.push({
-			href: "#/SiteAdmin",
+			href: "/SiteAdmin",
 			text: "Site Settings",
 			className: "admin-nav",
 			...defaultLinks,
