@@ -1,0 +1,68 @@
+.filler-registration-form {
+	// Styles for the entire form, MOBILE FIRST
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background: red;
+	width: 50%;
+	margin: auto;
+	margin-top: 2em;
+	border-radius: 15px;
+
+	//Refactor this may be able to be turned into a global page title style
+	.form-title {
+		font-size: 1.75rem;
+		font-family: $blocky-site-heading;
+	}
+
+	.name-content {
+		display: flex;
+
+		// Styles for name-content section
+
+		.manager-container {
+			// Styles for manager-container
+
+			.manager-banner {
+				// Styles for manager-banner
+			}
+
+			.manager-input {
+				// Styles for manager-input
+			}
+		}
+
+		.filler-container {
+			// Styles for filler-container
+
+			.filler-banner {
+				// Styles for filler-banner
+			}
+
+			.filler-input {
+				// Styles for filler-input
+			}
+		}
+	}
+
+	.team-content {
+		// Styles for the team-content section
+
+		.team-container {
+			// Shared styles for all team sections
+
+			.team-banner {
+				// Styles for the team-banner in each team section
+			}
+
+			.team-number-input {
+				// Styles for the team-number-input in each team section
+			}
+		}
+	}
+
+	.submit-btn {
+		// Styles for the submit button
+	}
+}

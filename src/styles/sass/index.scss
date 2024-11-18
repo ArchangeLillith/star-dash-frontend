@@ -1,5 +1,6 @@
 @import "/src/features/home-page/homePage";
 @import "/src/layout/navbar/navBar";
+@import "/src/features/join-run/join-run";
 @import "../variables";
 * {
 	padding: 0;
@@ -42,3 +43,11 @@ a {
 }
 
 
+// Font size: REM - relative to root font size, most of the time defualts to 16px
+// Adapts to user and system preferences
+//% for widths
+//Dont' got over 75 characters wide!
+// ie max-width: 45ch === 45 max characters for a line
+//Don't set height, and if you do, set min height
+//em for paddign and margin
+//rem doesn't grow with the font size, btu em does and makes for a better look cause the buttons are proportional, for example

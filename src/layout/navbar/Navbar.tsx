@@ -1,6 +1,6 @@
 import React from "react";
-import AuthenticatedNavLinks from "./AuthenticatedNavLinks";
-import PublicNavLinks from "./PublicNavLinks";
+import AuthenticatedNavLinks from "./authenticated/AuthenticatedNavLinks";
+import PublicNavLinks from "./public/PublicNav";
 import { Link } from "react-router-dom";
 
 const NavBar: React.FC = () => {
@@ -10,7 +10,7 @@ const NavBar: React.FC = () => {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [selectionMode, setSelectionMode] = React.useState(false);
 	const user = {
-		loggedIn: true,
+		loggedIn: false,
 		registeredEvents: [
 			{ event: "Shooting Star", leadManager: "Ki" },
 			{ event: "This event", leadManager: "Ki" },

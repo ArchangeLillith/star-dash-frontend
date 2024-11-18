@@ -1,6 +1,6 @@
 import React from "react";
 import Hamburger from "../../components/Hamburger";
-import NavItem from "./NavItem";
+import NavItem from "./components/NavItem";
 
 interface HamburgerMenuProps {
 	isOpen: boolean;

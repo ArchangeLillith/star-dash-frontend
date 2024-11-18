@@ -3,7 +3,7 @@ import JoinCarnival from "./cheerful-carnival/JoinCarnival";
 import JoinMarathon from "./marathon/JoinMarathon";
 
 const JoinRun: React.FC = () => {
-	const [type, setType] = useState("Marathon");
+	const [type, setType] = useState("Carnival");
 	function toggleType() {
 		if (type === "Marathon") {
 			setType("Carnival");
