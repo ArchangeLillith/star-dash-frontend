@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Select from "../../components/Select";
 import Input from "../../components/Input";
 import TransitionWrapper from "../../components/TransitionWrapper";
 import { inputConfigs } from "./utils";
+import { SettingsContext } from "../../context/settings/SettingsProvider";
+import { backgroundMap } from "../../context/settings/utils";
 
 const CreateRun = () => {
 	const [state, setState] = useState({
@@ -21,11 +23,20 @@ const CreateRun = () => {
 		alert(`Button clicked`);
 	};
 
+	const { setSettingsState } = useContext(SettingsContext);
+
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			setSettingsState((prev) => ({
+				...prev,
+				currentPageBackground: backgroundMap["createRun"],
+			}));
+		}, 500);
+		return () => clearTimeout(timeout);
+	}, []);
+
 	return (
-		<TransitionWrapper
-			newBackgroundImage="/card-backgrounds/card_after_training\ \(20\).webp"
-			oldBackgroundImage="/card-backgrounds/card_after_training\ \(14\).webp"
-		>
+		<TransitionWrapper newBackgroundImage={backgroundMap.createRun}>
 			<div className="create-event-page">
 				<form className="create-event-form">
 					<div className="form-title">Create Event</div>

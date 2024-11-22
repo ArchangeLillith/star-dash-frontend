@@ -1,0 +1,21 @@
+@media (min-width: $breakpoint-desktop) {
+	.join-run-page-carnival::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: url("/card-backgrounds/carnival.png");
+		background-size: cover;
+		background-position: center;
+		z-index: -1;
+	}
+
+	.join-run-page-carnival {
+		margin: 0%;
+		@include flex-center-row(center, flex-start);
+		min-height: 100vh;
+		z-index: 1;
+	}
+}

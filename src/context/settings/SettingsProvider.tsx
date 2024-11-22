@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import { backgroundMap } from "./utils";
 
 export type SettingsState = {
 	theme: string;
@@ -18,7 +19,11 @@ interface SettingsContextType {
  * Settings context to allow other components to pull from it no matter how nested
  */
 export const SettingsContext = createContext<SettingsContextType>({
-	settingsState: { theme: "default", favoriteCharacters: ["miku"], currentPageBackground:"" },
+	settingsState: {
+		theme: "default",
+		favoriteCharacters: ["miku"],
+		currentPageBackground: backgroundMap["home"],
+	},
 	setSettingsState: () => {},
 	// loginToAuthState: () => {},
 	// logoutFromAuthState: () => {},
@@ -33,7 +38,7 @@ const SettingsProvider: React.FC<SettingProviderProps> = ({ children }) => {
 	const [settingsState, setSettingsState] = useState<SettingsState>({
 		theme: "default",
 		favoriteCharacters: [],
-		currentPageBackground:""
+		currentPageBackground: "",
 	});
 
 	// /**

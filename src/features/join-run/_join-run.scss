@@ -1,3 +1,6 @@
+@import "../join-run/marathon/join-marathon.scss";
+@import "../join-run/cheerful-carnival/join-carnival.scss";
+
 .desktop-title {
 	display: none;
 }
@@ -81,71 +84,51 @@
 }
 
 @media (min-width: $breakpoint-desktop) {
-	.join-run-page::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: url("/card-backgrounds/card_after_training (3).webp");
-		background-size: cover;
-		background-position: center;
-		z-index: -1;
+	.form-title {
+		display: none;
 	}
 
-	.join-run-page {
-		margin: 0%;
-		@include flex-center-row(center, flex-start);
-		min-height: 100vh;
-		z-index: 1;
-
-		.form-title {
-			display: none;
-		}
-		
-		.desktop-title {
-			color: white;
-			margin-right: 2%;
-			font-size: $page-heading-size;
-			display: block;
-			font-family: $blocky-site-heading;
-			text-shadow: 4px 2px 3px $dark-kaito-purple;
-			margin-bottom: -25%;
-		}
-
-		.filler-registration-form {
-			margin-left: 4%;
-			width: 30%;
-			max-height: 80%;
-			background-color: $dark-kaito-purple-30;
-			border: none;
-			padding: 30px;
-			.top-content {
-				display: flex;
-				flex-direction: row;
-				width: 100%;
-			}
-			.banner-background {
-				background-color: $light-kaito-purple;
-				padding: 1% 4%;
-				border-radius: 30px;
-			}
-			.manager-container {
-				margin: 5%;
-				padding: 4%;
-				font-size: 1.2rem;
-				width: 100%;
-			}
-		}
-	}
-	.submit-btn {
-		width: 30%;
-		font-size: 2rem;
-		border-radius: 10px;
-		background-color: $light-kaito-purple;
-		border: 5px solid $kaito-purple;
+	.desktop-title {
 		color: white;
-		font-family: $subtitle-font;
+		margin-right: 2%;
+		font-size: $page-heading-size;
+		display: block;
+		font-family: $blocky-site-heading;
+		text-shadow: 4px 2px 3px $dark-kaito-purple;
+		margin-bottom: -25%;
 	}
+
+	.filler-registration-form {
+		margin-left: 4%;
+		width: 30%;
+		max-height: 80%;
+		background-color: $dark-kaito-purple-30;
+		border: none;
+		padding: 30px;
+		.top-content {
+			display: flex;
+			flex-direction: row;
+			width: 100%;
+		}
+		.banner-background {
+			background-color: $light-kaito-purple;
+			padding: 1% 4%;
+			border-radius: 30px;
+		}
+		.manager-container {
+			margin: 5%;
+			padding: 4%;
+			font-size: 1.2rem;
+			width: 100%;
+		}
+	}
+}
+.submit-btn {
+	width: 30%;
+	font-size: 2rem;
+	border-radius: 10px;
+	background-color: $light-kaito-purple;
+	border: 5px solid $kaito-purple;
+	color: white;
+	font-family: $subtitle-font;
 }

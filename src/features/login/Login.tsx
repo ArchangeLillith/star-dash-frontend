@@ -1,12 +1,24 @@
 import { Link } from "react-router-dom";
 import TransitionWrapper from "../../components/TransitionWrapper";
+import { useContext, useEffect } from "react";
+import { SettingsContext } from "../../context/settings/SettingsProvider";
+import { backgroundMap } from "../../context/settings/utils";
 
 const Login = () => {
+	const {  setSettingsState } = useContext(SettingsContext);
+
+	useEffect(() => {
+				const timeout = setTimeout(() => {
+			setSettingsState((prev) => ({
+				...prev,
+				currentPageBackground: backgroundMap["login"],
+			}));
+		}, 500);
+		return () => clearTimeout(timeout);
+	}, []);
+
 	return (
-		<TransitionWrapper
-			oldBackgroundImage="/public/card-backgrounds/card_after_training\ \(14\).webp"
-			newBackgroundImage="/public/card-backgrounds/card_after_training\ \(13\).webp"
-		>
+		<TransitionWrapper newBackgroundImage={backgroundMap.login}>
 			<div className="page login">
 				<div className="desktop-title">Login!</div>
 				<form className="form">

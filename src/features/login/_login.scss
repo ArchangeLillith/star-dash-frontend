@@ -60,11 +60,11 @@
 }
 @media (min-width: $breakpoint-desktop) {
 	.page.login {
-		background: url("/public/card-backgrounds/card_after_training\ \(13\).webp");
+		background: url("/card-backgrounds/login.webp");
 		@include page-card-background;
 	}
 	.page.register {
-		background: url("/public/card-backgrounds/card_after_training\ \(14\).webp");
+		background: url("/card-backgrounds/register.webp");
 		@include page-card-background;
 	}
 	.page {

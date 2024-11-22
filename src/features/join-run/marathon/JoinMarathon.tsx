@@ -1,13 +1,24 @@
 import { Link } from "react-router-dom";
 import TransitionWrapper from "../../../components/TransitionWrapper";
+import { useContext, useEffect } from "react";
+import { SettingsContext } from "../../../context/settings/SettingsProvider";
+import { backgroundMap } from "../../../context/settings/utils";
 
 const JoinMarathon: React.FC = () => {
+	const { setSettingsState } = useContext(SettingsContext);
+
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			setSettingsState((prev) => ({
+				...prev,
+				currentPageBackground: backgroundMap["marathon"],
+			}));
+		}, 500);
+		return () => clearTimeout(timeout);
+	}, []);
 	return (
-		<TransitionWrapper
-			newBackgroundImage="/card-backgrounds/card_after_training\ \(3\).webp"
-			oldBackgroundImage="/card-backgrounds/card_after_training\ \(14\).webp"
-		>
-			<div className="join-run-page">
+		<TransitionWrapper newBackgroundImage={backgroundMap.marathon}>
+			<div className="join-run-page-marathon">
 				<div>
 					<Link to="/carnival">Carnival!</Link>
 				</div>

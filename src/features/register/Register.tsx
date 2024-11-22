@@ -1,12 +1,24 @@
 import { Link } from "react-router-dom";
 import TransitionWrapper from "../../components/TransitionWrapper";
+import { useContext, useEffect } from "react";
+import { SettingsContext } from "../../context/settings/SettingsProvider";
+import { backgroundMap } from "../../context/settings/utils";
 
 const Register = () => {
+	const { setSettingsState } = useContext(SettingsContext);
+
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			setSettingsState((prev) => ({
+				...prev,
+				currentPageBackground: backgroundMap["register"],
+			}));
+		}, 500);
+		return () => clearTimeout(timeout);
+	}, []);
+
 	return (
-		<TransitionWrapper
-			oldBackgroundImage="/public/card-backgrounds/card_after_training\ \(13\).webp"
-			newBackgroundImage="/public/card-backgrounds/card_after_training\ \(14\).webp"
-		>
+		<TransitionWrapper newBackgroundImage={backgroundMap.register}>
 			<div className="page register">
 				<div className="desktop-title">Manager Register</div>
 				<form className="form">

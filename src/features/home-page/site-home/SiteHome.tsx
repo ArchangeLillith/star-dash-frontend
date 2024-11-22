@@ -1,13 +1,25 @@
 import { Link } from "react-router-dom";
 import { tiles } from "./utils";
 import TransitionWrapper from "../../../components/TransitionWrapper";
+import { useContext, useEffect } from "react";
+import { SettingsContext } from "../../../context/settings/SettingsProvider";
+import { backgroundMap } from "../../../context/settings/utils";
 
 const SiteHome: React.FC = () => {
+	const { setSettingsState } = useContext(SettingsContext);
+
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			setSettingsState((prev) => ({
+				...prev,
+				currentPageBackground: backgroundMap["home"],
+			}));
+		}, 500);
+		return () => clearTimeout(timeout);
+	}, []);
+
 	return (
-		<TransitionWrapper
-			newBackgroundImage="/card-backgrounds/flipped-home.PNG"
-			oldBackgroundImage="/card-backgrounds/card_after_training\ \(14\).webp"
-		>
+		<TransitionWrapper newBackgroundImage={backgroundMap.home}>
 			<div className="home-page">
 				<div className="title-container">
 					<div className="home-title">Welcome to </div>
