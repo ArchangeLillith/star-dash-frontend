@@ -1,6 +1,7 @@
 export const publicLinks = [
-	{ href: "/filler-join", text: "Fill for a Run!" },
+	{ href: "/marathon", text: "Fill for a Run!" },
 	{ href: "/login", text: "Log In" },
-	{ href: "/create-account", text: "Create Account" },
+	{ href: "/register", text: "Create Account" },
 	{ href: "/help", text: "Help TT_TT" },
+	{ href: "/create-run", text: "Create Run" },
 ];

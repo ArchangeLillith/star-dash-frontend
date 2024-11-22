@@ -1,9 +1,7 @@
-.home-page {
-	@include flex-center-column;
-	margin-top: 10%;
-	height: 100%;
+.page {
+	margin-top: 35%;
 }
-.container {
+.form {
 	@include flex-center-column;
 	font-family: $paragraph-text;
 	background: $light-kaito-purple;
@@ -11,9 +9,9 @@
 	width: 85%;
 	color: $dark-kaito-purple;
 	margin: auto;
-	margin-top: auto;
+	margin-top: 1.75em;
 	border-radius: 15px;
-	padding: 6%;
+	padding: 3%;
 	box-shadow: 4px 4px 15px $background-gray;
 
 	.manager-container {
@@ -21,18 +19,9 @@
 		font-size: 1.2rem;
 		background-color: $lighter-kaito-purple;
 		border-radius: 10px;
-		padding: 8%;
+		padding: 5%;
 		width: 100%;
-		margin-top: 8%;
-		.card-title {
-			font-family: $blocky-site-heading;
-			text-align: center;
-		}
-		.card-text {
-			text-align: center;
-			font-family: $paragraph-text;
-			font-size: 0.75rem;
-		}
+		margin-top: 4%;
 	}
 
 	.input {
@@ -69,49 +58,30 @@
 		--myColor2: rgb(172, 113, 245);
 	}
 }
-
 @media (min-width: $breakpoint-desktop) {
-	.home-page::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: url("/card-backgrounds/flipped-home.PNG");
-		background-size: cover;
-		background-position: center;
-		z-index: -1;
+	.page.login {
+		background: url("/public/card-backgrounds/card_after_training\ \(13\).webp");
+		@include page-card-background;
 	}
-
-	.home-page {
+	.page.register {
+		background: url("/public/card-backgrounds/card_after_training\ \(14\).webp");
+		@include page-card-background;
+	}
+	.page {
 		margin: 0%;
 		@include flex-center-row;
 		min-height: 100vh;
-		z-index: 1;
-		.title-container {
-			@include flex-center-column("flex-start");
-		}
-
-		.container {
-			justify-content: space-around;
+		.form {
 			background-color: $kaito-purple-30;
 			margin-right: 12%;
 			max-height: 80%;
 			width: 25%;
-			padding: 20px;
-			margin-top: 2%;
+			padding: 30px;
+			margin-top: 8%;
 			border: none;
 			box-shadow: none;
 		}
-
-		.manager-container {
-			width: 80%;
-			padding: 6%;
-			margin-top: 4%;
-			margin-bottom: 2%;
-		}
-		.container-title {
+		.form-title {
 			display: none;
 		}
 		.notice-text {
@@ -122,22 +92,11 @@
 			color: $light-kaito-purple;
 		}
 	}
-	.home-title-2 {
-		display: block;
-		font-size: 8rem;
-		color: white;
-		padding-left: 2%;
-		margin-left: 4%;
-		font-family: $blocky-site-heading;
-		text-shadow: 4px 2px 3px $dark-kaito-purple;
-	}
-	.home-title {
-		margin-top: 40%;
-		display: block;
+	.desktop-title {
 		color: white;
 		font-size: $page-heading-size;
-		padding-left: 4%;
-		margin-left: 4%;
+		display: block;
+		padding-left: 2%;
 		font-family: $blocky-site-heading;
 		text-shadow: 4px 2px 3px $dark-kaito-purple;
 	}

@@ -1,0 +1,48 @@
+.transition-wrapper {
+	position: relative;
+	overflow: hidden; /* Ensure no sliding image overflows */
+	width: 100%;
+	height: 100vh;
+
+	/* Old Background Image (static) */
+	background-image: url("/card-backgrounds/card_after_training\ \(14\).webp");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.background-slide {
+	position: absolute;
+	top: 0;
+	left: 100%; /* Start the new image off-screen to the right */
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+
+	/* Slide-in Animation */
+	animation: slideIn 0.5s ease-out forwards;
+}
+
+.page-content {
+	position: relative; /* Ensure content stays above everything */
+	z-index: 1;
+	opacity: 0;
+	animation: fadeIn 0.5s ease-in forwards;
+	animation-delay: 0.5s; /* Wait until slide animation finishes */
+}
+
+/* Keyframes for sliding animation */
+@keyframes slideIn {
+	to {
+		left: 0; /* New image slides into view */
+	}
+}
+
+/* Keyframes for content fade-in */
+@keyframes fadeIn {
+	to {
+		opacity: 1;
+	}
+}

@@ -7,7 +7,6 @@ interface NavItemProps {
 }
 
 const NavItem: React.FC<NavItemProps> = ({ href, text, className }) => {
-	console.log(`Nav item hit`);
 	return (
 		<li className={`nav-item ${className}`}>
 			<Link className={`nav-link ${className}`} to={href}>

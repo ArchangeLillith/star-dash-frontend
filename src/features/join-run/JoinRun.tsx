@@ -13,12 +13,14 @@ const JoinRun: React.FC = () => {
 	}
 	return (
 		<>
-			<div>
+			<div className="join-run-page">
 				<button onClick={toggleType}>
 					{type === "Marathon" ? "Cheerful Carnival" : "Marathon"}
 				</button>
+
+				{type === "Marathon" ? <JoinMarathon /> : <JoinCarnival />}
+				<h2 className="desktop-title">Filler Registration</h2>
 			</div>
-			{type === "Marathon" ? <JoinMarathon /> : <JoinCarnival />}
 		</>
 	);
 };

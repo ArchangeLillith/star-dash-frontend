@@ -1,17 +1,31 @@
-$luka-purple: rgb(218, 182, 255);
-$lighter-luka-purple: rgb(248, 235, 252);
-$light-luka-purple: rgb(233, 212, 253);
-$miku-gray: rgb(160, 116, 205);
-$miku-gray-2: rgb(181, 147, 196);
-$background-gray: rgb(130, 125, 130);
-$dark-luka-purple: rgb(169, 120, 229);
-$darker-luka-purple: rgb(134, 62, 206);
-$darkest-luka-purple: rgb(120, 40, 200);
-$button-color: rgb(134, 62, 206);
-$button-text-color: rgb(147, 102, 192);
-$button-text-color-hover: rgb(255, 255, 255);
+$kaito-purple: rgb(200, 160, 240);
+$kaito-purple-30: rgba(200, 160, 240, 0.3);
+$light-kaito-purple: rgb(215, 195, 245);
+$lighter-kaito-purple: rgb(230, 215, 250);
+$dark-kaito-purple: rgb(150, 100, 220);
+$dark-kaito-purple-30: rgba(150, 100, 220, 0.3);
+$darker-kaito-purple: rgb(130, 70, 200);
+$darkest-kaito-purple: rgb(110, 50, 180);
+
+$luka-pink: rgb(240, 160, 200);
+$lighter-luka-pink: rgb(250, 215, 230);
+$light-luka-pink: rgb(245, 195, 220);
+$dark-luka-pink: rgb(220, 100, 150);
+$darker-luka-pink: rgb(200, 70, 130);
+$darkest-luka-pink: rgb(180, 50, 110);
+
+$miku-gray: rgb(100, 100, 100);
+$miku-gray-2: rgb(80, 80, 80);
+$background-gray: rgb(140, 135, 140);
+
+// $button-color: rgb(134, 62, 206);
+// $button-text-color: rgb(147, 102, 192);
+// $button-text-color-hover: rgb(255, 255, 255);
+
 $blocky-site-heading: "Yuruka-UB";
 $paragraph-text: "SkipPro-B";
+$subtitle-font: "PopHappiness-EB";
+$page-heading-size: 5rem;
 
 /* Bold, more handwrite-like, good for page headings? */
 @font-face {
@@ -49,4 +63,4 @@ $paragraph-text: "SkipPro-B";
 }
 
 $breakpoint-tablet: 768px;
-$breakpoint-desktop: 1024px;
+$breakpoint-desktop: 992px;

@@ -1,10 +1,14 @@
 .desktop-title {
 	display: none;
 }
-.filler-registration-form {
+
+.create-event-page {
+	margin-top: 20%;
+}
+.create-event-form {
 	@include flex-center-column;
 	//REFACTOR this can prob be used as a mixin or global style as it fits at least the login and register pages really well. We need to figure out how to center the box in the screen, but other than that this is solid
-	margin-top: 50%;
+	margin-top: 40%;
 	font-family: $paragraph-text;
 	background: $light-kaito-purple;
 	border: 7px solid $kaito-purple;
@@ -15,6 +19,7 @@
 	padding: 3%;
 	padding-bottom: 5%;
 	box-shadow: 4px 4px 15px $background-gray;
+
 	.input {
 		margin: 0.35em 0;
 		width: 100%;
@@ -51,28 +56,11 @@
 		width: 100%;
 		margin-top: 4%;
 	}
-	.team-content {
-		background-color: $kaito-purple;
-		border-radius: 10px;
-		margin-top: 2%;
-		padding: 4%;
-		@include flex-center-column;
 
-		.team-container {
-			@include flex-center-column;
-		}
-
-		.input-container {
-			@include flex-center-row;
-		}
-		input {
-			width: 20%;
-			margin: 2%;
-		}
-	}
 	.submit-btn,
 	.submit-btn:hover,
 	.submit-btn:focus {
+		min-width: 200px;
 		margin-top: 5%;
 		color: var(--button-text-color-hover);
 		--myColor1: rgb(135, 84, 197);
@@ -81,61 +69,40 @@
 }
 
 @media (min-width: $breakpoint-desktop) {
-	.join-run-page::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: url("/card-backgrounds/card_after_training (3).webp");
-		background-size: cover;
-		background-position: center;
-		z-index: -1;
+	.create-run-title {
+		color: white;
+		margin-right: 2%;
+		font-size: $page-heading-size;
+		display: block;
+		font-family: $blocky-site-heading;
+		text-shadow: 4px 2px 3px $dark-kaito-purple;
+		margin-bottom: -25%;
 	}
-
-	.join-run-page {
-		margin: 0%;
+	.create-event-page {
 		@include flex-center-row(center, flex-start);
-		min-height: 100vh;
-		z-index: 1;
-
+		background: url("/card-backgrounds/card_after_training (20).webp");
+		margin: 0;
+		height: 100%;
+		@include page-card-background;
 		.form-title {
 			display: none;
 		}
-		
-		.desktop-title {
-			color: white;
-			margin-right: 2%;
-			font-size: $page-heading-size;
-			display: block;
-			font-family: $blocky-site-heading;
-			text-shadow: 4px 2px 3px $dark-kaito-purple;
-			margin-bottom: -25%;
-		}
 
-		.filler-registration-form {
+		.create-event-form {
 			margin-left: 4%;
 			width: 30%;
 			max-height: 80%;
 			background-color: $dark-kaito-purple-30;
 			border: none;
 			padding: 30px;
-			.top-content {
-				display: flex;
-				flex-direction: row;
+			box-shadow: none;
+			.password-container {
+				@include flex-center-column;
+				background-color: $lighter-kaito-purple;
+				border-radius: 10px;
+				padding: 5%;
 				width: 100%;
-			}
-			.banner-background {
-				background-color: $light-kaito-purple;
-				padding: 1% 4%;
-				border-radius: 30px;
-			}
-			.manager-container {
-				margin: 5%;
-				padding: 4%;
-				font-size: 1.2rem;
-				width: 100%;
+				margin-top: 4%;
 			}
 		}
 	}

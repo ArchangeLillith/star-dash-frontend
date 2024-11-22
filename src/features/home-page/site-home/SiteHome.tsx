@@ -1,20 +1,31 @@
-import SmallTile from "../components/SmallTile";
+import { Link } from "react-router-dom";
 import { tiles } from "./utils";
+import TransitionWrapper from "../../../components/TransitionWrapper";
 
 const SiteHome: React.FC = () => {
-
 	return (
-		<div className="card-wrapper">
-			{tiles.map((tile) => (
-				<SmallTile
-					key={tile.title}
-					title={tile.title}
-					body={tile.body}
-					href={tile.href}
-					className={tile.className}
-				/>
-			))}
-		</div>
+		<TransitionWrapper
+			newBackgroundImage="/card-backgrounds/flipped-home.PNG"
+			oldBackgroundImage="/card-backgrounds/card_after_training\ \(14\).webp"
+		>
+			<div className="home-page">
+				<div className="title-container">
+					<div className="home-title">Welcome to </div>
+					<div className="home-title-2">StarDash!</div>
+				</div>
+				<div className="container">
+					<div className="container-title">Welcome</div>
+					{tiles.map((tile) => (
+						<Link to={tile.href} className="manager-container">
+							<div className="card-title">{tile.title}</div>
+							<div className="card-text">
+								<p>{tile.body}</p>
+							</div>
+						</Link>
+					))}
+				</div>
+			</div>
+		</TransitionWrapper>
 	);
 };
 

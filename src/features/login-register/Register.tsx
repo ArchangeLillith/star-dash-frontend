@@ -1,13 +1,38 @@
 import { Link } from "react-router-dom";
+import TransitionWrapper from "../../components/TransitionWrapper";
 
 const Register = () => {
 	return (
-		<div>
-			<h1>Register component rendered</h1>
-			<p>
-				Wait I have an account! Let me <Link to="/login">login!</Link>
-			</p>
-		</div>
+		<TransitionWrapper
+			oldBackgroundImage="/public/card-backgrounds/card_after_training\ \(13\).webp"
+			newBackgroundImage="/public/card-backgrounds/card_after_training\ \(14\).webp"
+		>
+			<div className="page register">
+				<div className="desktop-title">Manager Register</div>
+				<form className="form">
+					<div className="form-title">Manager Register</div>
+					<div className="manager-container">
+						<label htmlFor="username">Username</label>
+						<input id="username" className="input"></input>
+					</div>
+					<div className="manager-container">
+						<label htmlFor="password">Password</label>
+						<input id="password" className="input"></input>
+					</div>
+					<div className="manager-container">
+						<label htmlFor="password-confirm">Confirm Password</label>
+						<input id="password-confirm" className="input"></input>
+					</div>
+					<div className="notice-text">
+						Already have an account?{" "}
+						<Link className="link" to="/login">
+							Login!
+						</Link>
+					</div>
+					<button className="submit-btn">Register</button>
+				</form>
+			</div>
+		</TransitionWrapper>
 	);
 };
 
