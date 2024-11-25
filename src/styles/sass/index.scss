@@ -1,70 +1,70 @@
-@import url("../variables");
-@import url("../mixins");
-@import url("/src/features/home-page/homePage");
-@import url("/src/components/styles/component-styles");
-@import url("/src/features/create-run/create_run");
-@import url("/src/features/login/login");
-@import url("/src/features/register/register");
-@import url("/src/layout/navbar/navBar");
-@import url("/src/features/join-run/join-run");
+@import '../variables';
+@import '../mixins';
+@import '/src/features/home-page/homePage';
+@import '/src/components/styles/component-styles';
+@import '/src/features/create-run/create_run';
+@import '/src/features/login/login';
+@import '/src/features/register/register';
+@import '/src/layout/navbar/navBar';
+@import '/src/features/join-run/join-run';
 
 html,
 body,
 #root {
-	min-height: 100%;
-	width: 100%;
+  min-height: 100%;
+  width: 100%;
 }
 
 .global-h1 {
-	width: 100%;
-	height: 100%;
-	justify-content: center;
-	display: flex;
-	text-align: center;
-	font-family: $blocky-site-heading;
-	font-size: 175%;
-	color: $dark-kaito-purple;
-	text-shadow: 5px 2px $kaito-purple;
-	margin-top: 4%;
-	cursor: default;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  display: flex;
+  text-align: center;
+  font-family: $blocky-site-heading;
+  font-size: 175%;
+  color: $dark-kaito-purple;
+  text-shadow: 5px 2px $kaito-purple;
+  margin-top: 4%;
+  cursor: default;
 }
 
 .global-h4 {
-	font-family: SkipPro-B;
-	text-align: center;
+  font-family: SkipPro-B;
+  text-align: center;
 }
 
 //* Removal of default styling
 /* Remove default border and padding of fieldset */
 fieldset {
-	border: none; /* Remove border */
-	padding: 0; /* Remove padding */
-	margin: 0; /* Reset margin if needed */
+  border: none; /* Remove border */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Reset margin if needed */
 }
 
 /* Style the legend to remove default padding and margin */
 legend {
-	padding: 0; /* Remove padding */
-	margin: 0; /* Reset margin */
-	font-size: inherit; /* Inherit the font size from parent */
-	font-weight: inherit; /* Inherit the font weight if needed */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Reset margin */
+  font-size: inherit; /* Inherit the font size from parent */
+  font-weight: inherit; /* Inherit the font weight if needed */
 }
 
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 input:focus,
 select:focus {
-	outline: none;
-	box-shadow: 0 0 8px $darker-kaito-purple; //Soft glow
-	border: 2px solid $darker-kaito-purple;glowborder //Border, does nothing??
+  outline: none;
+  box-shadow: 0 0 8px $darker-kaito-purple; //Soft glow
+  border: 2px solid $darker-kaito-purple; //Border, does nothing??
 }
 
 a {
-	text-decoration: none;
+  text-decoration: none;
 }
 // Font size: REM - relative to root font size, most of the time defualts to 16px
 // Adapts to user and system preferences
@@ -76,13 +76,14 @@ a {
 //rem doesn't grow with the font size, btu em does and makes for a better look cause the buttons are proportional, for example
 
 @media (min-width: $breakpoint-desktop) {
-	.no-desktop {
-		display: none;
-	}
+  .no-desktop {
+    display: none;
+  }
 
-	html,
-	body,
-	#root {
-		overflow: hidden;
-	}
+  html,
+  body,
+  #root {
+    overflow: hidden;
+  }
 }
+
