@@ -1,26 +1,24 @@
-$kaito-purple: rgb(200, 160, 240);
-$kaito-purple-30: rgba(200, 160, 240, 0.3);
-$light-kaito-purple: rgb(215, 195, 245);
-$lighter-kaito-purple: rgb(230, 215, 250);
-$dark-kaito-purple: rgb(150, 100, 220);
-$dark-kaito-purple-30: rgba(150, 100, 220, 0.3);
-$darker-kaito-purple: rgb(130, 70, 200);
-$darkest-kaito-purple: rgb(110, 50, 180);
+$kaito-purple: rgb(200 160 240);
+$kaito-purple-30: rgb(200 160 240 / 30%);
+$light-kaito-purple: rgb(215 195 245);
+$lighter-kaito-purple: rgb(230 215 250);
+$dark-kaito-purple: rgb(150 100 220);
+$dark-kaito-purple-30: rgb(150 100 220 / 30%);
+$darker-kaito-purple: rgb(130 70 200);
+$darkest-kaito-purple: rgb(110 50 180);
 
-$luka-pink: rgb(240, 160, 200);
-$lighter-luka-pink: rgb(250, 215, 230);
-$light-luka-pink: rgb(245, 195, 220);
-$dark-luka-pink: rgb(220, 100, 150);
-$darker-luka-pink: rgb(200, 70, 130);
-$darkest-luka-pink: rgb(180, 50, 110);
+$luka-pink: rgb(240 160 200);
+$lighter-luka-pink: rgb(250 215 230);
+$light-luka-pink: rgb(245 195 220);
+$dark-luka-pink: rgb(220 100 150);
+$darker-luka-pink: rgb(200 70 130);
+$darkest-luka-pink: rgb(180 50 110);
 
-$miku-gray: rgb(100, 100, 100);
-$miku-gray-2: rgb(80, 80, 80);
-$background-gray: rgb(140, 135, 140);
+$miku-gray: rgb(100 100 100);
+$miku-gray-2: rgb(80 80 80);
+$background-gray: rgb(140 135 140);$button-text-color
 
-// $button-color: rgb(134, 62, 206);
-// $button-text-color: rgb(147, 102, 192);
-// $button-text-color-hover: rgb(255, 255, 255);
+// $button-text-color-hover: rgb(255 255 255);$button-text-color-hover
 
 $blocky-site-heading: "Yuruka-UB";
 $paragraph-text: "SkipPro-B";
@@ -29,35 +27,35 @@ $page-heading-size: 5rem;
 
 /* Bold, more handwrite-like, good for page headings? */
 @font-face {
-	font-family: "PopHappiness-EB";
+	font-family: PopHappiness-EB;
 	src: local("FOT-PopHappinessStd-EB"),
 		url("/src/assets/fonts/FOT-PopHappinessStd-EB.ttf") format("truetype");
 }
 
 /* The most generic. Sans serif, not interesting */
 @font-face {
-	font-family: "Rodin-DB";
+	font-family: Rodin-DB;
 	src: local("FOT-RodinNTLGPro-DB"),
 		url("/src/assets/fonts/FOT-RodinNTLGPro-DB.ttf") format("truetype");
 }
 
 /* Semi-bold comparatively, straigh lines with a small bit of calligraphy filling */
 @font-face {
-	font-family: "SkipPro-B";
+	font-family: SkipPro-B;
 	src: local("FOT-SkipProN-B"),
 		url("/src/assets/fonts/FOT-SkipProN-B.ttf") format("truetype");
 }
 
 /* Bold, same as SkipProN but bolder, a bit generic */
 @font-face {
-	font-family: "MinchoPro-B";
+	font-family: MinchoPro-B;
 	src: local("FOT-UDMinchoPro-B"),
 		url("/src/assets/fonts/FOT-UDMinchoPro-B.ttf") format("truetype");
 }
 
 /* Ultra bold, blocky, good for site heading */
 @font-face {
-	font-family: "Yuruka-UB";
+	font-family: Yuruka-UB;
 	src: local("FOT-YurukaStd-UB"),
 		url("/src/assets/fonts/FOT-YurukaStd-UB.ttf") format("truetype");
 }

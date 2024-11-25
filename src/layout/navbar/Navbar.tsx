@@ -1,46 +1,46 @@
-import React from "react";
-import AuthenticatedNavLinks from "./authenticated/AuthenticatedNavLinks";
-import PublicNavLinks from "./public/PublicNav";
-import { Link } from "react-router-dom";
+import React from 'react';
+import AuthenticatedNavLinks from './authenticated/AuthenticatedNavLinks';
+import PublicNavLinks from './public/PublicNav';
+import { Link } from 'react-router-dom';
 
 const NavBar: React.FC = () => {
-	// const [navLogo, setNavLogo] = React.useState({
-	// 	src: `../img/Logo/logo.png`,
-	// });
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const [selectionMode, setSelectionMode] = React.useState(false);
-	const user = {
-		loggedIn: false,
-		registeredEvents: [
-			{ event: "Shooting Star", leadManager: "Ki" },
-			{ event: "This event", leadManager: "Ki" },
-		],
-		event: "Shooting Star",
-		leadManager: true,
-		siteAdmin: false,
-	};
+  // const [navLogo, setNavLogo] = React.useState({
+  // 	src: `../img/Logo/logo.png`,
+  // });
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [selectionMode, setSelectionMode] = React.useState(false);
+  const user = {
+    loggedIn: false,
+    registeredEvents: [
+      { event: 'Shooting Star', leadManager: 'Ki' },
+      { event: 'This event', leadManager: 'Ki' },
+    ],
+    event: 'Shooting Star',
+    leadManager: true,
+    siteAdmin: false,
+  };
 
-	return (
-		<nav className="navbar">
-			<div className="navbar-logo" onClick={handleRefresh}>
-				<Link to="/">
-					<img src="/images/Logo/logo.png" alt="back arrow" id="nav-logo" />
-				</Link>
-			</div>
-			<div className="navbar-link-wrapper">
-				<ul className="navbar-ul">
-					{user.loggedIn && (
-						<AuthenticatedNavLinks
-							user={user}
-							selectionMode={selectionMode}
-							confirmEventChange={confirmEventChange}
-						/>
-					)}
-					{!user.loggedIn && <PublicNavLinks />}
-				</ul>
-			</div>
-		</nav>
-	);
+  return (
+    <nav className="navbar">
+      <div className="navbar-logo" onClick={handleRefresh}>
+        <Link to="/">
+          <img src="/images/Logo/logo.png" alt="back arrow" id="nav-logo" />
+        </Link>
+      </div>
+      <div className="navbar-link-wrapper">
+        <ul className="navbar-ul">
+          {user.loggedIn && (
+            <AuthenticatedNavLinks
+              user={user}
+              selectionMode={selectionMode}
+              confirmEventChange={confirmEventChange}
+            />
+          )}
+          {!user.loggedIn && <PublicNavLinks />}
+        </ul>
+      </div>
+    </nav>
+  );
 };
 
 export default NavBar;
@@ -51,20 +51,20 @@ export default NavBar;
  * Shows a pop up to ensure the user wants to change events, as it will change their context and potentially erase anything the user hasn't saved. If yes is chosen, another function is called to return the context for the new event chosen. If no is chosen, nothing happens.
  */
 function confirmEventChange() {
-	alert("Change eent?");
-	// confirmAlert({
-	// 	message:
-	// 		"Are you sure you'd like to change the event? This will reset your schedule if you're working on it! Please save before doing this if you don't want to loose your hard work",
-	// 	buttons: [
-	// 		{
-	// 			label: "Yes",
-	// 			onClick: () => eventChange(),
-	// 		},
-	// 		{
-	// 			label: "No",
-	// 		},
-	// 	],
-	// });
+  alert('Change eent?');
+  // confirmAlert({
+  // 	message:
+  // 		"Are you sure you'd like to change the event? This will reset your schedule if you're working on it! Please save before doing this if you don't want to loose your hard work",
+  // 	buttons: [
+  // 		{
+  // 			label: "Yes",
+  // 			onClick: () => eventChange(),
+  // 		},
+  // 		{
+  // 			label: "No",
+  // 		},
+  // 	],
+  // });
 }
 
 // /**
@@ -73,20 +73,20 @@ function confirmEventChange() {
 //  * Shows a pop up to ensure the user wants to refresh the page and go back to the home menu, as it will change their context and potentially erase anything the user hasn't saved. If yes is chosen, the window reloads. If no is chosen, nothing happens.
 //  */
 function handleRefresh() {
-	console.log(`Refresh`);
-	// confirmAlert({
-	// 	message:
-	// 		"Go back to home page? This will reset anything you haven't saved and also log you out!",
-	// 	buttons: [
-	// 		{
-	// 			label: "Yes",
-	// 			onClick: () => window.location.reload(),
-	// 		},
-	// 		{
-	// 			label: "No",
-	// 		},
-	// 	],
-	// });
+  console.log(`Refresh`);
+  // confirmAlert({
+  // 	message:
+  // 		"Go back to home page? This will reset anything you haven't saved and also log you out!",
+  // 	buttons: [
+  // 		{
+  // 			label: "Yes",
+  // 			onClick: () => window.location.reload(),
+  // 		},
+  // 		{
+  // 			label: "No",
+  // 		},
+  // 	],
+  // });
 }
 
 // /**

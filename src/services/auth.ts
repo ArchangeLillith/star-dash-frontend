@@ -10,14 +10,14 @@ import { Manager } from '../utils/types';
  * @returns A JWT if the login succeeded, or an error if not
  */
 const authenticateManagerAndStoreToken = async (payload: {
-	username: string;
-	password: string;
+  username: string;
+  password: string;
 }) => {
-	const token = await baseService.post('/auth/login', payload);
-	if (!token) return;
+  const token = await baseService.post('/auth/login', payload);
+  if (!token) return;
 
-	storage.setToken(token);
-	return token;
+  storage.setToken(token);
+  return token;
 };
 
 /**
@@ -26,15 +26,15 @@ const authenticateManagerAndStoreToken = async (payload: {
  * @returns A JWT or error
  */
 const registerUserAndStoreToken = async (payload: {
-	email: string;
-	password: string;
-	username: string;
+  email: string;
+  password: string;
+  username: string;
 }) => {
-	console.log(`REGISTER AND STORE TOKEN`);
-	const token = await baseService.post('/auth/register/', payload);
-	if (!token) return;
-	storage.setToken(token);
-	return token;
+  console.log(`REGISTER AND STORE TOKEN`);
+  const token = await baseService.post('/auth/register/', payload);
+  if (!token) return;
+  storage.setToken(token);
+  return token;
 };
 
 /**
@@ -43,27 +43,27 @@ const registerUserAndStoreToken = async (payload: {
  * @returns the user
  */
 const getUserFromToken = async (token: string): Promise<Manager> => {
-	try {
-		const validated = await baseService.get('/auth/validate/me');
-		if (validated?.message !== 'success') {
-			throw new Error(
-				'token bad, something went wrong with frontend check of token'
-			);
-		}
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		const decoded: any = jwtDecode(token);
-		const userId: string = decoded.id;
-		const user: Manager = await baseService.get(`/api/authors/${userId}`);
-		if (!user) throw new Error("user couldn't be fetched TT_TT");
-		return user;
-	} catch (error) {
-		console.log(`ERROR in get?UserFromToen`, error);
-		throw error;
-	}
+  try {
+    const validated = await baseService.get('/auth/validate/me');
+    if (validated?.message !== 'success') {
+      throw new Error(
+        'token bad, something went wrong with frontend check of token'
+      );
+    }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const decoded: any = jwtDecode(token);
+    const userId: string = decoded.id;
+    const user: Manager = await baseService.get(`/api/authors/${userId}`);
+    if (!user) throw new Error("user couldn't be fetched TT_TT");
+    return user;
+  } catch (error) {
+    console.log(`ERROR in get?UserFromToen`, error);
+    throw error;
+  }
 };
 
 export default {
-	authenticateUserAndStoreToken: authenticateManagerAndStoreToken,
-	registerUserAndStoreToken,
-	getUserFromToken,
+  authenticateUserAndStoreToken: authenticateManagerAndStoreToken,
+  registerUserAndStoreToken,
+  getUserFromToken,
 };

@@ -1,10 +1,13 @@
 .home-page {
 	@include flex-center-column;
+
 	margin-top: 10%;
 	height: 100%;
 }
+
 .container {
 	@include flex-center-column;
+
 	font-family: $paragraph-text;
 	background: $light-kaito-purple;
 	border: 7px solid $kaito-purple;
@@ -18,16 +21,19 @@
 
 	.manager-container {
 		@include flex-center-column;
+
 		font-size: 1.2rem;
 		background-color: $lighter-kaito-purple;
 		border-radius: 10px;
 		padding: 8%;
 		width: 100%;
 		margin-top: 8%;
+
 		.card-title {
 			font-family: $blocky-site-heading;
 			text-align: center;
 		}
+
 		.card-text {
 			text-align: center;
 			font-family: $paragraph-text;
@@ -38,19 +44,20 @@
 	.input {
 		margin: 0.35em 0;
 		width: 100%;
-		min-width: 200px;
 		font-size: 1rem;
 		text-align: center;
-		background: #ffffff;
+		background: #fff;
 		border: 2px solid $lighter-kaito-purple;
 		border-radius: 10px;
 		box-sizing: border-box;
 		min-width: 50px;
 		padding: 0.5em;
 	}
+
 	.notice-text {
 		font-size: 0.8rem;
 	}
+
 	.submit-btn {
 		margin-top: 4%;
 		width: 30%;
@@ -61,12 +68,14 @@
 		color: white;
 		font-family: $subtitle-font;
 	}
+
 	.submit-btn:hover,
 	.submit-btn:focus {
 		margin-top: 5%;
 		color: $dark-kaito-purple;
-		--myColor1: rgb(135, 84, 197);
-		--myColor2: rgb(172, 113, 245);
+
+		--myColor1: rgb(135 84 197);
+		--myColor2: rgb(172 113 245);
 	}
 }
 
@@ -74,10 +83,7 @@
 	.home-page::before {
 		content: "";
 		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
+		inset: 0;
 		background: url("/card-backgrounds/home.png");
 		background-size: cover;
 		background-position: center;
@@ -86,9 +92,12 @@
 
 	.home-page {
 		margin: 0%;
+
 		@include flex-center-row;
+
 		min-height: 100vh;
 		z-index: 1;
+
 		.title-container {
 			@include flex-center-column("flex-start");
 		}
@@ -111,17 +120,21 @@
 			margin-top: 4%;
 			margin-bottom: 2%;
 		}
+
 		.container-title {
 			display: none;
 		}
+
 		.notice-text {
 			color: white;
 		}
+
 		.link {
 			font-size: 1rem;
 			color: $light-kaito-purple;
 		}
 	}
+
 	.home-title-2 {
 		display: block;
 		font-size: 8rem;
@@ -131,6 +144,7 @@
 		font-family: $blocky-site-heading;
 		text-shadow: 4px 2px 3px $dark-kaito-purple;
 	}
+
 	.home-title {
 		margin-top: 40%;
 		display: block;

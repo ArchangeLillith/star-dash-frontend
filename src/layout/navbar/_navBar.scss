@@ -1,4 +1,4 @@
-@import "../../styles/variables";
+@import url("../../styles/variables");
 
 //Mobile styling
 .navbar {
@@ -30,7 +30,7 @@
 
 		li {
 			padding: 5px;
-			font-family: "Yuruka-UB";
+			font-family: Yuruka-UB;
 			text-align: center;
 			font-size: 0.75rem;
 			color: $darkest-kaito-purple;
@@ -78,7 +78,7 @@
 
 			li {
 				padding: 20px;
-				font-family: "Yuruka-UB";
+				font-family: Yuruka-UB;
 				text-align: center;
 				font-size: 120%;
 				color: $darkest-kaito-purple;

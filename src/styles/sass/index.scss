@@ -1,12 +1,12 @@
-@import "../variables";
-@import "../mixins";
-@import "/src/features/home-page/homePage";
-@import "/src/components/styles/component-styles";
-@import "/src/features/create-run/create_run";
-@import "/src/features/login/login";
-@import "/src/features/register/register";
-@import "/src/layout/navbar/navBar";
-@import "/src/features/join-run/join-run";
+@import url("../variables");
+@import url("../mixins");
+@import url("/src/features/home-page/homePage");
+@import url("/src/components/styles/component-styles");
+@import url("/src/features/create-run/create_run");
+@import url("/src/features/login/login");
+@import url("/src/features/register/register");
+@import url("/src/layout/navbar/navBar");
+@import url("/src/features/join-run/join-run");
 
 html,
 body,
@@ -30,7 +30,7 @@ body,
 }
 
 .global-h4 {
-	font-family: "SkipPro-B";
+	font-family: SkipPro-B;
 	text-align: center;
 }
 
@@ -60,7 +60,7 @@ input:focus,
 select:focus {
 	outline: none;
 	box-shadow: 0 0 8px $darker-kaito-purple; //Soft glow
-	border: 2px solid $darker-kaito-purple; //Border, does nothing??
+	border: 2px solid $darker-kaito-purple;glowborder //Border, does nothing??
 }
 
 a {
@@ -79,6 +79,7 @@ a {
 	.no-desktop {
 		display: none;
 	}
+
 	html,
 	body,
 	#root {

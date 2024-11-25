@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "lint": "eslint 'src/**/*.{ts,tsx,js,jsx}' && stylelint '**/*.scss'",
+    "lint": "eslint \"src/**/*.{ts,tsx,js,jsx}\" && stylelint \"**/*.scss\"",
     "format": "prettier --write 'src/**/*.{ts,tsx,js,jsx,json,css,scss}'",
     "dev": "vite",
     "build": "tsc -b && vite build",

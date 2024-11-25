@@ -1,22 +1,22 @@
-import React, { useContext } from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import React, { useContext } from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
 
-import { AuthContext } from "./AuthProvider";
-import { WrapperProps } from "../../utils/types";
+import { AuthContext } from './AuthProvider';
+import { WrapperProps } from '../../utils/types';
 
 const AuthWrapper: React.FC<WrapperProps> = ({ children }) => {
-	const { authState } = useContext(AuthContext);
-	const location = useLocation();
+  const { authState } = useContext(AuthContext);
+  const location = useLocation();
 
-	/**
-	 * Throws the user to the login page with a message as to where they came from if thery're not logged in and trying to access the page this wraps as they shouldn't be allowed into the page without being logged in
-	 */
-	if (!authState.authenticated) {
-		const stateToPass = { from: location.pathname };
-		return <Navigate to="/login" state={stateToPass} />;
-	}
+  /**
+   * Throws the user to the login page with a message as to where they came from if thery're not logged in and trying to access the page this wraps as they shouldn't be allowed into the page without being logged in
+   */
+  if (!authState.authenticated) {
+    const stateToPass = { from: location.pathname };
+    return <Navigate to="/login" state={stateToPass} />;
+  }
 
-	return <>{children}</>;
+  return <>{children}</>;
 };
 
 export default AuthWrapper;

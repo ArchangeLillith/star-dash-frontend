@@ -1,43 +1,43 @@
 //REFACTOR this is going to be useful like literally everywhere, we should move this at some point
 export const handleStateChange =
-	<T>(key: keyof T, setState: React.Dispatch<React.SetStateAction<T>>) =>
-	(value: unknown) => {
-		setState((prev) => ({
-			...prev,
-			[key]: value,
-		}));
-	};
+  <T>(key: keyof T, setState: React.Dispatch<React.SetStateAction<T>>) =>
+  (value: unknown) => {
+    setState((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
+  };
 export const handleStateChangeSecondLayer =
-	<T>(
-		key: keyof T,
-		parentStateKey: keyof T,
-		setState: React.Dispatch<React.SetStateAction<T>>
-	) =>
-	(value: unknown) => {
-		setState((prev) => {
-			// Validate that the team exists in the state
-			if (!prev[parentStateKey]) {
-				console.error(
-					`ERORORORORORR: Team '${JSON.stringify(
-						parentStateKey
-					)}' does not exist in the state.`
-				);
-				return prev; // Return the unchanged state
-			}
+  <T>(
+    key: keyof T,
+    parentStateKey: keyof T,
+    setState: React.Dispatch<React.SetStateAction<T>>
+  ) =>
+  (value: unknown) => {
+    setState((prev) => {
+      // Validate that the team exists in the state
+      if (!prev[parentStateKey]) {
+        console.error(
+          `ERORORORORORR: Team '${JSON.stringify(
+            parentStateKey
+          )}' does not exist in the state.`
+        );
+        return prev; // Return the unchanged state
+      }
 
-			// Proceed with the update if the team exists
-			return {
-				...prev,
-				[parentStateKey]: {
-					...prev[parentStateKey], // Safely copy the team's existing properties
-					[key]: value, // Update the specified key within the team
-				},
-			};
-		});
-	};
+      // Proceed with the update if the team exists
+      return {
+        ...prev,
+        [parentStateKey]: {
+          ...prev[parentStateKey], // Safely copy the team's existing properties
+          [key]: value, // Update the specified key within the team
+        },
+      };
+    });
+  };
 
 export const RunnerInputConfigs = [
-	{ id: "isv1", stateKey: "runnerIsv1", placeholder: "ISV1" },
-	{ id: "isv2", stateKey: "runnerIsv2", placeholder: "ISV2" },
-	{ id: "bp", stateKey: "runnerBp", placeholder: "BP" },
+  { id: 'isv1', stateKey: 'runnerIsv1', placeholder: 'ISV1' },
+  { id: 'isv2', stateKey: 'runnerIsv2', placeholder: 'ISV2' },
+  { id: 'bp', stateKey: 'runnerBp', placeholder: 'BP' },
 ];
