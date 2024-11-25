@@ -2,12 +2,17 @@ import { useContext, useEffect, useState } from "react";
 import Select from "../../components/Select";
 import Input from "../../components/Input";
 import TransitionWrapper from "../../components/TransitionWrapper";
-import { inputConfigs } from "./utils";
+import { RunnerInputConfigs } from "./utils";
 import { SettingsContext } from "../../context/settings/SettingsProvider";
 import { backgroundMap } from "../../context/settings/utils";
+import {
+	TEAM_NUMBER_INPUT_SETTINGS,
+	TEXT_INPUT_SETTINGS,
+} from "../../utils/variables";
+import React from "react";
 
 const CreateRun = () => {
-	const [state, setState] = useState({
+	const [formStateCreateRun, setFormStateCreateRun] = useState({
 		selectedEvent: "",
 		runnerName: "",
 		runnerIsv1: 0,
@@ -41,11 +46,11 @@ const CreateRun = () => {
 				<form className="create-event-form">
 					<div className="form-title">Create Event</div>
 					<Select
-						value={state.selectedEvent}
-						state={state}
+						value={formStateCreateRun.selectedEvent}
+						state={formStateCreateRun}
 						options={events}
 						stateKey="selectedEvent"
-						setState={setState}
+						setState={setFormStateCreateRun}
 						defaultOption="Choose your event..."
 					/>
 
@@ -54,24 +59,30 @@ const CreateRun = () => {
 							Runner Name
 						</label>
 						<Input
-							value={state.runnerName}
+							id="runner-name"
+							value={formStateCreateRun.runnerName}
+							maxLength={TEXT_INPUT_SETTINGS.MAX_LENGTH}
 							className="input"
 							stateKey="runnerName"
-							setState={setState}
-							id="runner-name"
+							setState={setFormStateCreateRun}
 							placeholder="Will default to 'Runner'"
 						/>
 						<div className="banner">Runner Stats</div>
 						<div className="input-container">
-							{inputConfigs.map(({ id, stateKey, placeholder }) => (
+							{RunnerInputConfigs.map(({ id, stateKey, placeholder }) => (
 								<Input
-									key={id}
-									value={state[stateKey as keyof typeof state]}
-									type="number"
-									className="input"
-									stateKey={stateKey as keyof typeof state}
-									setState={setState}
 									id={id}
+									className="input"
+									key={id}
+									value={
+										formStateCreateRun[
+											stateKey as keyof typeof formStateCreateRun
+										]
+									}
+									valueRange={TEAM_NUMBER_INPUT_SETTINGS}
+									type="number"
+									stateKey={stateKey as keyof typeof formStateCreateRun}
+									setState={setFormStateCreateRun}
 									placeholder={placeholder}
 								/>
 							))}
@@ -84,12 +95,13 @@ const CreateRun = () => {
 								Run Password
 							</label>
 							<Input
-								value={state.runPassword}
-								type="password"
-								className="input"
-								stateKey="runPassword"
-								setState={setState}
 								id="run-password"
+								className="input"
+								value={formStateCreateRun.runPassword}
+								maxLength={TEXT_INPUT_SETTINGS.MAX_LENGTH}
+								type="password"
+								stateKey="runPassword"
+								setState={setFormStateCreateRun}
 								placeholder="This is for managers to join your run!"
 							/>
 						</div>
@@ -98,12 +110,13 @@ const CreateRun = () => {
 								Confirm Password
 							</label>
 							<Input
-								value={state.runPasswordConfirm}
-								type="password"
-								className="input"
-								stateKey="runPasswordConfirm"
-								setState={setState}
 								id="confirm-password"
+								className="input"
+								value={formStateCreateRun.runPasswordConfirm}
+								maxLength={TEXT_INPUT_SETTINGS.MAX_LENGTH}
+								type="password"
+								stateKey="runPasswordConfirm"
+								setState={setFormStateCreateRun}
 								placeholder="Confirm Password"
 							/>
 						</div>

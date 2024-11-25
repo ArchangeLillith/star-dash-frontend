@@ -1,7 +1,16 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "jsx": "react-jsxdev", // Use "react-jsx" for React 17+ with the new JSX transform
+    "target": "esnext", // Adjust target for modern JavaScript
+    "module": "esnext", // Use ES Modules
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"],
+      "@features/*": ["src/features/*"]
+    },
+    "strict": true,
+    "skipLibCheck": true
+  }
 }
