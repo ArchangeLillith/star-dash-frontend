@@ -1,121 +1,122 @@
 .page {
-	margin-top: 35%;
+  margin-top: 35%;
 }
 
 .form {
-	@include flex-center-column;
+  @include flex-center-column;
 
-	font-family: $paragraph-text;
-	background: $light-kaito-purple;
-	border: 7px solid $kaito-purple;
-	width: 85%;
-	color: $dark-kaito-purple;
-	margin: auto;
-	margin-top: 1.75em;
-	border-radius: 15px;
-	padding: 3%;
-	box-shadow: 4px 4px 15px $background-gray;
+  font-family: $paragraph-text;
+  background: $light-kaito-purple;
+  border: 7px solid $kaito-purple;
+  width: 85%;
+  color: $dark-kaito-purple;
+  margin: auto;
+  margin-top: 1.75em;
+  border-radius: 15px;
+  padding: 3%;
+  box-shadow: 4px 4px 15px $background-gray;
 
-	.manager-container {
-		@include flex-center-column;
+  .manager-container {
+    @include flex-center-column;
 
-		font-size: 1.2rem;
-		background-color: $lighter-kaito-purple;
-		border-radius: 10px;
-		padding: 5%;
-		width: 100%;
-		margin-top: 4%;
-	}
+    font-size: 1.2rem;
+    background-color: $lighter-kaito-purple;
+    border-radius: 10px;
+    padding: 5%;
+    width: 100%;
+    margin-top: 4%;
+  }
 
-	.input {
-		margin: 0.35em 0;
-		width: 100%;
-		font-size: 1rem;
-		text-align: center;
-		background: #fff;
-		border: 2px solid $lighter-kaito-purple;
-		border-radius: 10px;
-		box-sizing: border-box;
-		min-width: 50px;
-		padding: 0.5em;
-	}
+  .input {
+    margin: 0.35em 0;
+    width: 100%;
+    font-size: 1rem;
+    text-align: center;
+    background: #fff;
+    border: 2px solid $lighter-kaito-purple;
+    border-radius: 10px;
+    box-sizing: border-box;
+    min-width: 50px;
+    padding: 0.5em;
+  }
 
-	.notice-text {
-		font-size: 0.8rem;
-	}
+  .notice-text {
+    font-size: 0.8rem;
+  }
 
-	.submit-btn {
-		margin-top: 4%;
-		width: 30%;
-		font-size: 1rem;
-		border-radius: 10px;
-		background-color: $lighter-kaito-purple;
-		border: 5px solid $kaito-purple;
-		color: white;
-		font-family: $subtitle-font;
-	}
+  .submit-btn {
+    margin-top: 4%;
+    width: 30%;
+    font-size: 1rem;
+    border-radius: 10px;
+    background-color: $lighter-kaito-purple;
+    border: 5px solid $kaito-purple;
+    color: white;
+    font-family: $subtitle-font;
+  }
 
-	.submit-btn:hover,
-	.submit-btn:focus {
-		margin-top: 5%;
-		color: $dark-kaito-purple;
+  .submit-btn:hover,
+  .submit-btn:focus {
+    margin-top: 5%;
+    color: $dark-kaito-purple;
 
-		--myColor1: rgb(135 84 197);
-		--myColor2: rgb(172 113 245);
-	}
+    --myColor1: rgb(135 84 197);
+    --myColor2: rgb(172 113 245);
+  }
 }
 
 @media (min-width: $breakpoint-desktop) {
-	.page.login {
-		background: url("/card-backgrounds/login.webp");
+  .page.login {
+    background: url('/card-backgrounds/login.webp');
 
-		@include page-card-background;
-	}
+    @include page-card-background;
+  }
 
-	.page.register {
-		background: url("/card-backgrounds/register.webp");
+  .page.register {
+    background: url('/card-backgrounds/register.webp');
 
-		@include page-card-background;
-	}
+    @include page-card-background;
+  }
 
-	.page {
-		margin: 0%;
+  .page {
+    margin: 0%;
 
-		@include flex-center-row;
+    @include flex-center-row;
 
-		min-height: 100vh;
+    min-height: 100vh;
 
-		.form {
-			background-color: $kaito-purple-30;
-			margin-right: 12%;
-			max-height: 80%;
-			width: 25%;
-			padding: 30px;
-			margin-top: 8%;
-			border: none;
-			box-shadow: none;
-		}
+    .form {
+      background-color: $kaito-purple-30;
+      margin-right: 12%;
+      max-height: 80%;
+      width: 25%;
+      padding: 30px;
+      margin-top: 8%;
+      border: none;
+      box-shadow: none;
+    }
 
-		.form-title {
-			display: none;
-		}
+    .form-title {
+      display: none;
+    }
 
-		.notice-text {
-			color: white;
-		}
+    .notice-text {
+      color: white;
+    }
 
-		.link {
-			font-size: 1rem;
-			color: $light-kaito-purple;
-		}
-	}
+    .link {
+      font-size: 1rem;
+      color: $light-kaito-purple;
+    }
+  }
 
-	.desktop-title {
-		color: white;
-		font-size: $page-heading-size;
-		display: block;
-		padding-left: 2%;
-		font-family: $blocky-site-heading;
-		text-shadow: 4px 2px 3px $dark-kaito-purple;
-	}
+  .desktop-title.register {
+    color: white;
+    font-size: $page-heading-size;
+    display: block;
+    left: 2%;
+    top: 70%;
+    font-family: $blocky-site-heading;
+    text-shadow: 4px 2px 3px $dark-kaito-purple;
+  }
 }

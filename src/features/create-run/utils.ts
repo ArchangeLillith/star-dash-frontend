@@ -35,9 +35,3 @@ export const handleStateChangeSecondLayer =
       };
     });
   };
-
-export const RunnerInputConfigs = [
-  { id: 'isv1', stateKey: 'runnerIsv1', placeholder: 'ISV1' },
-  { id: 'isv2', stateKey: 'runnerIsv2', placeholder: 'ISV2' },
-  { id: 'bp', stateKey: 'runnerBp', placeholder: 'BP' },
-];

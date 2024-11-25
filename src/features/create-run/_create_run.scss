@@ -40,13 +40,11 @@
 
   .top-content {
     @include flex-center-column;
-
     color: $dark-kaito-purple;
   }
 
   .manager-container {
     @include flex-center-column;
-
     background-color: $lighter-kaito-purple;
     border-radius: 10px;
     padding: 5%;
@@ -59,10 +57,6 @@
   .submit-btn:focus {
     min-width: 200px;
     margin-top: 5%;
-    color: var(--button-text-color-hover);
-
-    --myColor1: rgb(135 84 197);
-    --myColor2: rgb(172 113 245);
   }
 }
 
@@ -79,11 +73,10 @@
 
   .create-event-page {
     @include flex-center-row(center, flex-start);
-
     background: url('/card-backgrounds/create-run.webp');
     margin: 0;
     height: 100%;
-
+    /* this HAS to be here or the above isn't overwritten, which it hsould be for some css reason?*/
     @include page-card-background;
 
     .form-title {
@@ -109,15 +102,27 @@
         margin-top: 4%;
       }
     }
-  }
-
-  .submit-btn {
-    width: 30%;
-    font-size: 2rem;
-    border-radius: 10px;
-    background-color: $light-kaito-purple;
-    border: 5px solid $kaito-purple;
-    color: white;
-    font-family: $subtitle-font;
+    .input {
+      margin: 0.35em 0;
+      font-family: inherit;
+      width: 100%;
+      font-size: 0.8rem;
+      text-align: center;
+      background: #fff;
+      border: 2px solid $lighter-kaito-purple;
+      border-radius: 10px;
+      box-sizing: border-box;
+      min-width: 50px;
+      padding: 0.5em;
+    }
+    .submit-btn {
+      width: 30%;
+      font-size: 1.5rem;
+      border-radius: 10px;
+      background-color: $light-kaito-purple;
+      border: 5px solid $kaito-purple;
+      color: white;
+      font-family: $subtitle-font;
+    }
   }
 }

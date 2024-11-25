@@ -21,7 +21,7 @@ const Register = () => {
   return (
     <TransitionWrapper newBackgroundImage={backgroundMap.register}>
       <div className="page register">
-        <div className="desktop-title">Manager Register</div>
+        <div className="desktop-title register">Manager Register</div>
         <form className="form">
           <div className="form-title">Manager Register</div>
           <div className="manager-container">

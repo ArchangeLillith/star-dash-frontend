@@ -1,3 +1,4 @@
+//Make an enum for this for type saftey, see ETeamName
 export const backgroundMap: Record<string, string> = {
   home: '/card-backgrounds/home.png',
   marathon: '/card-backgrounds/marathon.webp',

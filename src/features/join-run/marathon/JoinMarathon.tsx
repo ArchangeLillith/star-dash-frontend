@@ -1,49 +1,44 @@
 import { Link } from 'react-router-dom';
 import TransitionWrapper from '../../../components/TransitionWrapper';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { SettingsContext } from '../../../context/settings/SettingsProvider';
 import { backgroundMap } from '../../../context/settings/utils';
 import Input from '../../../components/Input';
 import { MarathonFormState } from '../../../utils/state-types';
-import { GenericInputConfigs } from './utils';
 import {
-  TEAM_NUMBER_INPUT_SETTINGS,
+  InitializeMarathonState,
   TEXT_INPUT_SETTINGS,
 } from '../../../utils/variables';
 import React from 'react';
+import TeamFields from '@/components/TeamFields';
+import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
 
 const JoinMarathon: React.FC = () => {
+  /**
+   * Setting the background with a hook and access to the setting context
+   */
   const { setSettingsState } = useContext(SettingsContext);
+  useBackgroundUpdater({
+    backgroundKey: 'createRun',
+    backgroundMap,
+    setSettingsState,
+  });
 
   const [formStateMarathon, setFormStateMarathon] = useState<MarathonFormState>(
-    {
-      fillerName: '',
-      managerName: '',
-      isv1: undefined,
-      isv2: undefined,
-      bp: undefined,
-      event: '',
-    }
+    InitializeMarathonState
   );
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setSettingsState((prev) => ({
-        ...prev,
-        currentPageBackground: backgroundMap['marathon'],
-      }));
-    }, 500);
-    return () => clearTimeout(timeout);
-  }, []);
-
-  const submitFillerInfo = () => {};
+  const registerFiller = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    alert('Button clicked!');
+  };
 
   return (
     <TransitionWrapper newBackgroundImage={backgroundMap.marathon}>
+      <div className="mode-btn">
+        <Link to="/carnival"> Let's go to a Carnival!</Link>
+      </div>
       <div className="join-run-page-marathon">
-        <div>
-          <Link to="/carnival">Carnival!</Link>
-        </div>
         <form className="filler-registration-form">
           <div className="form-title">Filler Registration</div>
           <div className="top-content">
@@ -54,10 +49,10 @@ const JoinMarathon: React.FC = () => {
               <Input
                 id="manager-input"
                 className="input"
-                value={formStateMarathon.managerName}
+                value={formStateMarathon.leadManager}
                 maxLength={TEXT_INPUT_SETTINGS.MAX_LENGTH}
                 setState={setFormStateMarathon}
-                stateKey={'managerName'}
+                stateKey={'leadManager'}
                 placeholder="Your manager..."
                 type="text"
               />
@@ -70,12 +65,12 @@ const JoinMarathon: React.FC = () => {
               <Input
                 id="discord-input"
                 className="input"
-                value={formStateMarathon.fillerName}
+                value={formStateMarathon.filler}
                 maxLength={TEXT_INPUT_SETTINGS.MAX_LENGTH}
                 setState={setFormStateMarathon}
                 placeholder="Your Discord..."
                 type="text"
-                stateKey={'fillerName'}
+                stateKey={'filler'}
               />
             </div>
           </div>
@@ -88,27 +83,30 @@ const JoinMarathon: React.FC = () => {
             >
               <div className="banner">Fill Team</div>
               <div className="input-container">
-                {GenericInputConfigs.map(({ id, stateKey, placeholder }) => (
-                  <Input
-                    key={id}
-                    value={
-                      formStateMarathon[
-                        stateKey as keyof typeof formStateMarathon
-                      ]
-                    }
-                    valueRange={TEAM_NUMBER_INPUT_SETTINGS}
-                    type="number"
-                    className="input"
-                    stateKey={stateKey as keyof typeof formStateMarathon}
-                    setState={setFormStateMarathon}
-                    id={id}
-                    placeholder={placeholder}
-                  />
-                ))}
+                <TeamFields
+                  state={formStateMarathon}
+                  setState={setFormStateMarathon}
+                  parentStateKey="fillTeam"
+                />
               </div>
             </div>
+            {/**  Encore when we need it!! Already in the state*************
+             * <div
+              role="group"
+              aria-labelledby="fill-team-label"
+              className="team-container"
+            >
+              <div className="banner">Fill Team</div>
+              <div className="input-container">
+                <TeamFields
+                  state={formStateMarathon}
+                  setState={setFormStateMarathon}
+                  parentStateKey="fillTeam"
+                />
+              </div>
+            </div> */}
           </div>
-          <button className="submit-btn" onClick={submitFillerInfo}>
+          <button className="submit-btn" onClick={registerFiller}>
             Submit!
           </button>
         </form>

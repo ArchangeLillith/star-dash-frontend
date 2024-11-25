@@ -1,22 +1,21 @@
 import { Link } from 'react-router-dom';
 import { tiles } from './utils';
 import TransitionWrapper from '../../../components/TransitionWrapper';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { SettingsContext } from '../../../context/settings/SettingsProvider';
 import { backgroundMap } from '../../../context/settings/utils';
+import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
 
 const SiteHome: React.FC = () => {
+  /**
+   * Setting the background with a hook and access to the setting context
+   */
   const { setSettingsState } = useContext(SettingsContext);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setSettingsState((prev) => ({
-        ...prev,
-        currentPageBackground: backgroundMap['home'],
-      }));
-    }, 500);
-    return () => clearTimeout(timeout);
-  }, []);
+  useBackgroundUpdater({
+    backgroundKey: 'createRun',
+    backgroundMap,
+    setSettingsState,
+  });
 
   return (
     <TransitionWrapper newBackgroundImage={backgroundMap.home}>

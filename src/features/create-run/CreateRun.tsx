@@ -1,44 +1,43 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import Select from '../../components/Select';
 import Input from '../../components/Input';
 import TransitionWrapper from '../../components/TransitionWrapper';
-import { RunnerInputConfigs } from './utils';
+
 import { SettingsContext } from '../../context/settings/SettingsProvider';
 import { backgroundMap } from '../../context/settings/utils';
-import {
-  TEAM_NUMBER_INPUT_SETTINGS,
-  TEXT_INPUT_SETTINGS,
-} from '../../utils/variables';
+import { TEXT_INPUT_SETTINGS } from '../../utils/variables';
 import React from 'react';
+import TeamFields from '@/components/TeamFields';
+import { CreateRunFormState } from '@/utils/state-types';
+import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
 
 const CreateRun = () => {
-  const [formStateCreateRun, setFormStateCreateRun] = useState({
-    selectedEvent: '',
-    runnerName: '',
-    runnerIsv1: 0,
-    runnerIsv2: 0,
-    runnerBp: 0,
-    runPassword: '',
-    runPasswordConfirm: '',
+  /**
+   * Setting the background with a hook and access to the setting context
+   */
+  const { setSettingsState } = useContext(SettingsContext);
+  useBackgroundUpdater({
+    backgroundKey: 'createRun',
+    backgroundMap,
+    setSettingsState,
   });
+
+  const [formStateCreateRun, setFormStateCreateRun] =
+    useState<CreateRunFormState>({
+      selectedEvent: '',
+      runnerName: '',
+      isv1: undefined,
+      isv2: undefined,
+      bp: undefined,
+      runPassword: '',
+      runPasswordConfirm: '',
+    });
   const events = ['Event 1', 'Event 2', 'Event 3'];
 
   const submitRun = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     alert(`Button clicked`);
   };
-
-  const { setSettingsState } = useContext(SettingsContext);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setSettingsState((prev) => ({
-        ...prev,
-        currentPageBackground: backgroundMap['createRun'],
-      }));
-    }, 500);
-    return () => clearTimeout(timeout);
-  }, []);
 
   return (
     <TransitionWrapper newBackgroundImage={backgroundMap.createRun}>
@@ -69,23 +68,10 @@ const CreateRun = () => {
             />
             <div className="banner">Runner Stats</div>
             <div className="input-container">
-              {RunnerInputConfigs.map(({ id, stateKey, placeholder }) => (
-                <Input
-                  id={id}
-                  className="input"
-                  key={id}
-                  value={
-                    formStateCreateRun[
-                      stateKey as keyof typeof formStateCreateRun
-                    ]
-                  }
-                  valueRange={TEAM_NUMBER_INPUT_SETTINGS}
-                  type="number"
-                  stateKey={stateKey as keyof typeof formStateCreateRun}
-                  setState={setFormStateCreateRun}
-                  placeholder={placeholder}
-                />
-              ))}
+              <TeamFields
+                state={formStateCreateRun}
+                setState={setFormStateCreateRun}
+              />
             </div>
           </div>
 

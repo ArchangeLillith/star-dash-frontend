@@ -21,7 +21,7 @@ const Login = () => {
   return (
     <TransitionWrapper newBackgroundImage={backgroundMap.login}>
       <div className="page login">
-        <div className="desktop-title">Login!</div>
+        <div className="desktop-title login">Login!</div>
         <form className="form">
           <div className="form-title">Login</div>
           <div className="manager-container">

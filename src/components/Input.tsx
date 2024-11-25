@@ -30,13 +30,13 @@ const Input = <T,>({
   type = 'text',
   value,
   valueRange,
-  parentStateKey: team,
+  parentStateKey,
   stateKey,
   setState,
   disabled = false,
   'aria-label': ariaLabel,
 }: InputProps<T>) => {
-  if (!team)
+  if (!parentStateKey)
     return (
       <input
         id={id}
@@ -68,7 +68,11 @@ const Input = <T,>({
       onChange={(e) => {
         const parsedValue =
           type === 'number' ? Number(e.target.value) : e.target.value;
-        handleStateChangeSecondLayer(stateKey, team, setState)(parsedValue);
+        handleStateChangeSecondLayer(
+          stateKey,
+          parentStateKey,
+          setState
+        )(parsedValue);
       }}
       className={className}
       disabled={disabled}

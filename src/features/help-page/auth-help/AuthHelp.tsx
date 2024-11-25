@@ -1,21 +1,20 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 
 import TransitionWrapper from '../../../components/TransitionWrapper';
 import { SettingsContext } from '../../../context/settings/SettingsProvider';
 import { backgroundMap } from '../../../context/settings/utils';
+import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
 
 const AuthHelp = () => {
+  /**
+   * Setting the background with a hook and access to the setting context
+   */
   const { setSettingsState } = useContext(SettingsContext);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setSettingsState((prev) => ({
-        ...prev,
-        currentPageBackground: backgroundMap['authHelp'],
-      }));
-    }, 500);
-    return () => clearTimeout(timeout);
-  }, []);
+  useBackgroundUpdater({
+    backgroundKey: 'createRun',
+    backgroundMap,
+    setSettingsState,
+  });
 
   return (
     <TransitionWrapper newBackgroundImage={backgroundMap.authHelp}>
