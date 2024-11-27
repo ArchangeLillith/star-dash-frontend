@@ -1,0 +1,76 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px); /* Blur effect */
+}
+
+.modal-content {
+  @include flex-center-column;
+  align-self: center;
+  font-family: $font-paragraph;
+  background: $light-kaito-purple;
+  border: 7px solid $kaito-purple;
+  width: 85%;
+  margin-top: 3em;
+  border-radius: 25px;
+  padding: 2em;
+  padding-bottom: 5%;
+  box-shadow: 4px 4px 15px $background-gray;
+  .banner-background {
+    background-color: $kaito-purple;
+    padding: 1% 10px;
+    border-radius: 15px;
+    //The banner within that background
+    .banner {
+      font-size: 0.85rem;
+    }
+  }
+  .modal-title {
+    @include page-title(0, 0, 1.2rem);
+    text-align: center;
+  }
+  .notice-text {
+    margin-top: 5px;
+    text-align: center;
+    font-size: 0.8rem;
+    .password-confirm {
+      font-size: 2rem;
+    }
+  }
+  .submit-btn {
+    cursor: pointer;
+    margin: 5px;
+    padding: 5px;
+    color: black;
+    width: 60%;
+  }
+  .error {
+    color: $error-kaito;
+    text-align: center;
+    border-color: $error-kaito;
+  }
+}
+
+@media (min-width: $breakpoint-desktop) {
+  .modal-content {
+    width: 60%;
+    .modal-title {
+      @include page-title(0, 0, 2rem);
+    }
+    .banner-background {
+      padding: 2% 4%;
+      max-width: 80%;
+    }
+    .submit-btn {
+      width: 45%;
+    }
+  }
+}

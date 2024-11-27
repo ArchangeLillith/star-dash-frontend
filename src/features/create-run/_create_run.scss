@@ -1,128 +1,49 @@
-.desktop-title {
-  display: none;
-}
-
 .create-event-page {
-  margin-top: 20%;
-}
-
-.create-event-form {
-  @include flex-center-column;
-
-  //REFACTOR this can prob be used as a mixin or global style as it fits at least the login and register pages really well. We need to figure out how to center the box in the screen, but other than that this is solid
-  margin-top: 40%;
-  font-family: $paragraph-text;
-  background: $light-kaito-purple;
-  border: 7px solid $kaito-purple;
-  width: 85%;
-  margin: auto;
-  margin-top: 1.75em;
-  border-radius: 15px;
-  padding: 3%;
-  padding-bottom: 5%;
-  box-shadow: 4px 4px 15px $background-gray;
-
-  .input {
-    font-family: inherit;
+  .password-container {
+    width: 80%;
   }
 
-  .form-title {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    font-family: $blocky-site-heading;
-    font-size: 1.3rem;
-    color: white;
-    text-shadow: 4px 2px 3px $dark-kaito-purple;
-    cursor: default;
-  }
-
-  .top-content {
-    @include flex-center-column;
-    color: $dark-kaito-purple;
-  }
-
-  .manager-container {
-    @include flex-center-column;
-    background-color: $lighter-kaito-purple;
-    border-radius: 10px;
-    padding: 5%;
-    width: 100%;
-    margin-top: 4%;
-  }
-
-  .submit-btn,
-  .submit-btn:hover,
-  .submit-btn:focus {
-    min-width: 200px;
-    margin-top: 5%;
-  }
 }
 
 @media (min-width: $breakpoint-desktop) {
-  .create-run-title {
-    color: white;
-    margin-right: 2%;
-    font-size: $page-heading-size;
-    display: block;
-    font-family: $blocky-site-heading;
-    text-shadow: 4px 2px 3px $dark-kaito-purple;
-    margin-bottom: -25%;
+  .transition-base::before.creat-run {
+    background: url('/card-backgrounds/create-run.webp');
+  }
+  .form-title {
+    display: none;
   }
 
-  .create-event-page {
-    @include flex-center-row(center, flex-start);
-    background: url('/card-backgrounds/create-run.webp');
-    margin: 0;
-    height: 100%;
-    /* this HAS to be here or the above isn't overwritten, which it hsould be for some css reason?*/
-    @include page-card-background;
-
-    .form-title {
-      display: none;
-    }
-
-    .create-event-form {
-      margin-left: 4%;
-      width: 30%;
-      max-height: 80%;
-      background-color: $dark-kaito-purple-30;
+  .transition-base.create-run {
+    margin-top: 4em;
+    max-width: 50%;
+    align-items: flex-start;
+    justify-content: flex-start;
+    .form-container {
+      background-color: rgba($dark-kaito-purple, 0.3);
       border: none;
-      padding: 30px;
-      box-shadow: none;
-
-      .password-container {
-        @include flex-center-column;
-
-        background-color: $lighter-kaito-purple;
-        border-radius: 10px;
-        padding: 5%;
-        width: 100%;
-        margin-top: 4%;
+      width: 60%;
+      align-self: flex-start;
+      padding: 24px;
+      margin-left: 10%;
+    }
+    .top-content,
+    .bottom-content {
+      width: 75%;
+    }
+    .password-group {
+      .notice-text {
+        font-size: 0.65rem;
+        font-style: italic;
+        color: white;
+      }
+      .banner {
+        color: $light-kaito-purple;
       }
     }
-    .input {
-      margin: 0.35em 0;
-      font-family: inherit;
-      width: 100%;
-      font-size: 0.8rem;
-      text-align: center;
-      background: #fff;
-      border: 2px solid $lighter-kaito-purple;
-      border-radius: 10px;
-      box-sizing: border-box;
-      min-width: 50px;
-      padding: 0.5em;
-    }
-    .submit-btn {
-      width: 30%;
-      font-size: 1.5rem;
-      border-radius: 10px;
-      background-color: $light-kaito-purple;
-      border: 5px solid $kaito-purple;
-      color: white;
-      font-family: $subtitle-font;
+    .desktop-title {
+      position: absolute;
+      right: 1em;
+      bottom: 2em;
     }
   }
 }

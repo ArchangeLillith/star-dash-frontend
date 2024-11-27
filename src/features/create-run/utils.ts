@@ -35,3 +35,5 @@ export const handleStateChangeSecondLayer =
       };
     });
   };
+
+export const runPasswordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[^\s]{12}$/;

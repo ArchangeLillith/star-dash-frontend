@@ -21,6 +21,7 @@ interface InputProps<T> {
   setState: Dispatch<SetStateAction<T>>;
   disabled?: boolean;
   'aria-label'?: string;
+  regex?: RegExp;
 }
 
 const Input = <T,>({
@@ -36,26 +37,22 @@ const Input = <T,>({
   disabled = false,
   'aria-label': ariaLabel,
 }: InputProps<T>) => {
-  if (!parentStateKey)
-    return (
-      <input
-        id={id}
-        type={type}
-        value={value}
-        min={valueRange?.MIN_LENGTH}
-        max={valueRange?.MAX_LENGTH}
-        maxLength={TEXT_INPUT_SETTINGS.MAX_LENGTH}
-        placeholder={placeholder}
-        onChange={(e) => {
-          const parsedValue =
-            type === 'number' ? Number(e.target.value) : e.target.value;
-          handleStateChange(stateKey, setState)(parsedValue);
-        }}
-        className={className}
-        disabled={disabled}
-        aria-label={ariaLabel || id}
-      />
-    );
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const parsedValue =
+      type === 'number' ? Number(e.target.value) : e.target.value;
+
+    //If we need a second layer
+    if (parentStateKey) {
+      handleStateChangeSecondLayer(
+        stateKey,
+        parentStateKey,
+        setState
+      )(parsedValue);
+    } else {
+      //otherwise we have no regex and we're only top layer changes
+      handleStateChange(stateKey, setState)(parsedValue);
+    }
+  };
   return (
     <input
       id={id}
@@ -65,15 +62,7 @@ const Input = <T,>({
       max={valueRange?.MAX_LENGTH}
       maxLength={TEXT_INPUT_SETTINGS.MAX_LENGTH}
       placeholder={placeholder}
-      onChange={(e) => {
-        const parsedValue =
-          type === 'number' ? Number(e.target.value) : e.target.value;
-        handleStateChangeSecondLayer(
-          stateKey,
-          parentStateKey,
-          setState
-        )(parsedValue);
-      }}
+      onChange={handleChange}
       className={className}
       disabled={disabled}
       aria-label={ariaLabel || id}

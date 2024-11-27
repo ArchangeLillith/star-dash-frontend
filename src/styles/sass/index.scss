@@ -1,7 +1,8 @@
 @import '../variables';
 @import '../mixins';
-@import '/src/features/home-page/homePage';
+@import 'global';
 @import '/src/components/styles/component-styles';
+@import '/src/features/home-page/homePage';
 @import '/src/features/create-run/create_run';
 @import '/src/features/login/login';
 @import '/src/features/register/register';
@@ -13,25 +14,6 @@ body,
 #root {
   min-height: 100%;
   width: 100%;
-}
-
-.global-h1 {
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  display: flex;
-  text-align: center;
-  font-family: $blocky-site-heading;
-  font-size: 175%;
-  color: $dark-kaito-purple;
-  text-shadow: 5px 2px $kaito-purple;
-  margin-top: 4%;
-  cursor: default;
-}
-
-.global-h4 {
-  font-family: SkipPro-B;
-  text-align: center;
 }
 
 //* Removal of default styling
@@ -86,4 +68,3 @@ a {
     overflow: hidden;
   }
 }
-

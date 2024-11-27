@@ -12,22 +12,22 @@ const SiteHome: React.FC = () => {
    */
   const { setSettingsState } = useContext(SettingsContext);
   useBackgroundUpdater({
-    backgroundKey: 'createRun',
+    backgroundKey: 'home',
     backgroundMap,
     setSettingsState,
   });
 
   return (
     <TransitionWrapper newBackgroundImage={backgroundMap.home}>
-      <div className="home-page">
+      <div className="home-page transition-base">
         <div className="title-container">
           <div className="home-title">Welcome to </div>
           <div className="home-title-2">StarDash!</div>
         </div>
-        <div className="container">
-          <div className="container-title">Welcome</div>
+        <div className="form-container">
+          <div className="form-title">Welcome</div>
           {tiles.map((tile) => (
-            <Link to={tile.href} className="manager-container">
+            <Link to={tile.href} className="input-card">
               <div className="card-title">{tile.title}</div>
               <div className="card-text">
                 <p>{tile.body}</p>

@@ -1,22 +1,10 @@
 @media (min-width: $breakpoint-desktop) {
-  .join-run-page-carnival::before {
-    content: '';
-    position: absolute;
-    inset: 0;
+  .transition-base::before.carnival {
     background: url('/card-backgrounds/carnival.png');
-    background-size: cover;
-    background-position: center;
-    z-index: -1;
   }
-
-  .join-run-page-carnival {
-    @include flex-center-row(center, flex-start);
-    margin: 0%;
-    min-height: 91vh;
-    z-index: 1;
-    position: relative;
-    .filler-registration-form {
-      box-shadow: 4px 4px 15px rgb(109, 98, 173);
+  .transition-base.carnival {
+    .form-container {
+      margin-top: 3em;
     }
   }
 }

@@ -5,7 +5,6 @@ export type CreateRunFormState = {
   isv2: number | undefined;
   bp: number | undefined;
   runPassword: string;
-  runPasswordConfirm: string;
 };
 
 export type MarathonFormState = {
@@ -48,4 +47,14 @@ export type CarnivalFormState = {
     isv2: number | undefined;
     bp: number | undefined;
   };
+};
+
+export type LoginFormState = {
+  username: string;
+  password: string;
+};
+export type RegisterFormState = {
+  username: string;
+  password: string;
+  passwordConfirm: string;
 };

@@ -1,11 +1,11 @@
 $kaito-purple: rgb(200 160 240);
-$kaito-purple-30: rgb(200 160 240 / 30%);
 $light-kaito-purple: rgb(215 195 245);
 $lighter-kaito-purple: rgb(230 215 250);
 $dark-kaito-purple: rgb(150 100 220);
-$dark-kaito-purple-30: rgb(150 100 220 / 30%);
 $darker-kaito-purple: rgb(130 70 200);
 $darkest-kaito-purple: rgb(110 50 180);
+$error-kaito: rgb(231, 76, 60);
+$error-soft-kaito: rgb(255, 107, 107);
 
 $luka-pink: rgb(240 160 200);
 $lighter-luka-pink: rgb(250 215 230);
@@ -13,6 +13,7 @@ $light-luka-pink: rgb(245 195 220);
 $dark-luka-pink: rgb(220 100 150);
 $darker-luka-pink: rgb(200 70 130);
 $darkest-luka-pink: rgb(180 50 110);
+$error-luka: rgb(211, 47, 47);
 
 $miku-gray: rgb(100 100 100);
 $miku-gray-2: rgb(80 80 80);
@@ -21,10 +22,10 @@ $background-gray: rgb(140 135 140);
 /* $button-text-color: white;
 $button-text-color-hover: rgb(255 255 255); */
 
-$blocky-site-heading: 'Yuruka-UB';
-$paragraph-text: 'SkipPro-B';
-$subtitle-font: 'PopHappiness-EB';
-$page-heading-size: 5rem;
+$font-blocky-site-heading: 'Yuruka-UB';
+$font-paragraph: 'SkipPro-B';
+$font-subtitle: 'PopHappiness-EB';
+$font-size-page-heading: 5rem;
 
 /* Bold, more handwrite-like, good for page headings? */
 @font-face {

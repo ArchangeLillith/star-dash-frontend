@@ -1,0 +1,16 @@
+.toggle-wrapper {
+  @include flex-center-row;
+  position: relative;
+  .toggle-team-button {
+    position: absolute;
+    right: -30px;
+    padding: 4px;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    height: 26px;
+    width: 26px;
+    background: $lighter-kaito-purple;
+    border: 3px solid $light-kaito-purple;
+    color: rgb(41, 41, 41);
+  }
+}

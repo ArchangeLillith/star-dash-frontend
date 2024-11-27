@@ -58,6 +58,26 @@ export const InitializeMarathonState = {
   },
 };
 
+export const InitializeCreateRun = {
+  selectedEvent: '',
+  runnerName: '',
+  isv1: undefined,
+  isv2: undefined,
+  bp: undefined,
+  runPassword: '',
+};
+
+export const InitializeRegister = {
+  username: '',
+  password: '',
+  passwordConfirm: '',
+};
+
+export const InitializeLogin = {
+  username: '',
+  password: '',
+};
+
 export enum ETeamNames {
   FillTeam = 'Fill Team',
   HealTeam = 'Heal Team',
@@ -70,4 +90,27 @@ export const teamParentMap: Record<ETeamNames, string> = {
   [ETeamNames.HealTeam]: 'healTeam',
   [ETeamNames.Sb1Team]: 'sb1Team',
   [ETeamNames.Sb2Team]: 'sb2Team',
+};
+
+export enum ERegexHandler {
+  CreateRunPass = 'createRunPass',
+  UserPass = 'userPass',
+}
+export const regexHandler = {
+  [ERegexHandler.CreateRunPass]: {
+    minLength: 12,
+    maxLength: 20,
+    uppercase: /[A-Z]/,
+    number: /\d/,
+    specChar: /[\W_]/,
+    spaces: false,
+  },
+  [ERegexHandler.UserPass]: {
+    minLength: 6,
+    maxLength: 15,
+    uppercase: /[A-Z]/,
+    number: /\d/,
+    specChar: false,
+    spaces: false,
+  },
 };

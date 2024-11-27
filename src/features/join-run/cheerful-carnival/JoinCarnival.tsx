@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import TransitionWrapper from '../../../components/TransitionWrapper';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { SettingsContext } from '../../../context/settings/SettingsProvider';
 import { backgroundMap } from '../../../context/settings/utils';
 import TeamFields from '@/components/TeamFields';
@@ -12,38 +12,37 @@ import {
   TEXT_INPUT_SETTINGS,
 } from '@/utils/variables';
 import { CarnivalFormState } from '@/utils/state-types';
+import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
+import ToggleableTeamPanel from '@/components/ToggalableTeamPanel';
+import { IoMdArrowRoundForward } from 'react-icons/io';
 
 const JoinCarnival: React.FC = () => {
+  /**
+   * Setting the background with a hook and access to the setting context
+   */
+  const { setSettingsState } = useContext(SettingsContext);
+  useBackgroundUpdater({
+    backgroundKey: 'carnival',
+    backgroundMap,
+    setSettingsState,
+  });
+
   const [formStateCarnival, setFormStateCarnival] = useState<CarnivalFormState>(
     InitializeCarnivalState
   );
-  const { setSettingsState } = useContext(SettingsContext);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setSettingsState((prev) => ({
-        ...prev,
-        currentPageBackground: backgroundMap['carnival'],
-      }));
-    }, 500);
-    return () => clearTimeout(timeout);
-  }, []);
-
+  const [sb2Show, setSb2Show] = useState(false);
   const registerFiller = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    alert('Button clicked!');
+    alert(formStateCarnival.sb2Team.isv1);
   };
 
   return (
     <TransitionWrapper newBackgroundImage={backgroundMap.carnival}>
-      <div className="mode-btn">
-        <Link to="/marathon">Let's have a Marathon!</Link>
-      </div>
-      <div className="join-run-page-carnival">
-        <form className="filler-registration-form">
+      <div className="transition-base carnival">
+        <form className="form-container">
           <div className="form-title">Filler Registration</div>
           <div className="top-content">
-            <div className="manager-container">
+            <div className="input-card">
               <label className="banner" htmlFor="manager-input">
                 Manager Name
               </label>
@@ -57,7 +56,7 @@ const JoinCarnival: React.FC = () => {
                 setState={setFormStateCarnival}
               />
             </div>
-            <div className="manager-container">
+            <div className="input-card">
               {/* //Refactor add a tooltip here as to why we need this */}
               <label className="banner" htmlFor="discord-input">
                 Discord Name
@@ -74,23 +73,18 @@ const JoinCarnival: React.FC = () => {
             </div>
           </div>
 
-          <div className="team-content">
-            {[
-              ETeamNames.FillTeam,
-              ETeamNames.HealTeam,
-              ETeamNames.Sb1Team,
-              ETeamNames.Sb2Team,
-            ].map((team, index) => (
-              <div
-                role="group"
-                aria-labelledby="fill-team-label"
-                className="team-container"
-                key={index + team[index]}
-              >
-                <div className="banner-background">
-                  <div className="banner">{team}</div>
-                </div>
-                <div className="input-container">
+          <div className="bottom-content">
+            {[ETeamNames.FillTeam, ETeamNames.HealTeam, ETeamNames.Sb1Team].map(
+              (team, index) => (
+                <div
+                  role="group"
+                  aria-labelledby="fill-team-label"
+                  className="team-container"
+                  key={index + team[index]}
+                >
+                  <div className="banner-background">
+                    <div className="banner">{team}</div>
+                  </div>
                   <TeamFields
                     state={formStateCarnival}
                     setState={setFormStateCarnival}
@@ -99,14 +93,33 @@ const JoinCarnival: React.FC = () => {
                     }
                   />
                 </div>
-              </div>
-            ))}
+              )
+            )}
+            <div
+              role="group"
+              aria-labelledby="fill-team-label"
+              className="team-container"
+            >
+              <ToggleableTeamPanel
+                title="SB2 Team"
+                stateKey="sb2Team"
+                classname="toggle-wrapper"
+                formState={formStateCarnival}
+                setFormState={setFormStateCarnival}
+                state={sb2Show}
+                setState={setSb2Show}
+              />
+            </div>
           </div>
           <button className="submit-btn" onClick={registerFiller}>
             Submit!
           </button>
         </form>
-        <h2 className="desktop-title">Filler Registration</h2>
+        <div className="desktop-title">Filler Registration</div>
+      </div>
+      <div className="mode-btn">
+        <Link to="/marathon">Let's have a Marathon</Link>
+        <IoMdArrowRoundForward size="22px" />
       </div>
     </TransitionWrapper>
   );

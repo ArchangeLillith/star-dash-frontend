@@ -2,14 +2,20 @@ import { useContext, useState } from 'react';
 import Select from '../../components/Select';
 import Input from '../../components/Input';
 import TransitionWrapper from '../../components/TransitionWrapper';
-
 import { SettingsContext } from '../../context/settings/SettingsProvider';
 import { backgroundMap } from '../../context/settings/utils';
-import { TEXT_INPUT_SETTINGS } from '../../utils/variables';
+import {
+  ERegexHandler,
+  InitializeCreateRun,
+  TEXT_INPUT_SETTINGS,
+} from '../../utils/variables';
 import React from 'react';
 import TeamFields from '@/components/TeamFields';
 import { CreateRunFormState } from '@/utils/state-types';
 import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
+import { callRegex } from '@/utils/regex';
+import Modal from '@/components/Modal';
+import ConfirmPassInput from './components/ConfirmPassInput';
 
 const CreateRun = () => {
   /**
@@ -21,58 +27,61 @@ const CreateRun = () => {
     backgroundMap,
     setSettingsState,
   });
-
+  const [show, setShow] = useState<boolean>(false);
   const [formStateCreateRun, setFormStateCreateRun] =
-    useState<CreateRunFormState>({
-      selectedEvent: '',
-      runnerName: '',
-      isv1: undefined,
-      isv2: undefined,
-      bp: undefined,
-      runPassword: '',
-      runPasswordConfirm: '',
-    });
+    useState<CreateRunFormState>(InitializeCreateRun);
+
   const events = ['Event 1', 'Event 2', 'Event 3'];
 
   const submitRun = (e: React.MouseEvent<HTMLButtonElement>) => {
+    //Refactor we should prob use a debouncer for this at some point so they don't get like 4 errors :')
     e.preventDefault();
-    alert(`Button clicked`);
+    // If regex doesn't pass, just return and let them know they need a better pass
+    const error = callRegex(
+      formStateCreateRun.runPassword,
+      ERegexHandler.CreateRunPass
+    );
+    if (error) {
+      alert(error);
+    } else {
+      setShow(true);
+    }
   };
 
   return (
     <TransitionWrapper newBackgroundImage={backgroundMap.createRun}>
-      <div className="create-event-page">
-        <form className="create-event-form">
+      <div className="transition-base create-run">
+        <form className="form-container">
           <div className="form-title">Create Event</div>
-          <Select
-            value={formStateCreateRun.selectedEvent}
-            state={formStateCreateRun}
-            options={events}
-            stateKey="selectedEvent"
-            setState={setFormStateCreateRun}
-            defaultOption="Choose your event..."
-          />
-
-          <div className="manager-container">
-            <label className="banner" htmlFor="runner-name">
-              Runner Name
-            </label>
-            <Input
-              id="runner-name"
-              value={formStateCreateRun.runnerName}
-              maxLength={TEXT_INPUT_SETTINGS.MAX_LENGTH}
-              className="input"
-              stateKey="runnerName"
+          <div className="top-content">
+            <Select
+              value={formStateCreateRun.selectedEvent}
+              state={formStateCreateRun}
+              options={events}
+              stateKey="selectedEvent"
               setState={setFormStateCreateRun}
-              placeholder="Will default to 'Runner'"
+              defaultOption="Choose your event..."
             />
-            <div className="banner">Runner Stats</div>
-            <div className="input-container">
+            <div className="input-card">
+              <label className="banner" htmlFor="runner-name">
+                Runner Name
+              </label>
+              <Input
+                id="runner-name"
+                value={formStateCreateRun.runnerName}
+                maxLength={TEXT_INPUT_SETTINGS.MAX_LENGTH}
+                className="input"
+                stateKey="runnerName"
+                setState={setFormStateCreateRun}
+                placeholder="Will default to 'Runner'"
+              />
+              <div className="banner">Runner Stats</div>
+
               <TeamFields
                 state={formStateCreateRun}
                 setState={setFormStateCreateRun}
               />
-            </div>
+            </div>{' '}
           </div>
 
           <div className="password-container">
@@ -80,12 +89,14 @@ const CreateRun = () => {
               <label className="banner" htmlFor="run-password">
                 Run Password
               </label>
+              <div className="notice-text">
+                Requires one uppercase letter, one number and one symbol
+              </div>
               <Input
                 id="run-password"
                 className="input"
                 value={formStateCreateRun.runPassword}
                 maxLength={TEXT_INPUT_SETTINGS.MAX_LENGTH}
-                type="password"
                 stateKey="runPassword"
                 setState={setFormStateCreateRun}
                 placeholder="This is for managers to join your run!"
@@ -95,7 +106,7 @@ const CreateRun = () => {
               <label className="banner" htmlFor="confirm-password">
                 Confirm Password
               </label>
-              <Input
+              {/* <Input
                 id="confirm-password"
                 className="input"
                 value={formStateCreateRun.runPasswordConfirm}
@@ -104,18 +115,44 @@ const CreateRun = () => {
                 stateKey="runPasswordConfirm"
                 setState={setFormStateCreateRun}
                 placeholder="Confirm Password"
-              />
+              /> */}
             </div>
           </div>
-
+          {show && (
+            <Modal>
+              <div className="modal-title">Password Confirmation</div>
+              <div className="banner-background">
+                <p className="notice-text italic banner">
+                  Make sure you remember this!{' '}
+                </p>
+                <p className="notice-text">
+                  It currently cannot be reset, and this is how other managers
+                  are added to your run. Everything else (but the chosen event)
+                  can be changed later if you'd like to.
+                </p>
+              </div>
+              <ConfirmPassInput state={formStateCreateRun} />
+              <button
+                className="submit-btn"
+                onClick={() => alert('Submitted success')}
+              >
+                Submit
+              </button>
+              <button
+                className="submit-btn"
+                onClick={() => setShow((prev) => !prev)}
+              >
+                I don't like my password, let me redo it
+              </button>
+            </Modal>
+          )}
           <button className="submit-btn" onClick={submitRun}>
             Submit!
           </button>
         </form>
-        <div className="create-run-title">Create a new run</div>
+        <div className="desktop-title">Create a new run</div>
       </div>
     </TransitionWrapper>
   );
 };
-
 export default CreateRun;

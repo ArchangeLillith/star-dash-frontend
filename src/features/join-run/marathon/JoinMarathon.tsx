@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { IoMdArrowRoundForward } from 'react-icons/io';
 import TransitionWrapper from '../../../components/TransitionWrapper';
 import { useContext, useState } from 'react';
 import { SettingsContext } from '../../../context/settings/SettingsProvider';
@@ -12,6 +13,7 @@ import {
 import React from 'react';
 import TeamFields from '@/components/TeamFields';
 import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
+import ToggleableTeamPanel from '@/components/ToggalableTeamPanel';
 
 const JoinMarathon: React.FC = () => {
   /**
@@ -19,45 +21,42 @@ const JoinMarathon: React.FC = () => {
    */
   const { setSettingsState } = useContext(SettingsContext);
   useBackgroundUpdater({
-    backgroundKey: 'createRun',
+    backgroundKey: 'marathon',
     backgroundMap,
     setSettingsState,
   });
-
+  const [encoreShow, setEncoreShow] = useState(false);
   const [formStateMarathon, setFormStateMarathon] = useState<MarathonFormState>(
     InitializeMarathonState
   );
 
   const registerFiller = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    alert('Button clicked!');
+    alert(formStateMarathon.encoreTeam?.isv1);
   };
 
   return (
     <TransitionWrapper newBackgroundImage={backgroundMap.marathon}>
-      <div className="mode-btn">
-        <Link to="/carnival"> Let's go to a Carnival!</Link>
-      </div>
-      <div className="join-run-page-marathon">
-        <form className="filler-registration-form">
+      <div className="transition-base marathon">
+        <form className="form-container">
           <div className="form-title">Filler Registration</div>
           <div className="top-content">
-            <div className="manager-container">
+            <div className="input-card">
               <label className="banner" htmlFor="manager-input">
                 Manager Name
               </label>
               <Input
                 id="manager-input"
                 className="input"
+                placeholder="Your manager..."
                 value={formStateMarathon.leadManager}
                 maxLength={TEXT_INPUT_SETTINGS.MAX_LENGTH}
                 setState={setFormStateMarathon}
                 stateKey={'leadManager'}
-                placeholder="Your manager..."
                 type="text"
               />
             </div>
-            <div className="manager-container">
+            <div className="input-card">
               {/* //Refactor add a tooltip here as to why we need this */}
               <label className="banner" htmlFor="discord-input">
                 Discord Name
@@ -75,42 +74,42 @@ const JoinMarathon: React.FC = () => {
             </div>
           </div>
 
-          <div className="team-content">
+          <div className="bottom-content">
             <div
               role="group"
               aria-labelledby="fill-team-label"
               className="team-container"
             >
-              <div className="banner">Fill Team</div>
-              <div className="input-container">
-                <TeamFields
-                  state={formStateMarathon}
-                  setState={setFormStateMarathon}
-                  parentStateKey="fillTeam"
-                />
+              <div className="banner-background">
+                <div className="banner">Fill Team</div>
               </div>
+
+              <TeamFields
+                state={formStateMarathon}
+                setState={setFormStateMarathon}
+                parentStateKey="fillTeam"
+              />
+
+              <ToggleableTeamPanel
+                title="Encore Team"
+                stateKey="encoreTeam"
+                classname="toggle-wrapper"
+                formState={formStateMarathon}
+                setFormState={setFormStateMarathon}
+                state={encoreShow}
+                setState={setEncoreShow}
+              />
             </div>
-            {/**  Encore when we need it!! Already in the state*************
-             * <div
-              role="group"
-              aria-labelledby="fill-team-label"
-              className="team-container"
-            >
-              <div className="banner">Fill Team</div>
-              <div className="input-container">
-                <TeamFields
-                  state={formStateMarathon}
-                  setState={setFormStateMarathon}
-                  parentStateKey="fillTeam"
-                />
-              </div>
-            </div> */}
           </div>
           <button className="submit-btn" onClick={registerFiller}>
             Submit!
           </button>
         </form>
-        <h2 className="desktop-title">Filler Registration</h2>
+        <div className="desktop-title">Filler Registration</div>
+      </div>
+      <div className="mode-btn">
+        <Link to="/carnival">Let's go to a Carnival</Link>
+        <IoMdArrowRoundForward size="22px" />
       </div>
     </TransitionWrapper>
   );

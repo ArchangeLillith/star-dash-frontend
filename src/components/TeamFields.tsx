@@ -14,22 +14,22 @@ const TeamFields = <T extends Record<string, any>>({
   parentStateKey,
 }: TeamFieldsProps<T>) => {
   return (
-    <>
+    <div className="input-container">
       {TeamFormFields.map(({ id, stateKey, placeholder }) => (
         <Input
           id={id}
           className="input"
           key={id}
-          value={state[stateKey as keyof T]} // Correctly access value from state
+          value={state[stateKey as keyof T]}
           valueRange={TEAM_NUMBER_INPUT_SETTINGS}
           type="number"
-          stateKey={stateKey as keyof T} // Pass stateKey as keyof T
+          stateKey={stateKey as keyof T}
           setState={setState}
           placeholder={placeholder}
           parentStateKey={parentStateKey || undefined}
         />
       ))}
-    </>
+    </div>
   );
 };
 
