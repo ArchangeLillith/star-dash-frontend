@@ -1,0 +1,39 @@
+.transition-wrapper {
+  @include page-card-background;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  
+  /* Old Background Image (static) */
+  background-image: url('/card-backgrounds/card_after_training\ \(14\).webp');
+}
+
+.background-slide {
+  overflow: hidden;
+  @include page-card-background;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+.page-content {
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in forwards;
+  animation-delay: 0.5s;
+}
+
+/* Keyframes for sliding animation */
+@keyframes slideIn {
+  to {
+    left: 0;
+  }
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}

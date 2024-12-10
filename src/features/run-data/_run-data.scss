@@ -1,0 +1,188 @@
+.scrollable-container {
+  background-color: $dark-kaito-purple;
+  .modal-container {
+    @include flex-center-column;
+    background-color: $kaito-purple;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 30px;
+    .filler-name {
+      font-size: 1.2rem;
+      font-family: $font-subtitle;
+    }
+    .team-container {
+      @include flex-center-row;
+      background-color: $lighter-kaito-purple;
+      gap: 0.5rem;
+      padding: 0 10px;
+      border-radius: 5px;
+    }
+  }
+}
+
+.transition-base.run-data {
+  @include flex-center-row;
+  font-family: $font-paragraph;
+
+  .page-title {
+    font-size: 1.5rem;
+    background: $kaito-purple;
+    border-radius: 15px;
+    text-align: center;
+    @include page-title(0, 0, 2rem);
+  }
+
+  .banner-background {
+    justify-self: center;
+    font-family: $font-subtitle;
+    text-align: center;
+    background-color: $lighter-kaito-purple;
+    padding: 1% 10px;
+    border-radius: 30px;
+    .banner {
+      cursor: default;
+      font-size: 1rem;
+    }
+  }
+  .submit-btn {
+    justify-self: center;
+  }
+  .team-number {
+    background: white;
+    border-radius: 30px;
+    padding: 5px;
+    min-width: 50px;
+    text-align: center;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    background: $kaito-purple;
+    padding: 1rem;
+    border: 1px solid $darker-kaito-purple;
+    border-radius: 8px;
+  }
+
+  .name {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  .team-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    font-family: $font-subtitle;
+    background: $light-kaito-purple;
+    padding: 0.5rem;
+    border-radius: 15px;
+    .button-group {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-direction: row;
+      gap: 2rem;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 0 10px;
+      margin-top: 15px;
+    }
+  }
+
+  .team-header {
+    text-shadow:
+      2px 2px 4px $dark-kaito-purple,
+      1px 1px 8px white;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+  .team-number-input {
+    background: white;
+    padding: 5px;
+    margin-left: 13px;
+    min-width: 50px;
+    text-align: center;
+    width: 50px;
+    font-size: 0.8rem;
+    font-family: $font-paragraph;
+    border: 2px solid $dark-kaito-purple;
+    border-radius: 15px;
+  }
+
+  .number-container {
+    @include flex-center-row;
+    font-family: $font-paragraph;
+    gap: 0.8rem;
+  }
+}
+
+@media (min-width: $breakpoint-desktop) {
+  .transition-base::before.run-data {
+    background: url('/card-backgrounds/run-data.png');
+  }
+  .transition-base.run-data {
+    align-items: flex-start;
+    justify-content: flex-start;
+    .scrollable-container {
+      background-color: rgba($dark-kaito-purple, 0.6);
+      margin-left: 2%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 55%;
+      .page-title {
+        width: 80%;
+      }
+      .grid-container {
+        width: 90%;
+      }
+      .team-card {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: fit-content;
+
+        .button-group {
+          padding: 0 50px;
+          flex-direction: column;
+
+          .submit-btn {
+            padding: 2px 10px;
+            width: fit-content;
+            justify-self: flex-end;
+          }
+        }
+        .team-row {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-around;
+          padding: 0 50px;
+          .team-header {
+            min-width: 100px;
+          }
+        }
+      }
+    }
+    .form-container {
+      margin-top: 3em;
+    }
+    .row {
+      grid-template-columns: 1fr 4fr;
+      align-items: center;
+    }
+  }
+}

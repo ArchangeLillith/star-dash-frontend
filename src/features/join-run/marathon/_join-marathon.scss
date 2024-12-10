@@ -1,0 +1,10 @@
+@media (min-width: $breakpoint-desktop) {
+  .transition-base::before.marathon {
+    background: url('/card-backgrounds/marathon.png');
+  }
+  .transition-base.marathon {
+    .form-container {
+      margin-top: 8em;
+    }
+  }
+}

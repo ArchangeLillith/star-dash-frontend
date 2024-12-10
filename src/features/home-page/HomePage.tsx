@@ -1,10 +1,15 @@
-import ManagerHome from "./manager-home/ManagerHome";
-import SiteHome from "./site-home/SiteHome";
+import { useContext } from 'react';
 
-const loggedIn = false;
+import ManagerHome from './manager-home/ManagerHome';
+import SiteHome from './site-home/SiteHome';
+import { AuthContext } from '../../context/auth/AuthProvider';
 
 const HomePage = () => {
-	return loggedIn ? <ManagerHome /> : <SiteHome />;
+  const { authState } = useContext(AuthContext);
+  if (authState.authenticated) {
+    return <ManagerHome />;
+  }
+  return <SiteHome />;
 };
 
 export default HomePage;

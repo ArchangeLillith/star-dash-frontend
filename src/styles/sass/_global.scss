@@ -1,0 +1,170 @@
+.desktop-title {
+  display: none;
+}
+
+.italic {
+  font-style: italic;
+}
+
+//The generic form container
+.form-container {
+  @include flex-center-column;
+  align-self: center;
+  justify-self: center;
+  font-family: $font-paragraph;
+  background: $light-kaito-purple;
+  border: 7px solid $kaito-purple;
+  width: 85%;
+  margin-top: 3em;
+  border-radius: 15px;
+  padding: 3%;
+  padding-bottom: 5%;
+  box-shadow: 4px 4px 15px $background-gray;
+  //The title of that form
+  .form-title {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    font-family: $font-blocky-site-heading;
+    font-size: 1.2rem;
+    color: white;
+    text-shadow: 4px 2px 3px $dark-kaito-purple;
+    cursor: default;
+  }
+
+  //The top of the form, usually manager name but is also used for login and register forms
+  .top-content {
+    @include flex-center-column;
+    color: $dark-kaito-purple;
+    width: 80%;
+  }
+  //Bottom half of the form, ususally teams but also can be passwords for the create run page
+  .bottom-content {
+    width: 80%;
+    background-color: $kaito-purple;
+    border-radius: 10px;
+    margin-top: 2%;
+    padding: 4%;
+    @include flex-center-column;
+  }
+
+  //Banner background, only in the form though
+  .banner-background {
+    background-color: $light-kaito-purple;
+    padding: 1% 10px;
+    border-radius: 30px;
+    //The banner within that background
+    .banner {
+      cursor: default;
+      font-size: 0.85rem;
+    }
+  }
+
+  //The container for all the team containers
+  .team-container {
+    @include flex-center-column;
+  }
+
+  //Notice text for inside the form
+  .notice-text {
+    font-size: 0.8rem;
+  }
+
+  .input-card {
+    @include flex-center-column;
+    @include basic-paragraph-heading;
+    background-color: $lighter-kaito-purple;
+    border-radius: 10px;
+    padding: 5%;
+    width: 100%;
+    margin-top: 4%;
+  }
+
+  .clickable-card {
+    @include flex-center-column;
+    @include basic-paragraph-heading;
+    background-color: $lighter-kaito-purple;
+    border-radius: 10px;
+    padding: 5%;
+    width: 100%;
+    margin-top: 4%;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease,
+      background-color 0.3s ease;
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(200, 160, 240, 0.5);
+      background-color: $light-kaito-purple;
+    }
+
+    &:active {
+      transform: scale(0.98);
+      box-shadow: 0 2px 5px rgba(200, 160, 240, 0.4);
+    }
+  }
+}
+
+.submit-btn {
+  cursor: pointer;
+  margin-top: 4%;
+  width: 30%;
+  font-size: 1rem;
+  border-radius: 10px;
+  background-color: $lighter-kaito-purple;
+  border: 5px solid $kaito-purple;
+  color: white;
+  font-family: $font-subtitle;
+}
+
+.mode-btn {
+  @include flex-center-row;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: -30px;
+  padding: 4px;
+  font-size: 0.8rem;
+  border-radius: 10px;
+  width: fit-content;
+  background-color: $lighter-kaito-purple;
+  border: 5px solid $kaito-purple;
+  color: $kaito-purple;
+  font-family: $font-paragraph;
+}
+
+@media (min-width: $breakpoint-desktop) {
+  .desktop-title {
+    cursor: default;
+    display: block;
+    color: white;
+    position: absolute;
+    right: 8%;
+    bottom: 20%;
+    font-size: $font-size-page-heading;
+    font-family: $font-blocky-site-heading;
+    text-shadow: 4px 2px 3px $dark-kaito-purple;
+  }
+  .transition-base::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    @include page-card-background;
+    z-index: -1;
+  }
+
+  .transition-base {
+    @include flex-center-row;
+    margin: 0%;
+    min-height: 100vh;
+    z-index: 1;
+  }
+
+  .form-container {
+    background: rgb(0, 0, 0);
+    .form-title {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+.input {
+  margin: 0.35em 0;
+  width: 100%;
+  font-size: 0.8rem;
+  text-align: center;
+  background: #fff;
+  border: 2px solid $lighter-kaito-purple;
+  border-radius: 10px;
+  box-sizing: border-box;
+  min-width: 50px;
+  padding: 0.5em;
+}
+
+@media (min-width: $breakpoint-desktop) {
+  .input {
+    font-size: 1rem;
+    min-width: 60px;
+  }
+}

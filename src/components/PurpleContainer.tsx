@@ -1,9 +1,9 @@
 interface PurpleContainerProps {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }
 
 const PurpleContainer = ({ children }: PurpleContainerProps) => {
-	return <div>{children}</div>;
+  return <div>{children}</div>;
 };
 
 export default PurpleContainer;

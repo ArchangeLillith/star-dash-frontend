@@ -1,0 +1,5 @@
+@media (min-width: $breakpoint-desktop) {
+  .transition-base::before.register {
+    background: url('/card-backgrounds/register.png');
+  }
+}

@@ -9,5 +9,39 @@ export type ActiveRun = {
   notesPerHour: string[][]; //array of nested arrays that include strings
   runnerID: string; //Should we have the runner object here instead? So we can access their stats anywhere? Or should we do a fresh call everytime we acivley use it? Or we can do the {name: string, runnerId: uuid} like the fillers?
   eventName: string;
+};
+export type Manager = {
+  username: string;
+  id: string;
+};
+
+export type AuthState = {
+  authenticated: boolean;
+  authorData: Manager | null;
+};
+
+export type objectType = { [key: string]: string | boolean };
+
+export interface WrapperProps {
+  children: React.ReactNode;
 }
 
+export type Filler = {
+  name: string;
+  teams: Teams;
+  event: string;
+  leadManager: string;
+};
+
+export type Teams = {
+  healTeam: Team;
+  fillTeam: Team;
+  sb1: Team;
+  sb2: Team;
+};
+
+export type Team = {
+  isv1: number;
+  isv2: number;
+  bp: number;
+};

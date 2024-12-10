@@ -1,12 +1,58 @@
-@import "/src/features/home-page/components/_smallTile.scss";
+//The specific home page desktop title cause it's special
+.title-container {
+  display: none;
+}
 
-.card-wrapper {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	height: 100%;
-	margin-top: 4%;
+//Specific card settings only used for the cards within the home menu
+.card-title {
+  @include basic-paragraph-heading;
+}
+.card-text {
+  text-align: center;
+  color: $kaito-purple;
+  text-shadow: 2px 2px 3px white;
+  font-family: $font-paragraph;
+  font-size: 0.75rem;
+}
+
+@media (min-width: $breakpoint-desktop) {
+  .transition-base::before.home-page {
+    background: url('/card-backgrounds/home.png');
+  }
+  .transition-base.home-page {
+    position: relative;
+    .form-container {
+      background-color: rgba($dark-kaito-purple, 0.3);
+      border: none;
+      width: 30%;
+      position: absolute;
+      margin-top: 0;
+      right: 8em;
+      top: 2em;
+    }
+    .top-content,
+    .bottom-content {
+      width: 75%;
+    }
+    .title-container {
+      display: block;
+
+      .home-title {
+        cursor: default;
+        @include page-title($paddingL: 1%);
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: 4em;
+      }
+      .home-title-2 {
+        cursor: default;
+        @include page-title($size: 8rem, $paddingL: 1%);
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: 1em;
+      }
+    }
+  }
 }

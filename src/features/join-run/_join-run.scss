@@ -1,0 +1,38 @@
+@import '../join-run/marathon/join-marathon.scss';
+@import '../join-run/cheerful-carnival/join-carnival.scss';
+
+@media (min-width: $breakpoint-desktop) {
+  .form-title {
+    display: none;
+  }
+
+  .transition-base.carnival,
+  .transition-base.marathon {
+    max-width: 50%;
+    align-items: flex-start;
+    justify-content: flex-start;
+    .form-container {
+      background-color: rgba($dark-kaito-purple, 0.3);
+      border: none;
+      width: 60%;
+      align-self: flex-start;
+      padding: 24px;
+      margin-left: 10%;
+    }
+    .top-content,
+    .bottom-content {
+      width: 75%;
+    }
+    .desktop-title {
+      right: 2rem;
+      bottom: 8rem;
+    }
+  }
+  .mode-btn {
+    text-align: center;
+    position: absolute;
+    top: 0.4em;
+    display: flex;
+    left: 2em;
+  }
+}

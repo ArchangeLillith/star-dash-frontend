@@ -1,51 +1,43 @@
-import SmallTile from "../components/SmallTile";
+import { Link } from 'react-router-dom';
+import { tiles } from './utils';
+import TransitionWrapper from '../../../components/TransitionWrapper';
+import { useContext } from 'react';
+import { SettingsContext } from '../../../context/settings/SettingsProvider';
+import { backgroundMap } from '../../../context/settings/utils';
+import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
 
 const SiteHome: React.FC = () => {
-	const tiles = [
-		{
-			title: "Fill for a Run",
-			body: "Add your stats to your runners list!",
-			href: "/marathon",
-			className: "marathon text-black",
-		},
-		{
-			title: "Log In",
-			body: "Log in to see the schedule~",
-			href: "/login",
-			className: "login text-black",
-		},
-		{
-			title: "Register as a Manager",
-			body: "Make an account to track your fillers",
-			href: "/register",
-			className: "register text-black",
-		},
-		{
-			title: "About",
-			body: "Learn about the site",
-			href: "/about",
-			className: "about text-black",
-		},
-		{
-			title: "Helpppp",
-			body: "FAQ's and help for using the site",
-			href: "/help",
-			className: "help text-black",
-		},
-	];
-	return (
-		<div className="card-wrapper">
-			{tiles.map((tile) => (
-				<SmallTile
-					key={tile.title}
-					title={tile.title}
-					body={tile.body}
-					href={tile.href}
-					className={tile.className}
-				/>
-			))}
-		</div>
-	);
+  /**
+   * Setting the background with a hook and access to the setting context
+   */
+  const { setSettingsState } = useContext(SettingsContext);
+  useBackgroundUpdater({
+    backgroundKey: 'home',
+    backgroundMap,
+    setSettingsState,
+  });
+
+  return (
+    <TransitionWrapper newBackgroundImage={backgroundMap.home}>
+      <div className="home-page transition-base">
+        <div className="title-container">
+          <div className="home-title">Welcome to </div>
+          <div className="home-title-2">StarDash!</div>
+        </div>
+        <div className="form-container">
+          <div className="form-title">Welcome</div>
+          {tiles.map((tile) => (
+            <Link to={tile.href} className="clickable-card">
+              <div className="card-title">{tile.title}</div>
+              <div className="card-text">
+                <p>{tile.body}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </TransitionWrapper>
+  );
 };
 
 export default SiteHome;

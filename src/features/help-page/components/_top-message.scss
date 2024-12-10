@@ -1,0 +1,24 @@
+.message-wrapper {
+  @include flex-center-column;
+  .help-header {
+    @include page-title($paddingL: 0, $marginL: 0, $size: 2rem);
+    text-align: center;
+  }
+
+  .help-message {
+    width: 85%;
+    color: white;
+    font-family: $font-paragraph;
+    padding: 10px;
+    border-radius: 25px;
+    font-size: 0.8rem;
+    margin: 4px;
+  }
+}
+
+@media (min-width: $breakpoint-desktop) {
+  .help-message {
+    width: 80%;
+    margin: 30px;
+  }
+}
