@@ -1,10 +1,13 @@
 import React, { createContext, useState } from 'react';
 import { backgroundMap } from './utils';
+import { hoursPerPageOptions } from '@/utils/variables';
 
 export type SettingsState = {
   theme: string;
   favoriteCharacters: string[];
   currentPageBackground: string;
+  hoursPerPage: hoursPerPageOptions;
+  startingHour: number;
 };
 
 /**
@@ -23,6 +26,8 @@ export const SettingsContext = createContext<SettingsContextType>({
     theme: 'default',
     favoriteCharacters: ['miku'],
     currentPageBackground: backgroundMap['home'],
+    hoursPerPage: 10,
+    startingHour: 1,
   },
   setSettingsState: () => {},
   // loginToAuthState: () => {},
@@ -39,6 +44,8 @@ const SettingsProvider: React.FC<SettingProviderProps> = ({ children }) => {
     theme: 'default',
     favoriteCharacters: [],
     currentPageBackground: '',
+    hoursPerPage: 10,
+    startingHour: 1,
   });
 
   // /**

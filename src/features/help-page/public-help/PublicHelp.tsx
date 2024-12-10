@@ -1,8 +1,9 @@
 import { useContext, useEffect } from 'react';
-
 import TransitionWrapper from '../../../components/TransitionWrapper';
 import { SettingsContext } from '../../../context/settings/SettingsProvider';
 import { backgroundMap } from '../../../context/settings/utils';
+import Accordian from '../components/Accordian';
+import TopMessage from '../components/TopMessage';
 
 const PublicHelp = () => {
   const { setSettingsState } = useContext(SettingsContext);
@@ -19,7 +20,14 @@ const PublicHelp = () => {
 
   return (
     <TransitionWrapper newBackgroundImage={backgroundMap.help}>
-      <h1>PublicHelp component rendered</h1>
+      <div className="transition-base pub-help">
+        <div className="scrollable-container">
+          <div className="inner-scroll-container">
+            <TopMessage />
+            <Accordian />
+          </div>
+        </div>
+      </div>
     </TransitionWrapper>
   );
 };

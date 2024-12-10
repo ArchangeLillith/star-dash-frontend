@@ -1,11 +1,15 @@
 import { publicLinks } from './utils';
 import NavItem from '../components/NavItem';
 
-const PublicNavLinks = () => {
+interface PublicNavLinksProps {
+  closeMenu: () => void;
+}
+
+const PublicNavLinks: React.FC<PublicNavLinksProps> = ({ closeMenu }) => {
   return (
     <>
       {publicLinks.map((link) => (
-        <NavItem key={link.href} {...link} />
+        <NavItem key={link.href} {...link} closeMenu={closeMenu} />
       ))}
     </>
   );

@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react';
+import { IoClose } from 'react-icons/io5';
 import Select from '../../components/Select';
 import Input from '../../components/Input';
 import TransitionWrapper from '../../components/TransitionWrapper';
@@ -120,6 +121,12 @@ const CreateRun = () => {
           </div>
           {show && (
             <Modal>
+              <button
+                onClick={() => setShow((prev) => !prev)}
+                className="modal-close-btn"
+              >
+                <IoClose size="24px" />
+              </button>
               <div className="modal-title">Password Confirmation</div>
               <div className="banner-background">
                 <p className="notice-text italic banner">

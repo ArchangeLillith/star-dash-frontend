@@ -13,10 +13,14 @@
 }
 
 @mixin page-card-background {
-  height: 100vh;
+  height: 90.5vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  @media (min-width: $breakpoint-desktop) {
+    height: 92vh;
+  }
 }
 
 @mixin basic-paragraph-heading {

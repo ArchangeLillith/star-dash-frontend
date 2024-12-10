@@ -3,12 +3,13 @@
   position: relative;
   overflow: hidden;
   width: 100%;
-
+  
   /* Old Background Image (static) */
   background-image: url('/card-backgrounds/card_after_training\ \(14\).webp');
 }
 
 .background-slide {
+  overflow: hidden;
   @include page-card-background;
   position: absolute;
   top: 0;

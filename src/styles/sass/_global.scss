@@ -56,6 +56,7 @@
     border-radius: 30px;
     //The banner within that background
     .banner {
+      cursor: default;
       font-size: 0.85rem;
     }
   }
@@ -79,9 +80,34 @@
     width: 100%;
     margin-top: 4%;
   }
+
+  .clickable-card {
+    @include flex-center-column;
+    @include basic-paragraph-heading;
+    background-color: $lighter-kaito-purple;
+    border-radius: 10px;
+    padding: 5%;
+    width: 100%;
+    margin-top: 4%;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease,
+      background-color 0.3s ease;
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(200, 160, 240, 0.5);
+      background-color: $light-kaito-purple;
+    }
+
+    &:active {
+      transform: scale(0.98);
+      box-shadow: 0 2px 5px rgba(200, 160, 240, 0.4);
+    }
+  }
 }
 
 .submit-btn {
+  cursor: pointer;
   margin-top: 4%;
   width: 30%;
   font-size: 1rem;
@@ -110,6 +136,7 @@
 
 @media (min-width: $breakpoint-desktop) {
   .desktop-title {
+    cursor: default;
     display: block;
     color: white;
     position: absolute;

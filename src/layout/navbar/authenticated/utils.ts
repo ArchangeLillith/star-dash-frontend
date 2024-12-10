@@ -12,6 +12,7 @@ export const getMultiEventLinks = () => [
   { href: '/schedule', text: 'Schedule' },
   { href: '/data', text: 'Fillers and Managers' },
   { href: '/join-run', text: 'Join a Run' },
+  { href: '/create-run', text: 'Create a Run' },
   { href: '/event', text: 'Choose an Event' },
   ...defaultLinks,
 ];

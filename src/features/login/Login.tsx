@@ -42,6 +42,7 @@ const Login = () => {
               setState={setFormStateLogin}
               maxLength={TEXT_INPUT_SETTINGS.MAX_LENGTH}
               stateKey={'username'}
+              autoFocus={true}
             />
           </div>
           <div className="input-card">

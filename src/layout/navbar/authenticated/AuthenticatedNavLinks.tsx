@@ -4,6 +4,7 @@ import { getAdminLinks, getMultiEventLinks, getNoEventLinks } from './utils';
 interface AuthenticatedNavLinksParams {
   selectionMode: boolean;
   confirmEventChange: () => void;
+  closeMenu: () => void;
   user: {
     loggedIn: boolean;
     registeredEvents: { event: string; leadManager: string }[];
@@ -15,6 +16,7 @@ interface AuthenticatedNavLinksParams {
 
 const AuthenticatedNavLinks: React.FC<AuthenticatedNavLinksParams> = ({
   user,
+  closeMenu,
 }) => {
   const navLinks = [];
   if (user.registeredEvents.length === 0) {
@@ -30,7 +32,7 @@ const AuthenticatedNavLinks: React.FC<AuthenticatedNavLinksParams> = ({
   return (
     <>
       {navLinks.map((link) => (
-        <NavItem key={link.href} {...link} />
+        <NavItem key={link.href} {...link} closeMenu={closeMenu} />
       ))}
     </>
   );

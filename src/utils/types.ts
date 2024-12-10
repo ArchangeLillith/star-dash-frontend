@@ -25,3 +25,23 @@ export type objectType = { [key: string]: string | boolean };
 export interface WrapperProps {
   children: React.ReactNode;
 }
+
+export type Filler = {
+  name: string;
+  teams: Teams;
+  event: string;
+  leadManager: string;
+};
+
+export type Teams = {
+  healTeam: Team;
+  fillTeam: Team;
+  sb1: Team;
+  sb2: Team;
+};
+
+export type Team = {
+  isv1: number;
+  isv2: number;
+  bp: number;
+};

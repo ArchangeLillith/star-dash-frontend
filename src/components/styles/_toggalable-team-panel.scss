@@ -2,6 +2,7 @@
   @include flex-center-row;
   position: relative;
   .toggle-team-button {
+    cursor: pointer;
     position: absolute;
     right: -30px;
     padding: 4px;

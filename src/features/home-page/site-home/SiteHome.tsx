@@ -27,7 +27,7 @@ const SiteHome: React.FC = () => {
         <div className="form-container">
           <div className="form-title">Welcome</div>
           {tiles.map((tile) => (
-            <Link to={tile.href} className="input-card">
+            <Link to={tile.href} className="clickable-card">
               <div className="card-title">{tile.title}</div>
               <div className="card-text">
                 <p>{tile.body}</p>

@@ -7,6 +7,7 @@ export const handleStateChange =
       [key]: value,
     }));
   };
+
 export const handleStateChangeSecondLayer =
   <T>(
     key: keyof T,

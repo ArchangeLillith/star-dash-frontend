@@ -11,4 +11,5 @@ export const backgroundMap: Record<string, string> = {
   authHelp: '/card-backgrounds/help.webp',
   data: '/card-backgrounds/data.webp',
   schedule: '/card-backgrounds/schedule.webp',
+  runData: '/card-backgrounds/run-data.webp',
 };

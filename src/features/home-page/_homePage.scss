@@ -38,6 +38,7 @@
       display: block;
 
       .home-title {
+        cursor: default;
         @include page-title($paddingL: 1%);
         display: block;
         position: absolute;
@@ -45,6 +46,7 @@
         bottom: 4em;
       }
       .home-title-2 {
+        cursor: default;
         @include page-title($size: 8rem, $paddingL: 1%);
         display: block;
         position: absolute;
