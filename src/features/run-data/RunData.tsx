@@ -6,7 +6,7 @@ import { useContext, useEffect, useState } from 'react';
 import TeamContainer from './components/TeamContainer';
 import { Filler, Manager, Teams } from '@/utils/types';
 import { DummyFillerData, DummyManagerData } from '@/utils/variables';
-import { createTempTeams } from './utils';
+import { createTempTeams } from './RunData.utils';
 //REFACTOR when we have a backend this is the initialiaztion data
 // import { InitializeFillerData } from '@/utils/variables';
 

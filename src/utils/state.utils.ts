@@ -1,4 +1,3 @@
-//REFACTOR this is going to be useful like literally everywhere, we should move this at some point
 export const handleStateChange =
   <T>(key: keyof T, setState: React.Dispatch<React.SetStateAction<T>>) =>
   (value: unknown) => {
@@ -36,5 +35,3 @@ export const handleStateChangeSecondLayer =
       };
     });
   };
-
-export const runPasswordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[^\s]{12}$/;

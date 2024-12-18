@@ -9,7 +9,7 @@ import {
   notFoundHandler,
 } from './middlewares/error-handlers.mw';
 import { configurePassport } from './middlewares/passport.mw';
-import routes from './routes/index';
+import routes from './routes/routes.index.ts';
 
 const app = express();
 

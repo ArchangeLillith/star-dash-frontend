@@ -2,21 +2,23 @@ import TransitionWrapper from '@/components/TransitionWrapper';
 import { SettingsContext } from '@/context/settings/SettingsProvider';
 import { backgroundMap } from '@/context/settings/utils';
 import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
-import { Team, Filler } from '@/utils/types';
-import { DummyFillerData } from '@/utils/variables';
+import { TeamsPerHour } from '@/utils/types';
+
 import { useContext, useState } from 'react';
 import FillerSelection from './components/hour-card-modes/FillerSelection';
 import TeamSelection from './components/hour-card-modes/TeamSelection';
 import TeamDisplay from './components/hour-card-modes/TeamDisplay';
 import {
   areFillersComplete,
+  HourToFillers,
   initializeHourToFillers,
   initializeTeamsPerHour,
   isTeamFullySelected,
-} from './utils';
+} from './Schedule.utils';
 import { FaCaretDown } from 'react-icons/fa';
 import { IoIosSettings } from 'react-icons/io';
 import PageControls from './components/PageControls';
+import { DummyFillerData } from '@/utils/dummyData.db';
 
 const Schedule = () => {
   const { setSettingsState } = useContext(SettingsContext);
@@ -28,15 +30,10 @@ const Schedule = () => {
   const [fillersPerHour, setFillersPerHour] = useState<HourToFillers>(
     initializeHourToFillers()
   );
-  const [teamsPerHour, setTeamsPerHour] = useState<
-    Record<string, ChosenTeam[]>
-  >(initializeTeamsPerHour());
-  type HourToFillers = Record<string, Filler[]>;
-  type ChosenTeam = {
-    fillerName: string;
-    teamName: string;
-    team: Team;
-  };
+  const [teamsPerHour, setTeamsPerHour] = useState<TeamsPerHour>(
+    initializeTeamsPerHour()
+  );
+
   useBackgroundUpdater({
     backgroundKey: 'schedule',
     backgroundMap,

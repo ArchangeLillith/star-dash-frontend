@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { tiles } from './utils';
+import { tiles } from './SiteHome.utils';
 import TransitionWrapper from '../../../components/TransitionWrapper';
 import { useContext } from 'react';
 import { SettingsContext } from '../../../context/settings/SettingsProvider';

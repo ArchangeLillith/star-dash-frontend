@@ -1,22 +1,23 @@
-import { useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { IoClose } from 'react-icons/io5';
+
+import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
+
+import { SettingsContext } from '../../context/settings/SettingsProvider';
+
+import { backgroundMap } from '../../context/settings/utils';
+import { TEXT_INPUT_SETTINGS } from '../../utils/variables';
+import { callRegex } from '@/utils/regex.ts';
+import { InitializeCreateRun, ERegexHandler } from './CreateRun.utils';
+
 import Select from '../../components/Select';
 import Input from '../../components/Input';
-import TransitionWrapper from '../../components/TransitionWrapper';
-import { SettingsContext } from '../../context/settings/SettingsProvider';
-import { backgroundMap } from '../../context/settings/utils';
-import {
-  ERegexHandler,
-  InitializeCreateRun,
-  TEXT_INPUT_SETTINGS,
-} from '../../utils/variables';
-import React from 'react';
-import TeamFields from '@/components/TeamFields';
-import { CreateRunFormState } from '@/utils/state-types';
-import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
-import { callRegex } from '@/utils/regex';
 import Modal from '@/components/Modal';
+import TeamFields from '@/components/TeamFields';
+import TransitionWrapper from '../../components/TransitionWrapper';
 import ConfirmPassInput from './components/ConfirmPassInput';
+
+import { CreateRunFormState } from './CreateRun.types';
 
 const CreateRun = () => {
   /**

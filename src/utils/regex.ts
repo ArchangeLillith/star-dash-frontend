@@ -1,4 +1,28 @@
-import { regexHandler } from './variables';
+//Refactor is this file gets much longer, we call pull apart the regexHandler object
+export enum ERegexHandler {
+  CreateRunPass = 'createRunPass',
+  UserPass = 'userPass',
+}
+
+export const regexHandler = {
+  [ERegexHandler.CreateRunPass]: {
+    minLength: 12,
+    maxLength: 20,
+    uppercase: /[A-Z]/,
+    number: /\d/,
+    specChar: /[\W_]/,
+    spaces: false,
+  },
+  [ERegexHandler.UserPass]: {
+    minLength: 6,
+    maxLength: 15,
+    uppercase: /[A-Z]/,
+    number: /\d/,
+    specChar: false,
+    spaces: false,
+  },
+};
+
 export const callRegex = (
   password: string,
   regexType: keyof typeof regexHandler

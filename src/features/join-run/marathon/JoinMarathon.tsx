@@ -5,15 +5,16 @@ import { useContext, useState } from 'react';
 import { SettingsContext } from '../../../context/settings/SettingsProvider';
 import { backgroundMap } from '../../../context/settings/utils';
 import Input from '../../../components/Input';
-import { MarathonFormState } from '../../../utils/state-types';
-import {
-  InitializeMarathonState,
-  TEXT_INPUT_SETTINGS,
-} from '../../../utils/variables';
+
+import { TEXT_INPUT_SETTINGS } from '../../../utils/variables';
 import React from 'react';
 import TeamFields from '@/components/TeamFields';
 import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
 import ToggleableTeamPanel from '@/components/ToggalableTeamPanel';
+import {
+  MarathonFormState,
+  InitializeMarathonState,
+} from './JoinMarathon.types';
 
 const JoinMarathon: React.FC = () => {
   /**

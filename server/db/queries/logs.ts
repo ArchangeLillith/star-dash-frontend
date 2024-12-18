@@ -7,7 +7,7 @@ const all = (): Promise<Log[]> =>
 		SELECT
 			*
 		FROM
-			kf_activity_logs;
+			sd_activity_logs;
 	`);
 
 export default { all };

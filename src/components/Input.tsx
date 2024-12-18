@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 import {
   handleStateChange,
   handleStateChangeSecondLayer,
-} from '../features/create-run/utils';
+} from '../features/create-run/CreateRun.utils';
 import {
   TEAM_NUMBER_INPUT_SETTINGS,
   TEXT_INPUT_SETTINGS,

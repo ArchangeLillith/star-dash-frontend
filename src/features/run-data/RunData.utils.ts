@@ -57,3 +57,17 @@ export const createTempTeams = (fillerData: Filler[]): Teams[] => {
   // Create a deep copy of the teams
   return fillerData.map((filler) => JSON.parse(JSON.stringify(filler.teams)));
 };
+
+export const InitializeFillerData = [
+  {
+    name: 'Loading...',
+    teams: {
+      healTeam: { isv1: 0, isv2: 0, bp: 0 },
+      fillTeam: { isv1: 0, isv2: 0, bp: 0 },
+      sb1: { isv1: 0, isv2: 0, bp: 0 },
+      sb2: { isv1: 0, isv2: 0, bp: 0 },
+    },
+    event: 'Loading...',
+    leadManager: 'Loading...',
+  },
+];

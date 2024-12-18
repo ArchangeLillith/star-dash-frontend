@@ -1,12 +1,6 @@
-import { Filler, Team } from '@/utils/types';
+import { Filler, TeamsPerHour } from '@/utils/types';
 
-type ChosenTeam = {
-  fillerName: string;
-  teamName: string;
-  team: Team;
-};
-
-type HourToFillers = Record<string, Filler[]>;
+export type HourToFillers = Record<string, Filler[]>;
 
 export const initializeHourToFillers = (): HourToFillers => {
   const initialFillers: HourToFillers = {};
@@ -18,8 +12,8 @@ export const initializeHourToFillers = (): HourToFillers => {
   return initialFillers;
 };
 
-export const initializeTeamsPerHour = (): Record<string, ChosenTeam[]> => {
-  const teamsPerHour: Record<string, ChosenTeam[]> = {};
+export const initializeTeamsPerHour = (): TeamsPerHour => {
+  const teamsPerHour: TeamsPerHour = {};
 
   // Create 200 entries with empty arrays
   for (let i = 0; i < 200; i++) {
@@ -29,10 +23,8 @@ export const initializeTeamsPerHour = (): Record<string, ChosenTeam[]> => {
   return teamsPerHour;
 };
 
-export const isTeamFullySelected = (
-  hour: number,
-  teamsPerHour: Record<string, ChosenTeam[]>
-) => teamsPerHour[`hour-${hour}`]?.length === 4;
+export const isTeamFullySelected = (hour: number, teamsPerHour: TeamsPerHour) =>
+  teamsPerHour[`hour-${hour}`]?.length === 4;
 export const areFillersComplete = (
   hour: number,
   fillersPerHour: Record<string, Filler[]>

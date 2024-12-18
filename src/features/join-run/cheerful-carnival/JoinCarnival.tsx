@@ -5,16 +5,16 @@ import { SettingsContext } from '../../../context/settings/SettingsProvider';
 import { backgroundMap } from '../../../context/settings/utils';
 import TeamFields from '@/components/TeamFields';
 import Input from '@/components/Input';
-import {
-  ETeamNames,
-  InitializeCarnivalState,
-  teamParentMap,
-  TEXT_INPUT_SETTINGS,
-} from '@/utils/variables';
-import { CarnivalFormState } from '@/utils/state-types';
+import { TEXT_INPUT_SETTINGS } from '@/utils/variables';
 import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
 import ToggleableTeamPanel from '@/components/ToggalableTeamPanel';
 import { IoMdArrowRoundForward } from 'react-icons/io';
+import {
+  CarnivalFormState,
+  InitializeCarnivalState,
+  ETeamNames,
+  teamParentMap,
+} from './JoinCarnival.types';
 
 const JoinCarnival: React.FC = () => {
   /**

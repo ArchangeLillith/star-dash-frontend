@@ -5,9 +5,10 @@ import TransitionWrapper from '../../components/TransitionWrapper';
 import { SettingsContext } from '../../context/settings/SettingsProvider';
 import { backgroundMap } from '../../context/settings/utils';
 import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
-import { LoginFormState } from '@/utils/state-types';
+
 import Input from '@/components/Input';
-import { InitializeLogin, TEXT_INPUT_SETTINGS } from '@/utils/variables';
+import { TEXT_INPUT_SETTINGS } from '@/utils/variables';
+import { LoginFormState, InitializeLogin } from './Login.types';
 
 const Login = () => {
   /**

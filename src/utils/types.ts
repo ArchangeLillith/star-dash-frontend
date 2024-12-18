@@ -1,5 +1,5 @@
 //*Typings subject to change, keep in mind foreign keys are all uuids
-export type ActiveRun = {
+export type Run = {
   runID: string; //Typed right?
   //Do we change the leadManager to leadManagerId? easier to query with, but then we have to query every time we use it. How often will this be used?
   leadManager: string; //String or id or object of both?
@@ -10,9 +10,9 @@ export type ActiveRun = {
   runnerID: string; //Should we have the runner object here instead? So we can access their stats anywhere? Or should we do a fresh call everytime we acivley use it? Or we can do the {name: string, runnerId: uuid} like the fillers?
   eventName: string;
 };
+
 export type Manager = {
   username: string;
-  id: string;
 };
 
 export type AuthState = {
@@ -45,3 +45,11 @@ export type Team = {
   isv2: number;
   bp: number;
 };
+
+export type ChosenTeam = {
+  fillerName: string;
+  teamName: string;
+  team: Team;
+};
+
+export type TeamsPerHour = Record<string, ChosenTeam[]>;
