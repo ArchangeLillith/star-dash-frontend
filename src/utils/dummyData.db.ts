@@ -1,3 +1,5 @@
+import { UUID } from 'server/types';
+
 export const DummyFillerData = [
   {
     name: 'Ki',
@@ -134,10 +136,10 @@ export const DummyFillerData = [
 ];
 
 export const DummyManagerData = [
-  { username: 'Eli', id: 'dkhfdlashfasdfkaslfkh' },
-  { username: 'Levi', id: 'dkhfdlashfasdfkaslfkh' },
-  { username: 'Ali', id: 'dkhfdlashfasdfkaslfkh' },
-  { username: 'Ellie', id: 'dlsfgjd;fsogjidfsgsdfg' },
-  { username: 'Mikui', id: 'rewt89540uiorwtgjr;ew' },
-  { username: 'Leo', id: ';cvmklbclxkbm' },
+  { username: 'Eli', id: 'dkhfdlashfasdfkaslfkh' as UUID },
+  { username: 'Levi', id: 'dkhfdlashfasdfkaslfkh' as UUID },
+  { username: 'Ali', id: 'dkhfdlashfasdfkaslfkh' as UUID },
+  { username: 'Ellie', id: 'dlsfgjd;fsogjidfsgsdfg' as UUID },
+  { username: 'Mikui', id: 'rewt89540uiorwtgjr;ew' as UUID },
+  { username: 'Leo', id: ';cvmklbclxkbm' as UUID },
 ];

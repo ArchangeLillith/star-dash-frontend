@@ -1,5 +1,5 @@
+import { handleStateChange } from '@/utils/state.utils';
 import { Dispatch, SetStateAction } from 'react';
-import { handleStateChange } from '../features/create-run/CreateRun.utils';
 
 interface SelectProps<T> {
   options: string[];

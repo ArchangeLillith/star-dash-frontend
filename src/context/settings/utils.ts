@@ -1,3 +1,5 @@
+import { hoursPerPageOptions } from '@/utils/variables';
+
 //Make an enum for this for type saftey, see ETeamName
 export const backgroundMap: Record<string, string> = {
   home: '/card-backgrounds/home.png',
@@ -13,3 +15,27 @@ export const backgroundMap: Record<string, string> = {
   schedule: '/card-backgrounds/schedule.webp',
   runData: '/card-backgrounds/run-data.webp',
 };
+
+export const DefaultSettings = {
+  theme: EThemeNames.DEFAULT,
+  favoriteCharacters: [],
+  currentPageBackground: '',
+  hoursPerPage: 10 as hoursPerPageOptions,
+  startingHour: 1,
+};
+
+export type SettingsState = {
+  theme: EThemeNames;
+  favoriteCharacters: string[];
+  currentPageBackground: string;
+  hoursPerPage: hoursPerPageOptions;
+  startingHour: number;
+};
+
+const enum EThemeNames {
+  MIKU = 'miku',
+  LUKA = 'luka',
+  RIN = 'rin',
+  KAITO = 'kaito',
+  DEFAULT = 'default',
+}

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { IoMdArrowRoundForward } from 'react-icons/io';
 import TransitionWrapper from '../../../components/TransitionWrapper';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { SettingsContext } from '../../../context/settings/SettingsProvider';
 import { backgroundMap } from '../../../context/settings/utils';
 import Input from '../../../components/Input';
@@ -15,6 +15,8 @@ import {
   MarathonFormState,
   InitializeMarathonState,
 } from './JoinMarathon.types';
+import Select from '@/components/Select';
+import useFetchData from '@/hooks/useFetchData';
 
 const JoinMarathon: React.FC = () => {
   /**
@@ -26,22 +28,65 @@ const JoinMarathon: React.FC = () => {
     backgroundMap,
     setSettingsState,
   });
+  const [events, setEvents] = useState<eventType[]>([]);
+  const [eventNames, setEventNames] = useState<string[]>([]);
   const [encoreShow, setEncoreShow] = useState(false);
   const [formStateMarathon, setFormStateMarathon] = useState<MarathonFormState>(
     InitializeMarathonState
   );
 
+  type eventType = {
+    event_id: string;
+    event_name: string;
+    event_type: 'M' | 'C';
+  };
+
   const registerFiller = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     alert(formStateMarathon.encoreTeam?.isv1);
   };
+  const fetchConfigs = useMemo(
+    () => [{ key: 'events', url: '/api/events' }],
+    []
+  );
+  type FetchDataResponse<T = Record<string, any>> = T;
 
+  const { data, loading, error } =
+    useFetchData<FetchDataResponse>(fetchConfigs);
+
+  useEffect(() => {
+    if (!data || !data.events) return;
+    console.log(`DAT`, data);
+    const { events } = data;
+    // Update state based on fetched data
+    setEvents(events);
+    setEventNames(
+      events
+        .filter((event: eventType) => event.event_type === 'M')
+        .map((event: eventType) => event.event_name)
+    );
+  }, [data]); // Run effect when data changes
+  if (loading) <p>Loadig....</p>;
+  if (error) <p>error....</p>;
   return (
     <TransitionWrapper newBackgroundImage={backgroundMap.marathon}>
       <div className="transition-base marathon">
         <form className="form-container">
           <div className="form-title">Filler Registration</div>
           <div className="top-content">
+            <div className="input-card">
+              <label className="banner" htmlFor="manager-input">
+                Event
+              </label>
+
+              <Select
+                options={eventNames}
+                setState={setFormStateMarathon}
+                state={formStateMarathon}
+                stateKey="event"
+                value={formStateMarathon.event}
+              />
+            </div>
             <div className="input-card">
               <label className="banner" htmlFor="manager-input">
                 Manager Name

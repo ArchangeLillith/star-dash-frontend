@@ -1,13 +1,16 @@
 import { Router } from 'express';
 
-// import loginRouter from './login';
-// import registerRouter from './register';
-// import validateRouter from './validate';
+import registerRouter from './register.route';
+import loginRouter from './login.route';
+import validateRouter from './validate.route';
+
+//Run all these routes prepended with the method through this middle ware
+// router.route('*').post(checkToken).put(checkToken).delete(checkToken);
 
 const router = Router();
 
-// router.use('/login', loginRouter);
-// router.use('/register', registerRouter);
-// router.use('/validate', validateRouter);
+router.use('/register', registerRouter);
+router.use('/login', loginRouter);
+router.use('/validate', validateRouter);
 
 export default router;

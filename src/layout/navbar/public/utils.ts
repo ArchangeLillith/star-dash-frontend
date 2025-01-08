@@ -3,5 +3,5 @@ export const publicLinks = [
   { href: '/register', text: 'Create Account' },
   { href: '/help', text: "Help and FAQ's" },
   { href: '/login', text: 'Log In' },
-  { href: '/schedule', text: 'Current WIP' },
+  { href: '/marathon', text: 'Current WIP' },
 ];

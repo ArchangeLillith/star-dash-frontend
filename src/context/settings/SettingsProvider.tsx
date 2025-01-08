@@ -1,14 +1,5 @@
 import React, { createContext, useState } from 'react';
-import { backgroundMap } from './utils';
-import { hoursPerPageOptions } from '@/utils/variables';
-
-export type SettingsState = {
-  theme: string;
-  favoriteCharacters: string[];
-  currentPageBackground: string;
-  hoursPerPage: hoursPerPageOptions;
-  startingHour: number;
-};
+import { DefaultSettings, SettingsState } from './utils';
 
 /**
  * Typing for the settings state
@@ -22,13 +13,7 @@ interface SettingsContextType {
  * Settings context to allow other components to pull from it no matter how nested
  */
 export const SettingsContext = createContext<SettingsContextType>({
-  settingsState: {
-    theme: 'default',
-    favoriteCharacters: ['miku'],
-    currentPageBackground: backgroundMap['home'],
-    hoursPerPage: 10,
-    startingHour: 1,
-  },
+  settingsState: DefaultSettings,
   setSettingsState: () => {},
   // loginToAuthState: () => {},
   // logoutFromAuthState: () => {},
@@ -40,13 +25,8 @@ interface SettingProviderProps {
 }
 
 const SettingsProvider: React.FC<SettingProviderProps> = ({ children }) => {
-  const [settingsState, setSettingsState] = useState<SettingsState>({
-    theme: 'default',
-    favoriteCharacters: [],
-    currentPageBackground: '',
-    hoursPerPage: 10,
-    startingHour: 1,
-  });
+  const [settingsState, setSettingsState] =
+    useState<SettingsState>(DefaultSettings);
 
   // /**
   //  * The function that handles the auth state to reflect a log in

@@ -1,24 +1,7 @@
 import { jwtDecode } from 'jwt-decode';
-
-import baseService from './base';
-import storage from '../utils/storage';
-import { Manager } from '../utils/types';
-
-/**
- * Called from login component, this calls to our api and attempts to return a token which then is set to the local storage
- * @param payload - The sanitized values from the frontend that are being compared to the data in the database
- * @returns A JWT if the login succeeded, or an error if not
- */
-const authenticateManagerAndStoreToken = async (payload: {
-  username: string;
-  password: string;
-}) => {
-  const token = await baseService.post('/auth/login', payload);
-  if (!token) return;
-
-  storage.setToken(token);
-  return token;
-};
+import baseService from '@/services/base';
+import storage from '../../utils/storage';
+import { Manager } from '../../utils/types';
 
 /**
  *Registers the user by posting against the database with the sanitized payload from the component
@@ -26,12 +9,12 @@ const authenticateManagerAndStoreToken = async (payload: {
  * @returns A JWT or error
  */
 const registerUserAndStoreToken = async (payload: {
-  email: string;
-  password: string;
   username: string;
+  password: string;
 }) => {
   console.log(`REGISTER AND STORE TOKEN`);
-  const token = await baseService.post('/auth/register/', payload);
+  const { token } = await baseService.post('/auth/register', payload);
+  console.log(`token in frontend`, token);
   if (!token) return;
   storage.setToken(token);
   return token;
@@ -57,13 +40,12 @@ const getUserFromToken = async (token: string): Promise<Manager> => {
     if (!user) throw new Error("user couldn't be fetched TT_TT");
     return user;
   } catch (error) {
-    console.log(`ERROR in get?UserFromToen`, error);
+    console.log(`ERROR in register.api.ts in features:`, error);
     throw error;
   }
 };
 
 export default {
-  authenticateUserAndStoreToken: authenticateManagerAndStoreToken,
   registerUserAndStoreToken,
   getUserFromToken,
 };

@@ -1,12 +1,13 @@
 import { Dispatch, SetStateAction } from 'react';
-import {
-  handleStateChange,
-  handleStateChangeSecondLayer,
-} from '../features/create-run/CreateRun.utils';
+import {} from '../features/create-run/CreateRun.utils';
 import {
   TEAM_NUMBER_INPUT_SETTINGS,
   TEXT_INPUT_SETTINGS,
 } from '../utils/variables';
+import {
+  handleStateChange,
+  handleStateChangeSecondLayer,
+} from '@/utils/state.utils';
 
 interface InputProps<T> {
   id: string;

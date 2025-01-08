@@ -1,3 +1,5 @@
+import { UUID } from 'server/types';
+
 //*Typings subject to change, keep in mind foreign keys are all uuids
 export type Run = {
   runID: string; //Typed right?
@@ -12,7 +14,16 @@ export type Run = {
 };
 
 export type Manager = {
+  id: UUID;
   username: string;
+};
+
+export type ManagerLoginObject = {
+  id: UUID;
+  username: string;
+  activeEvents: any[];
+  archivedEvents: any[];
+  settings: any;
 };
 
 export type AuthState = {

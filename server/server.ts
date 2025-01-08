@@ -9,7 +9,11 @@ import {
   notFoundHandler,
 } from './middlewares/error-handlers.mw';
 import { configurePassport } from './middlewares/passport.mw';
-import routes from './routes/routes.index.ts';
+import routes from './routes/routes.index';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -17,8 +21,8 @@ app.use(
   cors({
     origin:
       process.env.NODE_ENV === 'production'
-        ? ['http://localhost:8000']
-        : ['http://localhost:8000'],
+        ? ['http://localhost:5173']
+        : ['http://localhost:5173'],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   })
@@ -36,30 +40,16 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Serve static files only in production
-if (process.env.NODE_ENV === 'production') {
-  const staticPath = path.join(__dirname, '../public');
-  app.use(express.static(staticPath));
 
-  // Routes and API endpoints
-  app.use(routes);
+const staticPath = path.join(__dirname, '../public');
+app.use(express.static(staticPath));
 
-  app.get(
-    [
-      '/',
-      '/login',
-      '/profile',
-      '/register',
-      '/patterns',
-      '/patterns/*',
-      '/gallery',
-      '/search',
-      '/favorites',
-      '/patterns/new',
-      '/admin',
-    ],
-    (req, res) => res.sendFile(path.join(__dirname, '../public/index.html'))
-  );
-}
+// Routes and API endpoints
+app.use(routes);
+
+app.get(['/', '/marathon', '/carnival', '/login', '/register'], (req, res) =>
+  res.sendFile(path.join(__dirname, '../public/index.html'))
+);
 
 // Handle 404 errors
 app.use(notFoundHandler);
@@ -72,3 +62,5 @@ const PORT = process.env.PORT || config.app.port;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}~`);
 });
+
+export default app;

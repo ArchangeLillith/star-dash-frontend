@@ -7,8 +7,7 @@ import { SettingsContext } from '../../context/settings/SettingsProvider';
 
 import { backgroundMap } from '../../context/settings/utils';
 import { TEXT_INPUT_SETTINGS } from '../../utils/variables';
-import { callRegex } from '@/utils/regex.ts';
-import { InitializeCreateRun, ERegexHandler } from './CreateRun.utils';
+import { InitializeCreateRun } from './CreateRun.utils';
 
 import Select from '../../components/Select';
 import Input from '../../components/Input';
@@ -18,6 +17,7 @@ import TransitionWrapper from '../../components/TransitionWrapper';
 import ConfirmPassInput from './components/ConfirmPassInput';
 
 import { CreateRunFormState } from './CreateRun.types';
+import { callRegex, ERegexHandler } from '@/utils/regex';
 
 const CreateRun = () => {
   /**

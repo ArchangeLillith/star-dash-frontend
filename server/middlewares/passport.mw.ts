@@ -9,6 +9,12 @@ import db from '../db/index';
 
 export function configurePassport(app: Express) {
   console.log('Configuring Passport strategies...');
+
+  if (!config.jwt.secret) {
+    throw new Error('JWT secret is not defined in the configuration');
+  }
+
+  // Local strategy
   passport.use(
     new PassportLocal.Strategy(
       {
@@ -17,25 +23,27 @@ export function configurePassport(app: Express) {
       async (username, password, done) => {
         console.log(`Local strategy invoked for username: ${username}`);
         try {
-          const [userFound] = await db.authors.find(username);
-          console.log(`User found:`, userFound);
-          if (
-            userFound &&
-            (await bcrypt.compare(password, userFound.password))
-          ) {
-            delete userFound.password;
-            return done(null, userFound);
+          const [userFound] = await db.managers.oneByUsername(username);
+          if (userFound) {
+            const [authData] = await db.auth.oneById(userFound.manager_id);
+            if (
+              authData &&
+              (await bcrypt.compare(password, authData.password))
+            ) {
+              return done(null, userFound);
+            }
+            return done(null, false, { message: 'Invalid credentials' });
           }
-
-          done(null, false, { message: 'Invalid credentials' });
+          return done(null, false, { message: 'Invalid credentials' });
         } catch (error) {
           console.log(`Error in local strategy:`, error);
-          done(error);
+          return done(error);
         }
       }
     )
   );
 
+  // JWT strategy
   passport.use(
     new PassportJWT.Strategy(
       {
@@ -43,15 +51,8 @@ export function configurePassport(app: Express) {
         secretOrKey: config.jwt.secret,
       },
       (payload, done) => {
-        console.log(`JWT PAYLOAD`, payload);
-        console.log('JWT strategy invoked');
-        try {
-          console.log(`Done in JWT strategy`);
-          done(null, payload);
-        } catch (error) {
-          console.log('Error in JWT strategy:', error);
-          done(error);
-        }
+        console.log(`JWT strategy invoked with payload:`, payload);
+        done(null, payload);
       }
     )
   );

@@ -5,8 +5,9 @@ import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
 import { useContext, useEffect, useState } from 'react';
 import TeamContainer from './components/TeamContainer';
 import { Filler, Manager, Teams } from '@/utils/types';
-import { DummyFillerData, DummyManagerData } from '@/utils/variables';
+
 import { createTempTeams } from './RunData.utils';
+import { DummyManagerData, DummyFillerData } from '@/utils/dummyData.db';
 //REFACTOR when we have a backend this is the initialiaztion data
 // import { InitializeFillerData } from '@/utils/variables';
 

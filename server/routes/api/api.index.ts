@@ -1,12 +1,12 @@
 import { Router } from 'express';
 
-// import authorsRouter from './authors';
+import eventsRouter from './events.route';
 
 //Run all these routes prepended with the method through this middle ware
 // router.route('*').post(checkToken).put(checkToken).delete(checkToken);
 
 const router = Router();
 
-// router.use('/authors', authorsRouter);
+router.use('/events', eventsRouter);
 
 export default router;

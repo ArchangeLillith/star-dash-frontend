@@ -3,9 +3,11 @@ import { objectType } from '../utils/types';
 
 //This screws your prod, make sure you have the prod info here lol
 const makeFetch = async (url: string, info: RequestInit) => {
-  const response = await fetch(`${process.env.ROOT_URL}${url}`, info);
+  const response = await fetch(`${import.meta.env.VITE_ROOT_URL}${url}`, info);
+
   if (!response.ok) {
     const errorData = await response.json();
+    console.log(`ERROR`, errorData);
     if (response.status === 403) {
       alert(`${errorData.message}`);
     }

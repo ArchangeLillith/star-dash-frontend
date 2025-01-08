@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 
-import authService from '../../services/auth';
+import loginService from '../../services/login';
 import storage from '../../utils/storage';
 import { AuthState } from '../../utils/types';
 
@@ -44,19 +44,33 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
    */
   const loginToAuthState = async (token: string) => {
     try {
-      const userData = await authService.getUserFromToken(token);
-      setAuthState((prev) => {
-        if (prev.authenticated && prev.authorData?.id === userData.id) {
-          return prev;
-        }
-        return { authenticated: true, authorData: userData };
-      });
+      //get settings
+      const { settings, activeEvents, archivedEvents } =
+        await loginService.loginManager(token);
+
+      console.log(
+        'Settings and events:',
+        settings,
+        activeEvents,
+        archivedEvents
+      );
+      //get a list of active an archived runs
+      //*What it used to be, we need different functionality for this app
+      // const userData = await authService.getUserFromToken(token);
+      // setAuthState((prev) => {
+      //   if (prev.authenticated && prev.authorData?.id === userData.id) {
+      //     return prev;
+      //   }
+      //   return { authenticated: true, authorData: userData };
+      // });
     } catch (error) {
-      setAuthState((prev) => {
-        if (!prev.authenticated) return prev; // Avoid re-render if the state is already false
-        return { authenticated: false, authorData: null };
-      });
-      alert(error);
+      //*Prev catch
+      console.log(`Error`, error);
+      // setAuthState((prev) => {
+      //   if (!prev.authenticated) return prev; // Avoid re-render if the state is already false
+      //   return { authenticated: false, authorData: null };
+      // });
+      // alert(error);
     }
   };
 
@@ -80,7 +94,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   //
   /**
-   * Ensures that there's a valid token and sets the user to state if the token checks out
+   * If there's a valid token in storage, check if the user is logged in - this runs on load
+   * Refactor we could even make this an option, if the user wants it to auto log them in or not!
    */
   useEffect(() => {
     const checkUser = async () => {
@@ -96,7 +111,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       }
 
       try {
-        const userData = await authService.getUserFromToken(token);
+        const userData = await loginService.loginManager(token);
         if (userData) {
           console.log('User data retrieved:', userData);
           setAuthState((prev) => {
