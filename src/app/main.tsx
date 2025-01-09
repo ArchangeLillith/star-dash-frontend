@@ -10,12 +10,12 @@ import SettingsProvider from '../context/settings/SettingsProvider';
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-      <AuthProvider>
-        <SettingsProvider>
+      <SettingsProvider>
+        <AuthProvider>
           <NavBar />
           <AppRoutes />
-        </SettingsProvider>
-      </AuthProvider>
+        </AuthProvider>
+      </SettingsProvider>
     </BrowserRouter>
   </StrictMode>
 );

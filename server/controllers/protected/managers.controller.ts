@@ -17,3 +17,20 @@ export const getManagerEvents = async (
     next(error);
   }
 };
+
+export const getManagerSettings = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  console.log(`Hit manager events controller`);
+  const id = req.params.id as UUID;
+  console.log(`ID from manager events controller:`, id);
+  try {
+    const result = await db.managers.settingsById(id);
+    console.log(`RESULT from manager events controller:`, result);
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};

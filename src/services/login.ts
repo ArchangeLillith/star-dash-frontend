@@ -2,6 +2,8 @@ import { jwtDecode } from 'jwt-decode';
 
 import baseService from './base';
 import { ManagerLoginObject } from '../utils/types';
+import { SettingsState } from '@/context/settings/settings.utils';
+import { UUID } from 'server/types';
 
 /**
  *Validates the JWT, decodes out the id and grabs the user from the database based on that ID
@@ -12,7 +14,6 @@ const loginManager = async (token: string): Promise<ManagerLoginObject> => {
   try {
     //calls to see if the token is valid. If not, a 401 gets sent. If the user exists, we get a 200 and are kicked back here
     const validated = await baseService.get('/auth/validate/me');
-    console.log(`VALIDATED from login.ts service:`, validated);
     if (validated?.message !== 'success') {
       throw new Error(
         'token bad, something went wrong with frontend check of token'
@@ -21,19 +22,29 @@ const loginManager = async (token: string): Promise<ManagerLoginObject> => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     //decode the token to get the user id
     const decoded: any = jwtDecode(token);
-    console.log(`DECODED from login.ts service:`, decoded);
     //set the user id
-    const userId: string = decoded.id;
+    const userId: UUID = decoded.id;
+    const username: string = decoded.username;
     //get the manager from the database based on the user id
     //HERE im thinking we need to get settings and stuff cauase we already know, based on the validate, that the token is good. So we should be able to get the user data from the token
-    const managerSettings = await baseService.get(
-      `/api/managers/settings/${userId}`
+    const managerSettingsReturn = await baseService.get(
+      `/api/protected/managers/settings/${userId}`
     );
-    const { activeEvents, archivedEvents } = await baseService.get(
-      `/api/managers/events/${userId}`
+    const settings: SettingsState = managerSettingsReturn[0].settings;
+    console.log(`Settings from login.ts in services:`, settings);
+    let { activeEvents, archivedEvents } = await baseService.get(
+      `/api/protected/managers/events/${userId}`
     );
-
-    return { ...managerSettings, ...activeEvents, ...archivedEvents };
+    if (!activeEvents || !archivedEvents) {
+      activeEvents = [];
+      archivedEvents = [];
+    }
+    return {
+      settings,
+      activeEvents,
+      archivedEvents,
+      managerData: { username, id: userId },
+    };
   } catch (error) {
     console.log(`ERROR in auth.ts in services:`, error);
     throw error;

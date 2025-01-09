@@ -26,6 +26,14 @@ body,
   display: none;
 }
 
+//Declaration of theme colors
+.theme-kaito {
+  @include theme($kaito-colors);
+}
+.theme-luka {
+  @include theme($luka-colors);
+}
+
 //* Removal of default styling
 /* Remove default border and padding of fieldset */
 fieldset {

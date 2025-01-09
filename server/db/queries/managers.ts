@@ -1,8 +1,12 @@
 import type { ResultSetHeader } from 'mysql2';
-import { EventQueryResult, ManagersTable } from 'server/types/db.types';
+import {
+  EventQueryResult,
+  ManagersTable,
+  SettingsTable,
+} from 'server/types/db.types';
 import { Query, QueryMetadata } from '../query';
 import { UUID } from 'server/types';
-import { SettingsState } from '@/context/settings/utils';
+import { SettingsState } from '@/context/settings/settings.utils';
 
 //API calls
 const returnAll = (): Promise<ManagersTable> =>
@@ -53,6 +57,12 @@ const insertManager = (values: {
   );
 };
 
+const settingsById = (id: UUID): Promise<SettingsTable> => {
+  return Query<SettingsTable>(
+    /* sql */ `SELECT * FROM sd_settings WHERE manager_id = ?;`,
+    [id]
+  );
+};
 const updateSettings = (values: {
   id: UUID;
   settings: SettingsState; //This type lives in the frontend
@@ -101,4 +111,5 @@ export default {
   insertPassword,
   ban,
   destroy,
+  settingsById,
 };

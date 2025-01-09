@@ -6,7 +6,7 @@ import db from '../../db';
 // import { logActivity } from '../../utils/logging';
 import { createJWT } from '../../utils/tokens';
 import { generateUUID } from 'server/utils/functions.utils';
-import { DefaultSettings } from '@/context/settings/utils';
+import { DefaultSettings } from '@/context/settings/settings.utils';
 
 const router = Router();
 

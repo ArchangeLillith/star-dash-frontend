@@ -1,3 +1,4 @@
+import { SettingsState } from '@/context/settings/settings.utils';
 import { UUID } from 'server/types';
 
 //*Typings subject to change, keep in mind foreign keys are all uuids
@@ -19,16 +20,20 @@ export type Manager = {
 };
 
 export type ManagerLoginObject = {
-  id: UUID;
-  username: string;
-  activeEvents: any[];
-  archivedEvents: any[];
-  settings: any;
+  managerData: {
+    username: string;
+    id: UUID;
+  };
+  activeEvents: string[];
+  archivedEvents: string[];
+  settings: SettingsState;
 };
 
 export type AuthState = {
   authenticated: boolean;
-  authorData: Manager | null;
+  managerData: Manager | null;
+  activeEvents: string[];
+  archivedEvents: string[];
 };
 
 export type objectType = { [key: string]: string | boolean };

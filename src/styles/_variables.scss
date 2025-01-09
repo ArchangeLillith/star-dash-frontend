@@ -1,3 +1,25 @@
+$kaito-colors:(
+  primary: $kaito-purple,
+  light: $light-kaito-purple,
+  lighter: $lighter-kaito-purple,
+  dark: $dark-kaito-purple,
+  darker: $darker-kaito-purple,
+  darkest: $darkest-kaito-purple,
+  error: $error-kaito,
+  error-soft: $error-soft-kaito
+);
+
+$luka-colors:(
+  primary: $luka-pink,
+  light: $light-luka-pink,
+  lighter: $lighter-luka-pink,
+  dark: $dark-luka-pink,
+  darker: $darker-luka-pink,
+  darkest: $darkest-luka-pink,
+  error: $error-luka
+);
+
+
 $kaito-purple: rgb(200 160 240);
 $light-kaito-purple: rgb(215 195 245);
 $lighter-kaito-purple: rgb(230 215 250);

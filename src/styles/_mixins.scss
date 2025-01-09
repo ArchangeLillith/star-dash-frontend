@@ -36,3 +36,14 @@
   font-family: $font-blocky-site-heading;
   text-shadow: 4px 2px 3px $dark-kaito-purple;
 }
+
+@mixin theme($theme-colors) {
+  --primary-color: map.get($theme-colors, primary);
+  --light-color: map.get($theme-colors, primary);
+  --lighter-color: map.get($theme-colors, primary);
+  --dark-color: map.get($theme-colors, primary);
+  --darker-color: map.get($theme-colors, primary);
+  --darkest-color: map.get($theme-colors, primary);
+  --error-color: map.get($theme-colors, primary);
+  --error-soft-color: map.get($theme-colors, primary);
+}

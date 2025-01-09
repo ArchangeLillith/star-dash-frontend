@@ -3,7 +3,7 @@ import { IoMdArrowRoundForward } from 'react-icons/io';
 import TransitionWrapper from '../../../components/TransitionWrapper';
 import { useContext, useEffect, useMemo, useState } from 'react';
 import { SettingsContext } from '../../../context/settings/SettingsProvider';
-import { backgroundMap } from '../../../context/settings/utils';
+import { backgroundMap } from '../../../context/settings/settings.utils';
 import Input from '../../../components/Input';
 
 import { TEXT_INPUT_SETTINGS } from '../../../utils/variables';

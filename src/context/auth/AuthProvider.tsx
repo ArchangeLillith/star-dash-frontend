@@ -1,26 +1,27 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 
 import loginService from '../../services/login';
 import storage from '../../utils/storage';
-import { AuthState } from '../../utils/types';
-
-/**
- * Typing for the auth state
- */
-interface AuthContextType {
-  authState: AuthState;
-  authLoading: boolean;
-  setAuthState: React.Dispatch<React.SetStateAction<AuthState>>;
-  loginToAuthState: (token: string) => void;
-  logoutFromAuthState: () => void;
-  updateUserData: (userData: Partial<AuthState>) => void;
-}
+import { AuthState, Manager } from '../../utils/types';
+import { SettingsContext } from '../settings/SettingsProvider';
+import {
+  AuthContextType,
+  AuthProviderProps,
+  unauthenticatedAuthState,
+} from './auth.utils';
+import { SettingsState } from '../settings/settings.utils';
+import useThemeAplication from '@/hooks/useThemeApplication';
 
 /**
  * Auth state object that's going to get used by other components, initialized here
  */
 export const AuthContext = createContext<AuthContextType>({
-  authState: { authenticated: false, authorData: null },
+  authState: {
+    authenticated: false,
+    managerData: null,
+    archivedEvents: [],
+    activeEvents: [],
+  },
   authLoading: true,
   setAuthState: () => {},
   loginToAuthState: () => {},
@@ -28,49 +29,49 @@ export const AuthContext = createContext<AuthContextType>({
   updateUserData: () => {},
 });
 
-interface AuthProviderProps {
-  children: React.ReactNode;
-}
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [authState, setAuthState] = useState<AuthState>({
-    authenticated: false,
-    authorData: null,
-  });
-
+  const [authState, setAuthState] = useState<AuthState>(
+    unauthenticatedAuthState
+  );
+  const { updateSettings } = useContext(SettingsContext);
   const [authLoading, setLoading] = useState(true);
+
   /**
    * The function that handles the auth state to reflect a log in
    * @param token - a JWT
    */
   const loginToAuthState = async (token: string) => {
+    interface LoginManagerResponse {
+      settings: SettingsState;
+      activeEvents: string[];
+      archivedEvents: string[];
+      managerData: Manager;
+    }
     try {
       //get settings
-      const { settings, activeEvents, archivedEvents } =
-        await loginService.loginManager(token);
-
-      console.log(
-        'Settings and events:',
+      const {
         settings,
         activeEvents,
-        archivedEvents
-      );
-      //get a list of active an archived runs
-      //*What it used to be, we need different functionality for this app
-      // const userData = await authService.getUserFromToken(token);
-      // setAuthState((prev) => {
-      //   if (prev.authenticated && prev.authorData?.id === userData.id) {
-      //     return prev;
-      //   }
-      //   return { authenticated: true, authorData: userData };
-      // });
+        archivedEvents,
+        managerData,
+      }: LoginManagerResponse = await loginService.loginManager(token);
+      console.log(`settings from auth provider`, settings);
+      updateSettings(settings);
+      useThemeAplication(settings.theme);
+      console.log(`After update settings`);
+      setAuthState({
+        authenticated: true,
+        managerData,
+        activeEvents,
+        archivedEvents,
+      });
     } catch (error) {
-      //*Prev catch
       console.log(`Error`, error);
-      // setAuthState((prev) => {
-      //   if (!prev.authenticated) return prev; // Avoid re-render if the state is already false
-      //   return { authenticated: false, authorData: null };
-      // });
-      // alert(error);
+      setAuthState((prev) => {
+        if (!prev.authenticated) return prev; // Avoid re-render if the state is already false
+        return unauthenticatedAuthState;
+      });
+      alert(error);
     }
   };
 
@@ -78,7 +79,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
    * The function that resets a user in auth state when they log out
    */
   const logoutFromAuthState = () => {
-    setAuthState({ authenticated: false, authorData: null });
+    setAuthState(unauthenticatedAuthState);
+    storage.removeToken();
   };
 
   /**
@@ -104,42 +106,16 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       // Check if no token exists and the user is already logged out
       if (!token) {
         if (!authState.authenticated) {
-          setAuthState({ authenticated: false, authorData: null });
+          setAuthState(unauthenticatedAuthState);
         }
         setLoading(false); // Only set authLoading to false here
         return;
       }
 
       try {
-        const userData = await loginService.loginManager(token);
-        if (userData) {
-          console.log('User data retrieved:', userData);
-          setAuthState((prev) => {
-            // Only set state if the values have changed
-            if (
-              prev.authenticated === true &&
-              prev.authorData?.id === userData.id &&
-              JSON.stringify(prev.authorData) === JSON.stringify(userData)
-            ) {
-              return prev; // Avoid unnecessary re-renders if no change
-            }
-            return {
-              authenticated: true,
-              authorData: {
-                id: userData.id,
-                username: userData.username,
-              },
-            };
-          });
-        } else {
-          console.log('User data is null or undefined, setting auth to false.');
-          setAuthState({ authenticated: false, authorData: null });
-        }
+        loginToAuthState(token);
       } catch (error) {
-        console.error('Error fetching user data:', error);
-        setAuthState({ authenticated: false, authorData: null });
-      } finally {
-        setLoading(false); // Ensure loading state is only set once
+        console.log(`error`, error);
       }
     };
     checkUser();
@@ -162,41 +138,3 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 };
 
 export default AuthProvider;
-
-// const handleFavPatternChange = async (
-// 	eventButton: React.MouseEvent<HTMLButtonElement>
-// ) => {
-// 	const { authorData } = authState;
-// 	if (!authorData || !authorData.id) return;
-
-// 	const pattern_id = eventButton.currentTarget.id;
-// 	const isFavorited = authorData.patternsFavorited.some(
-// 		fav_id => fav_id === pattern_id
-// 	);
-
-// 	const result = isFavorited
-// 		? await favoritesService.removeFavorite(authorData.id, pattern_id)
-// 		: await favoritesService.addFavorite(authorData.id, pattern_id);
-
-// 	if (result.affectedRows > 0) {
-// 		const newFavs = isFavorited
-// 			? authorData.patternsFavorited.filter(fav_id => fav_id !== pattern_id)
-// 			: [...authorData.patternsFavorited, pattern_id];
-
-// 		setAuthState(prev => {
-// 			if (
-// 				JSON.stringify(prev.authorData?.patternsFavorited) ===
-// 				JSON.stringify(newFavs)
-// 			) {
-// 				return prev; // Avoid setting state if the favorite list hasn't changed
-// 			}
-// 			return {
-// 				...prev,
-// 				authorData: {
-// 					...prev.authorData,
-// 					patternsFavorited: newFavs,
-// 				},
-// 			};
-// 		});
-// 	}
-// };

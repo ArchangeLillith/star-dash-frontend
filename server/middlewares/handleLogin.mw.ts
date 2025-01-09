@@ -28,9 +28,6 @@ export const handleLogin = (
       //     });
       // } catch (error) {
       //   next(error);
-      // }
-
-      console.log(`New console log`);
 
       req.currentUser = user;
       console.log(`USER from handleLogin middleware`, user);

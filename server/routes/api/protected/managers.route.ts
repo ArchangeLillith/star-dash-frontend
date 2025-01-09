@@ -1,8 +1,12 @@
 import { Router } from 'express';
-import { getManagerEvents } from 'server/controllers/protected/managers.controller';
+import {
+  getManagerEvents,
+  getManagerSettings,
+} from 'server/controllers/protected/managers.controller';
 const router = Router();
 
 export default router;
 
-// GET /api/manager return event data
+// GET /api/managers return event data
 router.get(`/events/:id`, getManagerEvents);
+router.get(`/settings/:id`, getManagerSettings);

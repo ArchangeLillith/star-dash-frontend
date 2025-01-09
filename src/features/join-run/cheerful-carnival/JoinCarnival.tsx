@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import TransitionWrapper from '../../../components/TransitionWrapper';
 import { useContext, useState } from 'react';
 import { SettingsContext } from '../../../context/settings/SettingsProvider';
-import { backgroundMap } from '../../../context/settings/utils';
+import { backgroundMap } from '../../../context/settings/settings.utils';
 import TeamFields from '@/components/TeamFields';
 import Input from '@/components/Input';
 import { TEXT_INPUT_SETTINGS } from '@/utils/variables';

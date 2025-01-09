@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import TransitionWrapper from '../../components/TransitionWrapper';
 import { SettingsContext } from '../../context/settings/SettingsProvider';
-import { backgroundMap } from '../../context/settings/utils';
+import { backgroundMap } from '../../context/settings/settings.utils';
 import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
 import loginService from './login.api';
 

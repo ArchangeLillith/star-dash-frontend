@@ -5,7 +5,7 @@ import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
 
 import { SettingsContext } from '../../context/settings/SettingsProvider';
 
-import { backgroundMap } from '../../context/settings/utils';
+import { backgroundMap } from '../../context/settings/settings.utils';
 import { TEXT_INPUT_SETTINGS } from '../../utils/variables';
 import { InitializeCreateRun } from './CreateRun.utils';
 

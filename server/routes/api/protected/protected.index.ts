@@ -11,7 +11,7 @@ const router = Router();
 router.route('*').post(verifyToken).put(verifyToken).delete(verifyToken);
 
 router.use('/lead-manager', leadManagerRouter);
-router.use('/manager', managerRouter);
+router.use('/managers', managerRouter);
 router.use('/runs', runsRouter);
 
 export default router;

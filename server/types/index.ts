@@ -9,8 +9,8 @@ declare global {
 }
 
 export type ManagerTable = {
-  id: UUID;
-  username: string;
+  manager_id: UUID;
+  manager_name: string;
 };
 
 // export type RunTable = {

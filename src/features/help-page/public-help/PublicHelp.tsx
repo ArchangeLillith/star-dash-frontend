@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import TransitionWrapper from '../../../components/TransitionWrapper';
 import { SettingsContext } from '../../../context/settings/SettingsProvider';
-import { backgroundMap } from '../../../context/settings/utils';
+import { backgroundMap } from '../../../context/settings/settings.utils';
 import Accordian from '../components/Accordian';
 import TopMessage from '../components/TopMessage';
 
