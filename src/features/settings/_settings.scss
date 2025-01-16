@@ -1,0 +1,192 @@
+.character-button {
+  background-color: var(--dark-color);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  overflow: hidden;
+  margin: 2px;
+  filter: grayscale(100%);
+  transition: all 0.3s ease;
+  &.selected {
+    filter: none;
+    @include soft-dark-shadow;
+  }
+  &:hover {
+    transform: scale(1.3);
+  }
+}
+
+.input-card {
+  .button-box {
+    display: flex;
+    flex-direction: row;
+  }
+  .mode-btn {
+    display: flex;
+    position: static;
+    margin-bottom: 0;
+    margin: 0 20px;
+
+    &.reset {
+      background-color: var(--error-color);
+      color: white;
+      border: 3px solid var(--error-color);
+    }
+    &.all {
+      background-color: var(--primary-color);
+      color: white;
+      border: 3px solid var(--dark-color);
+    }
+  }
+}
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  color: white;
+  text-shadow: 2px 2px 4px black;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  left: 50%;
+  bottom: 80%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.color-wheel {
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  margin: 20px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(120%);
+  }
+  &.selected {
+    transform: scale(130%);
+    @include soft-dark-shadow;
+  }
+  &.teto {
+    background: conic-gradient(
+      $light-teto-red 0% 20%,
+      $lighter-teto-red 20% 40%,
+      $darkest-teto-red 40% 60%,
+      $teto-red 60% 80%,
+      $dark-teto-red 80% 100%
+    );
+  }
+  &.rin {
+    background: conic-gradient(
+      $light-rin-orange 0% 20%,
+      $rin-orange 20% 40%,
+      $dark-rin-orange 40% 60%,
+      $darkest-rin-orange 60% 80%,
+      $lighter-rin-orange 80% 100%
+    );
+  }
+  &.len {
+    background: conic-gradient(
+      $light-len-yellow 0% 20%,
+      $len-yellow 20% 40%,
+      $dark-len-yellow 40% 60%,
+      $darkest-len-yellow 60% 80%,
+      $lighter-len-yellow 80% 100%
+    );
+  }
+  &.gumi {
+    background: conic-gradient(
+      $light-gumi-green 0% 20%,
+      $gumi-green 20% 40%,
+      $dark-gumi-green 40% 60%,
+      $darkest-gumi-green 60% 80%,
+      $lighter-gumi-green 80% 100%
+    );
+  }
+  &.miku {
+    background: conic-gradient(
+      $light-miku-teal 0% 20%,
+      $miku-teal 20% 40%,
+      $dark-miku-teal 40% 60%,
+      $darkest-miku-teal 60% 80%,
+      $lighter-miku-teal 80% 100%
+    );
+  }
+  &.kaito {
+    background: conic-gradient(
+      $light-kaito-blue 0% 20%,
+      $kaito-blue 20% 40%,
+      $dark-kaito-blue 40% 60%,
+      $darkest-kaito-blue 60% 80%,
+      $lighter-kaito-blue 80% 100%
+    );
+  }
+  &.gakupo {
+    background: conic-gradient(
+      $light-gakupo-purple 0% 20%,
+      $gakupo-purple 20% 40%,
+      $dark-gakupo-purple 40% 60%,
+      $darkest-gakupo-purple 60% 80%,
+      $lighter-gakupo-purple 80% 100%
+    );
+  }
+  &.luka {
+    background: conic-gradient(
+      $light-luka-pink 0% 20%,
+      $luka-pink 20% 40%,
+      $dark-luka-pink 40% 60%,
+      $darkest-luka-pink 60% 80%,
+      $lighter-luka-pink 80% 100%
+    );
+  }
+}
+
+@media (min-width: $breakpoint-desktop) {
+  .transition-base::before.login {
+    background: url('/card-backgrounds/settings.png');
+  }
+  .transition-base.settings {
+    position: relative;
+    .form-container {
+      background-color: rgba(var(--dark-color), 0.3);
+      box-shadow: 4px 4px 15px rgba(var(--primary-color), 0.3);
+      border: none;
+      width: 40%;
+      position: absolute;
+      top: 0;
+      left: 8em;
+    }
+    .input-card {
+      margin-top: 1rem;
+      padding: 2%;
+    }
+    .character-button {
+      margin: 4px;
+    }
+    .title-container {
+      display: block;
+    }
+    .desktop-title.login,
+    .desktop-title.register {
+      position: absolute;
+      left: 1em;
+      bottom: 2.5em;
+    }
+  }
+}

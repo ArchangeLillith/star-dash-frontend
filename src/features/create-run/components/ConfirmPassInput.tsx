@@ -1,5 +1,5 @@
-import { CreateRunFormState } from '@/utils/state-types';
 import React, { useState } from 'react';
+import { CreateRunFormState } from '../CreateRun.types';
 
 interface ConfirmPassInputProps<CreateRunFormState> {
   state: CreateRunFormState;

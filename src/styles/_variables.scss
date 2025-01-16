@@ -1,26 +1,255 @@
-$kaito-purple: rgb(200 160 240);
-$light-kaito-purple: rgb(215 195 245);
-$lighter-kaito-purple: rgb(230 215 250);
-$dark-kaito-purple: rgb(150 100 220);
-$darker-kaito-purple: rgb(130 70 200);
-$darkest-kaito-purple: rgb(110 50 180);
-$error-kaito: rgb(231, 76, 60);
-$error-soft-kaito: rgb(255, 107, 107);
+$teto-red: rgb(230, 60, 80);
+$light-teto-red: rgb(240, 120, 135);
+$lighter-teto-red: rgb(250, 170, 175);
+$dark-teto-red: rgb(190, 50, 65);
+$darker-teto-red: rgb(150, 40, 50);
+$darkest-teto-red: rgb(120, 30, 40);
+$error-teto: rgb(211, 66, 50);
+$error-soft-teto: rgb(235, 97, 97);
+$teto-red-rgb: 230, 60, 80;
+$light-teto-red-rgb: 240, 120, 135;
+$lighter-teto-red-rgb: 250, 170, 175;
+$dark-teto-red-rgb: 190, 50, 65;
+$darker-teto-red-rgb: 150, 40, 50;
+$darkest-teto-red-rgb: 120, 30, 40;
+$error-teto-rgb: 211, 66, 50;
+$error-soft-teto-rgb: 235, 97, 97;
+
+$rin-orange: rgb(245, 145, 83);
+$light-rin-orange: rgb(250, 175, 125);
+$lighter-rin-orange: rgb(255, 200, 160);
+$dark-rin-orange: rgb(204, 120, 70);
+$darker-rin-orange: rgb(163, 95, 55);
+$darkest-rin-orange: rgb(122, 70, 40);
+$error-rin: rgb(211, 66, 50);
+$error-soft-rin: rgb(235, 97, 97);
+$rin-orange-rgb: 245, 145, 83;
+$light-rin-orange-rgb: 250, 175, 125;
+$lighter-rin-orange-rgb: 255, 200, 160;
+$dark-rin-orange-rgb: 204, 120, 70;
+$darker-rin-orange-rgb: 163, 95, 55;
+$darkest-rin-orange-rgb: 122, 70, 40;
+
+$len-yellow: rgb(255, 206, 28);
+$light-len-yellow: rgb(255, 223, 102);
+$lighter-len-yellow: rgb(255, 238, 153);
+$dark-len-yellow: rgb(204, 165, 22);
+$darker-len-yellow: rgb(163, 132, 18);
+$darkest-len-yellow: rgb(122, 98, 14);
+$error-len: rgb(211, 66, 50);
+$error-soft-len: rgb(235, 97, 97);
+$len-yellow-rgb: 255, 206, 28;
+$light-len-yellow-rgb: 255, 223, 102;
+$lighter-len-yellow-rgb: 255, 238, 153;
+$dark-len-yellow-rgb: 204, 165, 22;
+$darker-len-yellow-rgb: 163, 132, 18;
+$darkest-len-yellow-rgb: 122, 98, 14;
+
+$gumi-green: rgb(95, 187, 77);
+$light-gumi-green: rgb(135, 190, 125);
+$lighter-gumi-green: rgb(175, 215, 165);
+$dark-gumi-green: rgb(75, 140, 65);
+$darker-gumi-green: rgb(60, 110, 50);
+$darkest-gumi-green: rgb(45, 85, 35);
+$error-gumi: rgb(211, 66, 50);
+$error-soft-gumi: rgb(235, 97, 97);
+$gumi-green-rgb: 95, 187, 77;
+$light-gumi-green-rgb: 135, 190, 125;
+$lighter-gumi-green-rgb: 175, 215, 165;
+$dark-gumi-green-rgb: 75, 140, 65;
+$darker-gumi-green-rgb: 60, 110, 50;
+$darkest-gumi-green-rgb: 45, 85, 35;
+
+$miku-teal: rgb(115, 186, 181);
+$light-miku-teal: rgb(154, 206, 204);
+$lighter-miku-teal: rgb(179, 216, 215);
+$dark-miku-teal: rgb(41, 111, 113);
+$darker-miku-teal: rgb(26, 88, 91);
+$darkest-miku-teal: rgb(17, 67, 73);
+$error-miku: rgb(211, 66, 50);
+$error-soft-miku: rgb(235, 97, 97);
+$miku-teal-rgb: 115, 186, 181;
+$light-miku-teal-rgb: 154, 206, 204;
+$lighter-miku-teal-rgb: 179, 216, 215;
+$dark-miku-teal-rgb: 41, 111, 113;
+$darker-miku-teal-rgb: 26, 88, 91;
+$darkest-miku-teal-rgb: 17, 67, 73;
+
+$kaito-blue: rgb(51, 61, 245);
+$light-kaito-blue: rgb(102, 120, 250);
+$lighter-kaito-blue: rgb(153, 170, 255);
+$dark-kaito-blue: rgb(41, 50, 200);
+$darker-kaito-blue: rgb(35, 43, 160);
+$darkest-kaito-blue: rgb(28, 34, 120);
+$error-kaito: rgb(211, 66, 50);
+$error-soft-kaito: rgb(235, 97, 97);
+$kaito-blue-rgb: 51, 61, 245;
+$light-kaito-blue-rgb: 102, 120, 250;
+$lighter-kaito-blue-rgb: 153, 170, 255;
+$dark-kaito-blue-rgb: 41, 50, 200;
+$darker-kaito-blue-rgb: 35, 43, 160;
+$darkest-kaito-blue-rgb: 28, 34, 120;
+
+$gakupo-purple: rgb(200 160 240);
+$light-gakupo-purple: rgb(215 195 245);
+$lighter-gakupo-purple: rgb(230 215 250);
+$dark-gakupo-purple: rgb(150 100 220);
+$darker-gakupo-purple: rgb(130 70 200);
+$darkest-gakupo-purple: rgb(110 50 180);
+$error-gakupo: rgb(231, 76, 60);
+$error-soft-gakupo: rgb(255, 107, 107);
+$gakupo-purple-rgb: 200, 160, 240;
+$light-gakupo-purple-rgb: 215, 195, 245;
+$lighter-gakupo-purple-rgb: 230, 215, 250;
+$dark-gakupo-purple-rgb: 150, 100, 220;
+$darker-gakupo-purple-rgb: 130, 70, 200;
+$darkest-gakupo-purple-rgb: 110, 50, 180;
 
 $luka-pink: rgb(240 160 200);
 $lighter-luka-pink: rgb(250 215 230);
 $light-luka-pink: rgb(245 195 220);
 $dark-luka-pink: rgb(220 100 150);
 $darker-luka-pink: rgb(200 70 130);
-$darkest-luka-pink: rgb(180 50 110);
 $error-luka: rgb(211, 47, 47);
+$darkest-luka-pink: rgb(180 50 110);
+$luka-pink-rgb: 240, 160, 200;
+$light-luka-pink-rgb: 245, 195, 220;
+$lighter-luka-pink-rgb: 250, 215, 230;
+$dark-luka-pink-rgb: 220, 100, 150;
+$darker-luka-pink-rgb: 200, 70, 130;
+$darkest-luka-pink-rgb: 180, 50, 110;
 
-$miku-gray: rgb(100 100 100);
-$miku-gray-2: rgb(80 80 80);
+$teto-colors: (
+  primary: $teto-red,
+  light: $light-teto-red,
+  lighter: $lighter-teto-red,
+  dark: $dark-teto-red,
+  darker: $darker-teto-red,
+  darkest: $darkest-teto-red,
+  error: $error-teto,
+  error-soft: $error-soft-teto,
+  primary-rgb: $teto-red-rgb,
+  light-rgb: $light-teto-red-rgb,
+  lighter-rgb: $lighter-teto-red-rgb,
+  dark-rgb: $dark-teto-red-rgb,
+  darker-rgb: $darker-teto-red-rgb,
+  darkest-rgb: $darkest-teto-red-rgb,
+  error-rgb: $error-teto-rgb,
+  error-soft-rgb: $error-soft-teto-rgb,
+);
+$rin-colors: (
+  primary: $rin-orange,
+  light: $light-rin-orange,
+  lighter: $lighter-rin-orange,
+  dark: $dark-rin-orange,
+  darker: $darker-rin-orange,
+  darkest: $darkest-rin-orange,
+  error: $error-rin,
+  error-soft: $error-soft-rin,
+  primary-rgb: $rin-orange-rgb,
+  light-rgb: $light-rin-orange-rgb,
+  lighter-rgb: $lighter-rin-orange-rgb,
+  dark-rgb: $dark-rin-orange-rgb,
+  darker-rgb: $darker-rin-orange-rgb,
+  darkest-rgb: $darkest-rin-orange-rgb,
+);
+$len-colors: (
+  primary: $len-yellow,
+  light: $light-len-yellow,
+  lighter: $lighter-len-yellow,
+  dark: $dark-len-yellow,
+  darker: $darker-len-yellow,
+  darkest: $darkest-len-yellow,
+  error: $error-len,
+  error-soft: $error-soft-len,
+  primary-rgb: $len-yellow-rgb,
+  light-rgb: $light-len-yellow-rgb,
+  lighter-rgb: $lighter-len-yellow-rgb,
+  dark-rgb: $dark-len-yellow-rgb,
+  darker-rgb: $darker-len-yellow-rgb,
+  darkest-rgb: $darkest-len-yellow-rgb,
+);
+$gumi-colors: (
+  primary: $gumi-green,
+  light: $light-gumi-green,
+  lighter: $lighter-gumi-green,
+  dark: $dark-gumi-green,
+  darker: $darker-gumi-green,
+  darkest: $darkest-gumi-green,
+  error: $error-gumi,
+  error-soft: $error-soft-gumi,
+  primary-rgb: $gumi-green-rgb,
+  light-rgb: $light-gumi-green-rgb,
+  lighter-rgb: $lighter-gumi-green-rgb,
+  dark-rgb: $dark-gumi-green-rgb,
+  darker-rgb: $darker-gumi-green-rgb,
+  darkest-rgb: $darkest-gumi-green-rgb,
+);
+$miku-colors: (
+  primary: $miku-teal,
+  light: $light-miku-teal,
+  lighter: $lighter-miku-teal,
+  dark: $dark-miku-teal,
+  darker: $darker-miku-teal,
+  darkest: $darkest-miku-teal,
+  error: $error-miku,
+  error-soft: $error-soft-miku,
+  primary-rgb: $miku-teal-rgb,
+  light-rgb: $light-miku-teal-rgb,
+  lighter-rgb: $lighter-miku-teal-rgb,
+  dark-rgb: $dark-miku-teal-rgb,
+  darker-rgb: $darker-miku-teal-rgb,
+  darkest-rgb: $darkest-miku-teal-rgb,
+);
+$kaito-colors: (
+  primary: $kaito-blue,
+  light: $light-kaito-blue,
+  lighter: $lighter-kaito-blue,
+  dark: $dark-kaito-blue,
+  darker: $darker-kaito-blue,
+  darkest: $darkest-kaito-blue,
+  error: $error-kaito,
+  error-soft: $error-soft-kaito,
+  primary-rgb: $kaito-blue-rgb,
+  light-rgb: $light-kaito-blue-rgb,
+  lighter-rgb: $lighter-kaito-blue-rgb,
+  dark-rgb: $dark-kaito-blue-rgb,
+  darker-rgb: $darker-kaito-blue-rgb,
+  darkest-rgb: $darkest-kaito-blue-rgb,
+);
+$gakupo-colors: (
+  primary: $gakupo-purple,
+  light: $light-gakupo-purple,
+  lighter: $lighter-gakupo-purple,
+  dark: $dark-gakupo-purple,
+  darker: $darker-gakupo-purple,
+  darkest: $darkest-gakupo-purple,
+  error: $error-gakupo,
+  error-soft: $error-soft-gakupo,
+  primary-rgb: $gakupo-purple-rgb,
+  light-rgb: $light-gakupo-purple-rgb,
+  lighter-rgb: $lighter-gakupo-purple-rgb,
+  dark-rgb: $dark-gakupo-purple-rgb,
+  darker-rgb: $darker-gakupo-purple-rgb,
+  darkest-rgb: $darkest-gakupo-purple-rgb,
+);
+$luka-colors: (
+  primary: $luka-pink,
+  light: $light-luka-pink,
+  lighter: $lighter-luka-pink,
+  dark: $dark-luka-pink,
+  darker: $darker-luka-pink,
+  darkest: $darkest-luka-pink,
+  error: $error-luka,
+  primary-rgb: $luka-pink-rgb,
+  light-rgb: $light-luka-pink-rgb,
+  lighter-rgb: $lighter-luka-pink-rgb,
+  dark-rgb: $dark-luka-pink-rgb,
+  darker-rgb: $darker-luka-pink-rgb,
+  darkest-rgb: $darkest-luka-pink-rgb,
+);
+
 $background-gray: rgb(140 135 140);
-
-/* $button-text-color: white;
-$button-text-color-hover: rgb(255 255 255); */
 
 $font-blocky-site-heading: 'Yuruka-UB';
 $font-paragraph: 'SkipPro-B';

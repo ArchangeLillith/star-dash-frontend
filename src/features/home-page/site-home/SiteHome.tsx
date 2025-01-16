@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import { tiles } from './utils';
+import { tiles } from './SiteHome.utils';
 import TransitionWrapper from '../../../components/TransitionWrapper';
 import { useContext } from 'react';
 import { SettingsContext } from '../../../context/settings/SettingsProvider';
-import { backgroundMap } from '../../../context/settings/utils';
+import { backgroundMap } from '../../../context/settings/settingsProvider.utils';
 import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
 
 const SiteHome: React.FC = () => {

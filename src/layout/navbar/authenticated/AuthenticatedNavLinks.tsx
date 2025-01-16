@@ -1,39 +1,39 @@
+import { AuthContext } from '@/context/auth/AuthProvider';
+import { useContext } from 'react';
 import NavItem from '../components/NavItem';
-import { getAdminLinks, getMultiEventLinks, getNoEventLinks } from './utils';
+import { getMultiEventLinks, getNoEventLinks } from './utils';
 
 interface AuthenticatedNavLinksParams {
   selectionMode: boolean;
   confirmEventChange: () => void;
   closeMenu: () => void;
-  user: {
-    loggedIn: boolean;
-    registeredEvents: { event: string; leadManager: string }[];
-    event: string;
-    leadManager: boolean;
-    siteAdmin: boolean;
-  };
 }
 
 const AuthenticatedNavLinks: React.FC<AuthenticatedNavLinksParams> = ({
-  user,
   closeMenu,
 }) => {
+  const { authState, logoutFromAuthState } = useContext(AuthContext);
   const navLinks = [];
-  if (user.registeredEvents.length === 0) {
+  const totalEvents =
+    (authState.activeEvents?.length || 0) +
+    (authState.archivedEvents?.length || 0);
+
+  if (totalEvents === 0) {
     navLinks.push(...getNoEventLinks());
-  } else if (user.registeredEvents.length > 1 && user.event) {
+  } else if (totalEvents > 1) {
     navLinks.push(...getMultiEventLinks());
   }
 
-  if (user.siteAdmin) {
-    navLinks.push(...getAdminLinks());
-  }
+  // if (authState.managerData) {
+  //   navLinks.push(...getAdminLinks());
+  // }
 
   return (
     <>
       {navLinks.map((link) => (
         <NavItem key={link.href} {...link} closeMenu={closeMenu} />
       ))}
+      <button onClick={logoutFromAuthState}>Logout</button>
     </>
   );
 };

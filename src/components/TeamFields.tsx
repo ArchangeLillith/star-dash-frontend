@@ -1,6 +1,7 @@
-import { TeamFormFields, TEAM_NUMBER_INPUT_SETTINGS } from '@/utils/variables';
+import { TEAM_NUMBER_INPUT_SETTINGS } from '@/utils/variables';
 import Input from './Input';
 import { SetStateAction } from 'react';
+import { TeamFormFields } from './Components.types';
 
 interface TeamFieldsProps<T> {
   state: T;

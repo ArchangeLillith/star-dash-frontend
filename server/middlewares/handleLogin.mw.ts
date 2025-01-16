@@ -1,0 +1,37 @@
+import type { Request, Response, NextFunction } from 'express';
+import passport from 'passport';
+
+export const handleLogin = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  passport.authenticate(
+    'local',
+    { session: false },
+    async (error: Error, user, info) => {
+      if (error) {
+        return next(error);
+      }
+
+      if (info) {
+        return res.status(401).json({ message: info.message });
+      }
+      //Refactor this will uncomment when we impliment banned functionalaity
+      // try {
+      //   const banned: ManagerTable[] = await db.banned.findBannedById(user.id);
+      //   console.log(`Banned`, banned);
+      //   if (banned.length > 0)
+      //     return res.status(403).json({
+      //       message:
+      //         'The email or username you provided is linked to a banned account. Please reach out to support for assistance.',
+      //     });
+      // } catch (error) {
+      //   next(error);
+
+      req.currentUser = user;
+      console.log(`USER from handleLogin middleware`, user);
+      next();
+    }
+  )(req, res, next);
+};

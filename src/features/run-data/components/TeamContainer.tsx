@@ -1,10 +1,14 @@
 import { SetStateAction, useState } from 'react';
 import TeamInputs from './TeamInputs';
 import { Teams, Filler } from '@/utils/types';
-import { compareFillersAndTeams, createTempTeams, Diff } from '../utils';
-import { DummyFillerData } from '@/utils/variables';
+import {
+  compareFillersAndTeams,
+  createTempTeams,
+  Diff,
+} from '../RunData.utils';
 import SubmitModal from './modals/SubmitModal';
 import CancelModal from './modals/CancelModal';
+import { DummyFillerData } from '@/utils/dummyData.db';
 
 const teamKeys: (keyof Teams)[] = ['fillTeam', 'healTeam', 'sb1', 'sb2'];
 

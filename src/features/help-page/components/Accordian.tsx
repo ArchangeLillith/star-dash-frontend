@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { questionsAndAnswers } from '../public-help/utils';
+import { questionsAndAnswers } from '../public-help/PublicHelp.utils';
 
 const Accordion = () => {
   const items = questionsAndAnswers;

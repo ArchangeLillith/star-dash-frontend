@@ -1,14 +1,7 @@
 import { Filler } from '@/utils/types';
 import { SetStateAction } from 'react';
 
-type HourToFillers = Record<string, Filler[]>;
 
-interface FillerSelectionProps {
-  hour: keyof HourToFillers;
-  fillers: Filler[];
-  fillersPerHour: HourToFillers;
-  setFillersPerHour: React.Dispatch<SetStateAction<HourToFillers>>;
-}
 const FillerSelection: React.FC<FillerSelectionProps> = ({
   hour,
   fillers,

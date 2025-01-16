@@ -1,10 +1,10 @@
 .transition-base.pub-help {
   @include flex-center-row;
   .scrollable-container {
-    background-color: rgba($dark-kaito-purple, 0.3);
+    background-color: rgba(var(--dark-color), 0.3);
   }
   .help-message {
-    background-color: rgba($kaito-purple, 0.8);
+    background-color: rgba(var(--primary-color), 0.8);
     width: 90%;
   }
 }
@@ -32,12 +32,12 @@
       margin: 10px;
     }
     .notice-text {
-      color: $kaito-purple;
+      color:var(--primary-color);
       cursor: pointer;
       text-align: center;
       font-family: $font-paragraph;
       font-size: 0.75rem;
-      background-color: rgba($light-kaito-purple, 0.4);
+      background-color: rgb(var(--light-color-rgb), 0.4);
       padding: 5px;
       margin-top: 5px;
       border-radius: 25px;
@@ -45,7 +45,7 @@
         2px 2px 4px rgba(0, 0, 0, 0.7),
         0 0 2px rgba(0, 0, 0, 0.5);
       .link {
-        color: $lighter-kaito-purple;
+        color:var(--lighter-color);
       }
     }
   }

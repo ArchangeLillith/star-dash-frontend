@@ -17,8 +17,8 @@
   max-height: 90%;
   align-self: center;
   font-family: $font-paragraph;
-  background: $light-kaito-purple;
-  border: 7px solid $kaito-purple;
+  background: var(--light-color);
+  border: 7px solid var(--primary-color);
   position: relative;
   width: 85%;
   margin-top: 3em;
@@ -26,7 +26,7 @@
   padding: 2.4em;
   box-shadow: 4px 4px 15px $background-gray;
   .banner-background {
-    background-color: $kaito-purple;
+    background-color: var(--primary-color);
     padding: 1% 10px;
     border-radius: 15px;
     //The banner within that background
@@ -49,11 +49,11 @@
   .modal-close-btn {
     border-radius: 50%;
     padding: 8px;
-    color: $dark-kaito-purple;
+    color: var(--dark-color);
     position: absolute;
     top: -18px;
     right: -18px;
-    border: 2px solid $kaito-purple;
+    border: 2px solid var(--primary-color);
   }
   .submit-btn {
     cursor: pointer;
@@ -63,9 +63,9 @@
     width: 60%;
   }
   .error {
-    color: $error-kaito;
+    color: var(--error-color);
     text-align: center;
-    border-color: $error-kaito;
+    border-color: var(--error-color);
   }
 }
 

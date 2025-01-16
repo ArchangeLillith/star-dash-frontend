@@ -6,16 +6,19 @@ import NavBar from '../layout/navbar/Navbar';
 import { BrowserRouter } from 'react-router-dom';
 import AuthProvider from '../context/auth/AuthProvider';
 import SettingsProvider from '../context/settings/SettingsProvider';
+import EventsProvider from '@/context/events/EventsProvider';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-      <AuthProvider>
+      <EventsProvider>
         <SettingsProvider>
-          <NavBar />
-          <AppRoutes />
+          <AuthProvider>
+            <NavBar />
+            <AppRoutes />
+          </AuthProvider>
         </SettingsProvider>
-      </AuthProvider>
+      </EventsProvider>
     </BrowserRouter>
   </StrictMode>
 );

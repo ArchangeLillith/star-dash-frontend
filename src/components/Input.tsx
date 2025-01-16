@@ -1,12 +1,13 @@
-import { Dispatch, SetStateAction } from 'react';
-import {
-  handleStateChange,
-  handleStateChangeSecondLayer,
-} from '../features/create-run/utils';
+import { Dispatch, SetStateAction, useState } from 'react';
+import {} from '../features/create-run/CreateRun.utils';
 import {
   TEAM_NUMBER_INPUT_SETTINGS,
   TEXT_INPUT_SETTINGS,
 } from '../utils/variables';
+import {
+  handleStateChange,
+  handleStateChangeSecondLayer,
+} from '@/utils/state.utils';
 
 interface InputProps<T> {
   id: string;
@@ -38,30 +39,18 @@ const Input = <T,>({
   'aria-label': ariaLabel,
   autoFocus = false,
 }: InputProps<T>) => {
-  if (!parentStateKey)
-    return (
-      <input
-        id={id}
-        type={type}
-        value={value}
-        min={valueRange?.MIN_LENGTH}
-        max={valueRange?.MAX_LENGTH}
-        maxLength={TEXT_INPUT_SETTINGS.MAX_LENGTH}
-        placeholder={placeholder}
-        onChange={(e) => {
-          const parsedValue =
-            type === 'number' ? Number(e.target.value) : e.target.value;
-          handleStateChange(stateKey, setState)(parsedValue);
-        }}
-        className={className}
-        disabled={disabled}
-        aria-label={ariaLabel || id}
-      />
-    );
-  return (
+  const [showPassword, setShowPassword] = useState(false);
+
+  const inputType = type === 'password' && showPassword ? 'text' : type;
+
+  const toggleShowPassword = () => {
+    setShowPassword((prev) => !prev);
+  };
+
+  const inputElement = (
     <input
       id={id}
-      type={type}
+      type={inputType}
       value={value}
       min={valueRange?.MIN_LENGTH}
       max={valueRange?.MAX_LENGTH}
@@ -70,17 +59,45 @@ const Input = <T,>({
       onChange={(e) => {
         const parsedValue =
           type === 'number' ? Number(e.target.value) : e.target.value;
-        handleStateChangeSecondLayer(
-          stateKey,
-          parentStateKey,
-          setState
-        )(parsedValue);
+        if (!parentStateKey) {
+          handleStateChange(stateKey, setState)(parsedValue);
+        } else {
+          handleStateChangeSecondLayer(
+            stateKey,
+            parentStateKey,
+            setState
+          )(parsedValue);
+        }
       }}
       className={className}
       disabled={disabled}
       aria-label={ariaLabel || id}
       autoFocus={autoFocus}
     />
+  );
+
+  return (
+    <div style={{ position: 'relative' }}>
+      {inputElement}
+      {type === 'password' && (
+        <button
+          type="button"
+          onClick={toggleShowPassword}
+          style={{
+            position: 'absolute',
+            right: '10px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+          }}
+          aria-label={showPassword ? 'Hide password' : 'Show password'}
+        >
+          {showPassword ? '🙈' : '👁️'}
+        </button>
+      )}
+    </div>
   );
 };
 

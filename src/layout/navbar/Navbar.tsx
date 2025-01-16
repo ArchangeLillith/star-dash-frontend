@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AuthenticatedNavLinks from './authenticated/AuthenticatedNavLinks';
 import PublicNavLinks from './public/PublicNav';
+import { AuthContext } from '@/context/auth/AuthProvider';
 
 const NavBar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -13,16 +14,8 @@ const NavBar: React.FC = () => {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
-  const user = {
-    loggedIn: false,
-    registeredEvents: [
-      { event: 'Shooting Star', leadManager: 'Ki' },
-      { event: 'This event', leadManager: 'Ki' },
-    ],
-    event: 'Shooting Star',
-    leadManager: true,
-    siteAdmin: false,
-  };
+
+  const { authState } = useContext(AuthContext);
 
   return (
     <nav className="navbar">
@@ -61,10 +54,9 @@ const NavBar: React.FC = () => {
           }`}
         >
           <ul className="navbar-nav">
-            {user.loggedIn ? (
+            {authState.authenticated ? (
               <AuthenticatedNavLinks
                 closeMenu={closeMobileMenu}
-                user={user}
                 selectionMode={false}
                 confirmEventChange={closeMobileMenu}
               />

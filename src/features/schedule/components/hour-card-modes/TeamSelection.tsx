@@ -1,16 +1,10 @@
-import { Filler, Team } from '@/utils/types';
+import { Filler, TeamsPerHour } from '@/utils/types';
 import { SetStateAction } from 'react';
-
-type ChosenTeam = {
-  fillerName: string;
-  teamName: string;
-  team: Team;
-};
 
 interface TeamSelectionProps {
   hour: string;
   fillersPerHour: Record<string, Filler[]>;
-  setTeamsPerHour: React.Dispatch<SetStateAction<Record<string, ChosenTeam[]>>>;
+  setTeamsPerHour: React.Dispatch<SetStateAction<TeamsPerHour>>;
 }
 
 const TeamSelection: React.FC<TeamSelectionProps> = ({

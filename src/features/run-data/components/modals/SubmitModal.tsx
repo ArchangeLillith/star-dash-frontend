@@ -1,8 +1,9 @@
 import Modal from '@/components/Modal';
 import { Filler, Teams } from '@/utils/types';
-import { teamParentMap } from '@/utils/variables';
-import { Diff } from '../../utils';
+
+import { Diff } from '../../RunData.utils';
 import { SetStateAction } from 'react';
+import { teamParentMap } from '@/features/filler-join-run/cheerful-carnival/JoinCarnival.types';
 
 interface SubmitModalProps {
   difference: Diff[];

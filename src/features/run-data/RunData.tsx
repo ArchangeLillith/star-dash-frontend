@@ -1,12 +1,13 @@
 import TransitionWrapper from '@/components/TransitionWrapper';
 import { SettingsContext } from '@/context/settings/SettingsProvider';
-import { backgroundMap } from '@/context/settings/utils';
+import { backgroundMap } from '@/context/settings/settingsProvider.utils';
 import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
 import { useContext, useEffect, useState } from 'react';
 import TeamContainer from './components/TeamContainer';
 import { Filler, Manager, Teams } from '@/utils/types';
-import { DummyFillerData, DummyManagerData } from '@/utils/variables';
-import { createTempTeams } from './utils';
+
+import { createTempTeams } from './RunData.utils';
+import { DummyManagerData, DummyFillerData } from '@/utils/dummyData.db';
 //REFACTOR when we have a backend this is the initialiaztion data
 // import { InitializeFillerData } from '@/utils/variables';
 
