@@ -20,7 +20,7 @@
   .clickable-card {
     border-radius: 10px;
     padding: 10px;
-    background-color: rgba($kaito-purple, 0.8);
+    background-color: rgb(var(--primary-color), 0.8);
     margin: 1rem;
     .card-title {
       color: white;
@@ -38,7 +38,7 @@
 
 .card-text {
   text-align: center;
-  color: $kaito-purple;
+  color: var(--primary-color);
   text-shadow: 2px 2px 3px white;
   font-family: $font-paragraph;
   font-size: 0.75rem;
@@ -51,7 +51,7 @@
   .transition-base.home-page {
     position: relative;
     .form-container {
-      background-color: rgba($dark-kaito-purple, 0.3);
+      background-color: rgb(var(--dark-color), 0.3);
       border: none;
       width: 30%;
       position: absolute;

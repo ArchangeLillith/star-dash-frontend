@@ -6,7 +6,7 @@ import db from '../../db';
 // import { logActivity } from '../../utils/logging';
 import { createJWT } from '../../utils/tokens';
 import { generateUUID } from 'server/utils/functions.utils';
-import { DefaultSettings } from '@/context/settings/settings.utils';
+import { DefaultSettings } from '@/context/settings/settingsProvider.utils';
 
 const router = Router();
 
@@ -43,11 +43,11 @@ router.post('/', async (req, res, next) => {
     managerDTO.password = hash;
 
     //Create settings for new user
-    await db.managers.updateSettings(managerDTO);
+    await db.managers.updateSettings(managerDTO.id, managerDTO.settings);
 
     await db.managers.insertPassword(managerDTO);
     delete managerDTO.password;
-    const token = createJWT(managerDTO.id);
+    const token = createJWT(managerDTO.id, managerDTO.username);
     // logActivity(
     //   managerDTO.id,
     //   'New user registered to site~',

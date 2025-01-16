@@ -1,8 +1,10 @@
 import { Router } from 'express';
+import { createNewRun } from 'server/controllers/protected/runs.controller';
 
 const router = Router();
 
-export default router;
-
 // GET /api/runs
 router.get('/');
+router.post('/', createNewRun);
+
+export default router;

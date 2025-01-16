@@ -1,5 +1,4 @@
 import storage from '../utils/storage';
-import { objectType } from '../utils/types';
 
 //This screws your prod, make sure you have the prod info here lol
 const makeFetch = async (url: string, info: RequestInit) => {
@@ -24,7 +23,7 @@ const makeFetch = async (url: string, info: RequestInit) => {
  * The base of our routing from the frontend, handles all the requests to the backend.
  * @returns whatever we expect from the backend or an error if something went wrong
  */
-const json = async (url: string, method: string, body: objectType = {}) => {
+const json = async (url: string, method: string, body: object = {}) => {
   const TOKEN = storage.getToken();
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
@@ -52,11 +51,11 @@ const json = async (url: string, method: string, body: objectType = {}) => {
 const get = (url: string) => {
   return json(url, 'GET');
 };
-const post = (url: string, payload: objectType) => {
+const post = (url: string, payload: object) => {
   console.log(`PAYLOAD`, payload);
   return json(url, 'POST', payload);
 };
-const put = (url: string, payload: objectType) => {
+const put = (url: string, payload: object) => {
   return json(url, 'PUT', payload);
 };
 const destroy = (url: string) => {

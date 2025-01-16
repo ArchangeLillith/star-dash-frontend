@@ -7,7 +7,7 @@ import {
   backgroundMap,
   characterKeysMap,
   ECharacter,
-} from '../../../context/settings/settings.utils';
+} from '../../../context/settings/settingsProvider.utils';
 import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
 import { AuthContext } from '@/context/auth/AuthProvider';
 import { tiles } from './ManagerHome.utils';

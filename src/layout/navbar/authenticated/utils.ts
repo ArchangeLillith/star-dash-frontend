@@ -1,10 +1,13 @@
-export const defaultLinks = [{ href: '/help', text: 'Help' }];
+export const defaultLinks = [
+  { href: '/settings', text: 'Settings' },
+  { href: '/help', text: 'Help' },
+];
 
 // Helper function to generate nav links for users without registered events
 export const getNoEventLinks = () => [
+  { href: '/join-run', text: 'Join Existing Run' },
+  { href: '/create-run', text: 'Create New run' },
   ...defaultLinks,
-  { href: '/join-run', text: 'Join a Run' },
-  { href: '/create-run', text: 'Create new run' },
 ];
 
 // Helper function to generate nav links for users with multiple events
@@ -12,7 +15,7 @@ export const getMultiEventLinks = () => [
   { href: '/schedule', text: 'Schedule' },
   { href: '/data', text: 'Fillers and Managers' },
   { href: '/join-run', text: 'Join a Run' },
-  { href: '/create-run', text: 'Create a Run' },
+  { href: '/create-run', text: 'Create New run' },
   { href: '/event', text: 'Choose an Event' },
   ...defaultLinks,
 ];

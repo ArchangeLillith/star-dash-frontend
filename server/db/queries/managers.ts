@@ -1,12 +1,13 @@
 import type { ResultSetHeader } from 'mysql2';
 import {
   EventQueryResult,
+  LeadManagersTable,
   ManagersTable,
   SettingsTable,
 } from 'server/types/db.types';
 import { Query, QueryMetadata } from '../query';
 import { UUID } from 'server/types';
-import { SettingsState } from '@/context/settings/settings.utils';
+import { SettingsState } from '@/context/settings/settingsProvider.utils';
 
 //API calls
 const returnAll = (): Promise<ManagersTable> =>
@@ -57,19 +58,30 @@ const insertManager = (values: {
   );
 };
 
+const findLead = (id: UUID): Promise<LeadManagersTable> => {
+  return Query(
+    /* sql */ 'SELECT * FROM sd_lead_managers WHERE manager_id = ?;',
+    [id]
+  );
+};
+
 const settingsById = (id: UUID): Promise<SettingsTable> => {
   return Query<SettingsTable>(
     /* sql */ `SELECT * FROM sd_settings WHERE manager_id = ?;`,
     [id]
   );
 };
-const updateSettings = (values: {
-  id: UUID;
-  settings: SettingsState; //This type lives in the frontend
-}): Promise<ResultSetHeader> => {
-  const { id, settings } = values;
+
+const updateSettings = (
+  id: UUID,
+  settings: SettingsState //This type lives in the frontend
+): Promise<ResultSetHeader> => {
   return QueryMetadata(
-    /* sql */ 'INSERT INTO sd_settings (manager_id, settings) VALUES (?,?);',
+    /* sql */ `
+    INSERT INTO sd_settings (manager_id, settings)
+    VALUES (?, ?)
+    ON DUPLICATE KEY UPDATE settings = VALUES(settings);
+  `,
     [id, settings]
   );
 };
@@ -107,6 +119,7 @@ export default {
   eventsById,
   oneById,
   oneByUsername,
+  findLead,
   insertManager,
   insertPassword,
   ban,

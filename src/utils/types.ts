@@ -1,5 +1,6 @@
-import { SettingsState } from '@/context/settings/settings.utils';
+import { SettingsState } from '@/context/settings/settingsProvider.utils';
 import { UUID } from 'server/types';
+import { TeamsTable } from 'server/types/db.types';
 
 //*Typings subject to change, keep in mind foreign keys are all uuids
 export type Run = {
@@ -24,23 +25,27 @@ export type ManagerLoginObject = {
     username: string;
     id: UUID;
   };
-  activeEvents: string[];
-  archivedEvents: string[];
+  activeEvents: EventType[];
+  archivedEvents: EventType[];
   settings: SettingsState;
 };
 
 export type AuthState = {
   authenticated: boolean;
   managerData: Manager | null;
-  activeEvents: string[];
-  archivedEvents: string[];
+  activeEvents: EventType[];
+  archivedEvents: EventType[];
 };
-
-export type objectType = { [key: string]: string | boolean };
 
 export interface WrapperProps {
   children: React.ReactNode;
 }
+
+export type EventType = {
+  event_id: UUID;
+  event_name: string;
+  event_type: 'M' | 'C';
+};
 
 export type Filler = {
   name: string;
@@ -68,4 +73,33 @@ export type ChosenTeam = {
   team: Team;
 };
 
+export enum ETeamTypes {
+  fill = 'fill',
+  heal = 'heal',
+  sb1 = 'sb1',
+  sb2 = 'sb2',
+}
+
+export type runnerDTO = {
+  runner_name: string;
+  isv1: number;
+  isv2: number;
+  bp: number;
+};
 export type TeamsPerHour = Record<string, ChosenTeam[]>;
+
+export type EventState = {
+  allEvents: EventType[];
+  archivedEvents: EventType[];
+  activeEvents: EventType[];
+  selectedEvent: {
+    event_id: UUID;
+    event_type: 'M' | 'C';
+    event_name: string;
+    fillersPerHour: string[]; //?
+    notesPerHour: string[]; //?
+    teamsPerHour: TeamsTable[]; //?
+    finishedHours: number[]; //?
+    fillersAvaliable: Filler[][]; //?
+  };
+};

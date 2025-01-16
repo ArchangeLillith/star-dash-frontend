@@ -2,7 +2,7 @@ import { jwtDecode } from 'jwt-decode';
 
 import baseService from './base';
 import { ManagerLoginObject } from '../utils/types';
-import { SettingsState } from '@/context/settings/settings.utils';
+import { SettingsState } from '@/context/settings/settingsProvider.utils';
 import { UUID } from 'server/types';
 
 /**
@@ -31,7 +31,6 @@ const loginManager = async (token: string): Promise<ManagerLoginObject> => {
       `/api/protected/managers/settings/${userId}`
     );
     const settings: SettingsState = managerSettingsReturn[0].settings;
-    console.log(`Settings from login.ts in services:`, settings);
     let { activeEvents, archivedEvents } = await baseService.get(
       `/api/protected/managers/events/${userId}`
     );

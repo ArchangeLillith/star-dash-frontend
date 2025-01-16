@@ -4,7 +4,7 @@ import {
   SettingProviderProps,
   SettingsContextType,
   SettingsState,
-} from './settings.utils';
+} from './settingsProvider.utils';
 
 /**
  * Settings context to allow other components to pull from it no matter how nested
@@ -18,7 +18,6 @@ export const SettingsContext = createContext<SettingsContextType>({
 const SettingsProvider: React.FC<SettingProviderProps> = ({ children }) => {
   const [settingsState, setSettingsState] =
     useState<SettingsState>(DefaultSettings);
-  console.log(`Setting providere entered!!!!!!!!!!!!!!!!!!!!!`);
 
   const updateSettings = (newSettings: SettingsState) => {
     setSettingsState(newSettings);

@@ -9,7 +9,7 @@ import {
   AuthProviderProps,
   unauthenticatedAuthState,
 } from './auth.utils';
-import { SettingsState } from '../settings/settings.utils';
+import { EThemeNames, SettingsState } from '../settings/settingsProvider.utils';
 import useThemeAplication from '@/hooks/useThemeApplication';
 
 /**
@@ -35,6 +35,9 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   );
   const { updateSettings } = useContext(SettingsContext);
   const [authLoading, setLoading] = useState(true);
+  const [theme, setTheme] = useState<EThemeNames>(EThemeNames.KAITO);
+
+  useThemeAplication(theme);
 
   /**
    * The function that handles the auth state to reflect a log in
@@ -55,10 +58,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         archivedEvents,
         managerData,
       }: LoginManagerResponse = await loginService.loginManager(token);
-      console.log(`settings from auth provider`, settings);
       updateSettings(settings);
-      useThemeAplication(settings.theme);
-      console.log(`After update settings`);
+      setTheme(settings.theme);
       setAuthState({
         authenticated: true,
         managerData,
@@ -68,7 +69,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     } catch (error) {
       console.log(`Error`, error);
       setAuthState((prev) => {
-        if (!prev.authenticated) return prev; // Avoid re-render if the state is already false
+        if (!prev.authenticated) return prev;
         return unauthenticatedAuthState;
       });
       alert(error);

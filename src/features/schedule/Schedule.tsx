@@ -1,6 +1,6 @@
 import TransitionWrapper from '@/components/TransitionWrapper';
 import { SettingsContext } from '@/context/settings/SettingsProvider';
-import { backgroundMap } from '@/context/settings/settings.utils';
+import { backgroundMap } from '@/context/settings/settingsProvider.utils';
 import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
 import { TeamsPerHour } from '@/utils/types';
 

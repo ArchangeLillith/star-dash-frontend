@@ -3,7 +3,7 @@ import { Filler, Teams } from '@/utils/types';
 
 import { Diff } from '../../RunData.utils';
 import { SetStateAction } from 'react';
-import { teamParentMap } from '@/features/join-run/cheerful-carnival/JoinCarnival.types';
+import { teamParentMap } from '@/features/filler-join-run/cheerful-carnival/JoinCarnival.types';
 
 interface SubmitModalProps {
   difference: Diff[];

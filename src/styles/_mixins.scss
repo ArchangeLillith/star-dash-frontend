@@ -26,7 +26,7 @@
 @mixin basic-paragraph-heading {
   font-family: $font-paragraph;
   text-align: center;
-  color: $dark-kaito-purple;
+  color: var(--dark-color);
 }
 @mixin page-title($paddingL: 4%, $marginL: 4%, $size: $font-size-page-heading) {
   color: white;
@@ -34,16 +34,28 @@
   padding-left: $paddingL;
   margin-left: $marginL;
   font-family: $font-blocky-site-heading;
-  text-shadow: 4px 2px 3px $dark-kaito-purple;
+  text-shadow: 4px 2px 3px var(--dark-color);
 }
 
 @mixin theme($theme-colors) {
-  --primary-color: map.get($theme-colors, primary);
-  --light-color: map.get($theme-colors, primary);
-  --lighter-color: map.get($theme-colors, primary);
-  --dark-color: map.get($theme-colors, primary);
-  --darker-color: map.get($theme-colors, primary);
-  --darkest-color: map.get($theme-colors, primary);
-  --error-color: map.get($theme-colors, primary);
-  --error-soft-color: map.get($theme-colors, primary);
+  --primary-color: #{map-get($theme-colors, primary)};
+  --light-color: #{map-get($theme-colors, light)};
+  --lighter-color: #{map-get($theme-colors, lighter)};
+  --dark-color: #{map-get($theme-colors, dark)};
+  --darker-color: #{map-get($theme-colors, darker)};
+  --darkest-color: #{map-get($theme-colors, darkest)};
+  --error-color: #{map-get($theme-colors, error)};
+  --error-soft-color: #{map-get($theme-colors, error-soft)};
+  --primary-color-rgb: #{map-get($theme-colors, primary-rgb)};
+  --light-color-rgb: #{map-get($theme-colors, light-rgb)};
+  --lighter-color-rgb: #{map-get($theme-colors, lighter-rgb)};
+  --dark-color-rgb: #{map-get($theme-colors, dark-rgb)};
+  --darker-color-rgb: #{map-get($theme-colors, darker-rgb)};
+  --darkest-color-rgb: #{map-get($theme-colors, darkest-rgb)};
+  --error-color-rgb: #{map-get($theme-colors, error-rgb)};
+  --error-soft-color-rgb: #{map-get($theme-colors, error-soft-rgb)};
+}
+
+@mixin soft-dark-shadow {
+  box-shadow: 0px 0px 10px 5px var(--dark-color);
 }

@@ -3,7 +3,7 @@ import { IoMdArrowRoundForward } from 'react-icons/io';
 import TransitionWrapper from '../../../components/TransitionWrapper';
 import { useContext, useEffect, useMemo, useState } from 'react';
 import { SettingsContext } from '../../../context/settings/SettingsProvider';
-import { backgroundMap } from '../../../context/settings/settings.utils';
+import { backgroundMap } from '../../../context/settings/settingsProvider.utils';
 import Input from '../../../components/Input';
 
 import { TEXT_INPUT_SETTINGS } from '../../../utils/variables';
@@ -15,7 +15,7 @@ import {
   MarathonFormState,
   InitializeMarathonState,
 } from './JoinMarathon.types';
-import Select from '@/components/Select';
+import Select from '@/components/styles/select/Select';
 import useFetchData from '@/hooks/useFetchData';
 
 const JoinMarathon: React.FC = () => {

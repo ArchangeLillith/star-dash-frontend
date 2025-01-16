@@ -1,5 +1,5 @@
-@import '../join-run/marathon/join-marathon.scss';
-@import '../join-run/cheerful-carnival/join-carnival.scss';
+@import '../filler-join-run/marathon/join-marathon.scss';
+@import '../filler-join-run/cheerful-carnival/join-carnival.scss';
 
 @media (min-width: $breakpoint-desktop) {
   .form-title {
@@ -12,7 +12,7 @@
     align-items: flex-start;
     justify-content: flex-start;
     .form-container {
-      background-color: rgba($dark-kaito-purple, 0.3);
+      background-color: rgb(var(--dark-color), 0.3);
       border: none;
       width: 60%;
       align-self: flex-start;

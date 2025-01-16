@@ -10,8 +10,8 @@
     font-size: 0.8rem;
     height: 26px;
     width: 26px;
-    background: $lighter-kaito-purple;
-    border: 3px solid $light-kaito-purple;
+    background: var(--lighter-color);
+    border: 3px solid var(--light-color);
     color: rgb(41, 41, 41);
   }
 }

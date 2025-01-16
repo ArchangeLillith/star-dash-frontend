@@ -1,4 +1,6 @@
+import { EventType } from '@/utils/types';
 import { hoursPerPageOptions } from '@/utils/variables';
+import { UUID } from 'server/types';
 
 export interface SettingProviderProps {
   children: React.ReactNode;
@@ -12,6 +14,7 @@ export interface SettingsContextType {
   setSettingsState: React.Dispatch<React.SetStateAction<SettingsState>>;
   updateSettings: (newSettings: SettingsState) => void;
 }
+
 export const allBackgroundKeys = [
   'airi_1',
   'airi_2',
@@ -115,6 +118,14 @@ export const allBackgroundKeys = [
   'tsukasa_4',
 ];
 
+export const InitiateEvents: EventType[] = [
+  {
+    event_id: '00000000-0000-0000-0000-000000000000' as UUID,
+    event_name: 'Loading...',
+    event_type: 'C',
+  },
+];
+
 export enum ECharacter {
   AIRI = 'airi',
   AKITO = 'akito',
@@ -172,7 +183,7 @@ export const characterKeysMap: Record<ECharacter, string[]> = {
 };
 
 export const DefaultSettings: SettingsState = {
-  theme: EThemeNames.DEFAULT,
+  theme: EThemeNames.MIKU,
   favoriteCharacters: [],
   currentPageBackground: '',
   hoursPerPage: 10 as hoursPerPageOptions,
@@ -188,11 +199,14 @@ export type SettingsState = {
 };
 
 export const enum EThemeNames {
-  MIKU = 'miku',
-  LUKA = 'luka',
+  TETO = 'teto',
   RIN = 'rin',
+  LEN = 'len',
+  GUMI = 'gumi',
+  MIKU = 'miku',
   KAITO = 'kaito',
-  DEFAULT = 'default',
+  LUKA = 'luka',
+  GAKUPO = 'gakupo',
 }
 
 export const backgroundMap: Record<string, string> = {
@@ -207,7 +221,9 @@ export const backgroundMap: Record<string, string> = {
   authHelp: '/card-backgrounds/help.webp',
   data: '/card-backgrounds/data.webp',
   schedule: '/card-backgrounds/schedule.webp',
+  settings: '/card-backgrounds/settings.webp',
   runData: '/card-backgrounds/run-data.webp',
+  joinRun: '/card-backgrounds/join-run.webp',
   airi_1: '/card-backgrounds/manager/airi_1.webp',
   airi_2: '/card-backgrounds/manager/airi_2.webp',
   airi_3: '/card-backgrounds/manager/airi_3.webp',

@@ -5,11 +5,10 @@ import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
 
 import { SettingsContext } from '../../context/settings/SettingsProvider';
 
-import { backgroundMap } from '../../context/settings/settings.utils';
+import { backgroundMap } from '../../context/settings/settingsProvider.utils';
 import { TEXT_INPUT_SETTINGS } from '../../utils/variables';
 import { InitializeCreateRun } from './CreateRun.utils';
 
-import Select from '../../components/Select';
 import Input from '../../components/Input';
 import Modal from '@/components/Modal';
 import TeamFields from '@/components/TeamFields';
@@ -18,25 +17,28 @@ import ConfirmPassInput from './components/ConfirmPassInput';
 
 import { CreateRunFormState } from './CreateRun.types';
 import { callRegex, ERegexHandler } from '@/utils/regex';
+import EventSelect from '@/components/styles/select/EventSelect';
+import runService from '../../services/run';
+import { AuthContext } from '@/context/auth/AuthProvider';
 
 const CreateRun = () => {
   /**
    * Setting the background with a hook and access to the setting context
    */
-  const { setSettingsState } = useContext(SettingsContext);
+  const { setSettingsState, allEvents } = useContext(SettingsContext);
   useBackgroundUpdater({
     backgroundKey: 'createRun',
     backgroundMap,
     setSettingsState,
   });
+  const { authState } = useContext(AuthContext);
   const [show, setShow] = useState<boolean>(false);
   const [formStateCreateRun, setFormStateCreateRun] =
     useState<CreateRunFormState>(InitializeCreateRun);
 
-  const events = ['Event 1', 'Event 2', 'Event 3'];
-
-  const submitRun = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const validateAndConfirmRun = (e: React.MouseEvent<HTMLButtonElement>) => {
     //Refactor we should prob use a debouncer for this at some point so they don't get like 4 errors :')
+    //Change the name of the function them to show modal cause it'll only work if everything's passed
     e.preventDefault();
     // If regex doesn't pass, just return and let them know they need a better pass
     const error = callRegex(
@@ -50,16 +52,25 @@ const CreateRun = () => {
     }
   };
 
+  const submitRun = async () => {
+    const run_info = await runService.createRun(formStateCreateRun, authState);
+    console.log(`RUNID`, run_info);
+    setSettingsState((prev) => ({
+      ...prev,
+      
+    }));
+  };
+
   return (
     <TransitionWrapper newBackgroundImage={backgroundMap.createRun}>
       <div className="transition-base create-run">
         <form className="form-container">
           <div className="form-title">Create Event</div>
           <div className="top-content">
-            <Select
-              value={formStateCreateRun.selectedEvent}
+            <EventSelect
+              value={formStateCreateRun.selectedEvent.event_name}
               state={formStateCreateRun}
-              options={events}
+              options={allEvents}
               stateKey="selectedEvent"
               setState={setFormStateCreateRun}
               defaultOption="Choose your event..."
@@ -83,7 +94,7 @@ const CreateRun = () => {
                 state={formStateCreateRun}
                 setState={setFormStateCreateRun}
               />
-            </div>{' '}
+            </div>
           </div>
 
           <div className="password-container">
@@ -108,16 +119,6 @@ const CreateRun = () => {
               <label className="banner" htmlFor="confirm-password">
                 Confirm Password
               </label>
-              {/* <Input
-                id="confirm-password"
-                className="input"
-                value={formStateCreateRun.runPasswordConfirm}
-                maxLength={TEXT_INPUT_SETTINGS.MAX_LENGTH}
-                type="password"
-                stateKey="runPasswordConfirm"
-                setState={setFormStateCreateRun}
-                placeholder="Confirm Password"
-              /> */}
             </div>
           </div>
           {show && (
@@ -135,15 +136,14 @@ const CreateRun = () => {
                 </p>
                 <p className="notice-text">
                   It currently cannot be reset, and this is how other managers
-                  are added to your run. Everything else (but the chosen event)
-                  can be changed later if you'd like to.
+                  are added to your run. <br />
+                  <br />
+                  Everything else (except for the chosen event) can be changed
+                  later if you'd like to.
                 </p>
               </div>
               <ConfirmPassInput state={formStateCreateRun} />
-              <button
-                className="submit-btn"
-                onClick={() => alert('Submitted success')}
-              >
+              <button className="submit-btn" onClick={submitRun}>
                 Submit
               </button>
               <button
@@ -154,7 +154,7 @@ const CreateRun = () => {
               </button>
             </Modal>
           )}
-          <button className="submit-btn" onClick={submitRun}>
+          <button className="submit-btn" onClick={validateAndConfirmRun}>
             Submit!
           </button>
         </form>
@@ -164,3 +164,14 @@ const CreateRun = () => {
   );
 };
 export default CreateRun;
+
+export type runnerDTO_type = {
+  runner: {
+    runner_name: string;
+    team: {
+      isv1: number;
+      isv2: number;
+      bp: number;
+    };
+  };
+};

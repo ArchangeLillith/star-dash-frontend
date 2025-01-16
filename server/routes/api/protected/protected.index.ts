@@ -3,6 +3,8 @@ import { Router } from 'express';
 import managerRouter from './managers.route';
 import leadManagerRouter from './lead-managers.route';
 import runsRouter from './runs.route';
+import teamsRouter from './teams.route';
+import runnerRouter from './runners.route';
 import { verifyToken } from 'server/middlewares/verifyToken.mw';
 const router = Router();
 
@@ -10,8 +12,10 @@ const router = Router();
 //We don't need to check and see if the user exists because the token is only created if the user exists
 router.route('*').post(verifyToken).put(verifyToken).delete(verifyToken);
 
+router.use('/runners', runnerRouter);
 router.use('/lead-manager', leadManagerRouter);
 router.use('/managers', managerRouter);
 router.use('/runs', runsRouter);
+router.use('/teams', teamsRouter);
 
 export default router;

@@ -2,7 +2,6 @@
   .password-container {
     width: 80%;
   }
-
 }
 
 @media (min-width: $breakpoint-desktop) {
@@ -19,7 +18,7 @@
     align-items: flex-start;
     justify-content: flex-start;
     .form-container {
-      background-color: rgba($dark-kaito-purple, 0.3);
+      background-color: rgba(var(--dark-color-rgb), 0.3);
       border: none;
       width: 60%;
       align-self: flex-start;
@@ -37,7 +36,7 @@
         color: white;
       }
       .banner {
-        color: $light-kaito-purple;
+        color: var(--light-color);
       }
     }
     .desktop-title {
