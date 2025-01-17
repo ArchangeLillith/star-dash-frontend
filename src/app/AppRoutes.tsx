@@ -11,6 +11,7 @@ import Schedule from '../features/schedule/Schedule';
 import RunData from '@/features/run-data/RunData';
 import Settings from '@/features/settings/Settings';
 import JoinRun from '@/features/manager-join-run/JoinRun';
+import ChangeEvent from '@/features/change-event/ChangeEvent';
 
 const App = () => {
   const routes = useRoutes([
@@ -25,6 +26,7 @@ const App = () => {
     { path: '/create-run', element: <CreateRun /> },
     { path: '/join-run', element: <JoinRun /> },
     { path: '/settings', element: <Settings /> },
+    { path: '/change-event', element: <ChangeEvent /> },
   ]);
 
   return routes;

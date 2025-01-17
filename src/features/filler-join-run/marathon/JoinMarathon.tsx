@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { IoMdArrowRoundForward } from 'react-icons/io';
 import TransitionWrapper from '../../../components/TransitionWrapper';
-import { useContext, useEffect, useMemo, useState } from 'react';
+import { useContext, useState } from 'react';
 import { SettingsContext } from '../../../context/settings/SettingsProvider';
 import { backgroundMap } from '../../../context/settings/settingsProvider.utils';
 import Input from '../../../components/Input';
@@ -15,59 +15,32 @@ import {
   MarathonFormState,
   InitializeMarathonState,
 } from './JoinMarathon.types';
-import Select from '@/components/styles/select/Select';
-import useFetchData from '@/hooks/useFetchData';
+
+import EventSelect from '@/components/select/EventSelect';
+import { EventsContext } from '@/context/events/EventsProvider';
 
 const JoinMarathon: React.FC = () => {
   /**
    * Setting the background with a hook and access to the setting context
    */
   const { setSettingsState } = useContext(SettingsContext);
+  const { eventsState } = useContext(EventsContext);
   useBackgroundUpdater({
     backgroundKey: 'marathon',
     backgroundMap,
     setSettingsState,
   });
-  const [events, setEvents] = useState<eventType[]>([]);
-  const [eventNames, setEventNames] = useState<string[]>([]);
+
   const [encoreShow, setEncoreShow] = useState(false);
   const [formStateMarathon, setFormStateMarathon] = useState<MarathonFormState>(
     InitializeMarathonState
   );
 
-  type eventType = {
-    event_id: string;
-    event_name: string;
-    event_type: 'M' | 'C';
-  };
-
   const registerFiller = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     alert(formStateMarathon.encoreTeam?.isv1);
   };
-  const fetchConfigs = useMemo(
-    () => [{ key: 'events', url: '/api/events' }],
-    []
-  );
-  type FetchDataResponse<T = Record<string, any>> = T;
 
-  const { data, loading, error } =
-    useFetchData<FetchDataResponse>(fetchConfigs);
-
-  useEffect(() => {
-    if (!data || !data.events) return;
-    console.log(`DAT`, data);
-    const { events } = data;
-    // Update state based on fetched data
-    setEvents(events);
-    setEventNames(
-      events
-        .filter((event: eventType) => event.event_type === 'M')
-        .map((event: eventType) => event.event_name)
-    );
-  }, [data]); // Run effect when data changes
-  if (loading) <p>Loadig....</p>;
-  if (error) <p>error....</p>;
   return (
     <TransitionWrapper newBackgroundImage={backgroundMap.marathon}>
       <div className="transition-base marathon">
@@ -78,9 +51,8 @@ const JoinMarathon: React.FC = () => {
               <label className="banner" htmlFor="manager-input">
                 Event
               </label>
-
-              <Select
-                options={eventNames}
+              <EventSelect
+                options={eventsState.carnivalEvents}
                 setState={setFormStateMarathon}
                 state={formStateMarathon}
                 stateKey="event"

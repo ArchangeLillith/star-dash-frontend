@@ -1,21 +1,34 @@
-export const tiles = [
+export type TileType = {
+  title: string;
+  body: string;
+  href: string;
+  className: string;
+};
+
+export const getAllTiles = (): TileType[] => [
+  ...defaultTiles,
   {
     title: 'Schedule',
     body: 'See your schedule and fillers',
-    href: '/marathon',
+    href: '/schedule',
     className: 'marathon text-black',
   },
   {
     title: 'Filler Data',
-    body: 'See all your fillers data',
+    body: 'View and edit all your fillers data',
     href: '/data',
     className: 'filler-data text-black',
   },
+];
+
+export const getDefaultTiles = (): TileType[] => [...defaultTiles];
+
+const defaultTiles = [
   {
-    title: 'Register as a Manager',
-    body: 'Make an account to track your fillers',
-    href: '/register',
-    className: 'register text-black',
+    title: 'Change Event',
+    body: 'Select a different event to work on',
+    href: '/change-event',
+    className: 'marathon text-black',
   },
   {
     title: 'About',

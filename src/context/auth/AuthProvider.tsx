@@ -19,8 +19,6 @@ export const AuthContext = createContext<AuthContextType>({
   authState: {
     authenticated: false,
     managerData: null,
-    archivedEvents: [],
-    activeEvents: [],
   },
   authLoading: true,
   setAuthState: () => {},
@@ -46,25 +44,17 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const loginToAuthState = async (token: string) => {
     interface LoginManagerResponse {
       settings: SettingsState;
-      activeEvents: string[];
-      archivedEvents: string[];
       managerData: Manager;
     }
     try {
       //get settings
-      const {
-        settings,
-        activeEvents,
-        archivedEvents,
-        managerData,
-      }: LoginManagerResponse = await loginService.loginManager(token);
+      const { settings, managerData }: LoginManagerResponse =
+        await loginService.loginManager(token);
       updateSettings(settings);
       setTheme(settings.theme);
       setAuthState({
         authenticated: true,
         managerData,
-        activeEvents,
-        archivedEvents,
       });
     } catch (error) {
       console.log(`Error`, error);

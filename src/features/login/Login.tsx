@@ -38,7 +38,8 @@ const Login = () => {
       });
       if (!token) return;
       loginToAuthState(token);
-      navigate(`/`);
+
+      navigate(`/change-event`);
     } catch (error) {
       console.error('Error logging in:', error);
     }

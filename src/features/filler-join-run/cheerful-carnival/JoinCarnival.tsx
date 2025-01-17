@@ -15,12 +15,15 @@ import {
   ETeamNames,
   teamParentMap,
 } from './JoinCarnival.types';
+import { EventsContext } from '@/context/events/EventsProvider';
+import EventSelect from '@/components/select/EventSelect';
 
 const JoinCarnival: React.FC = () => {
   /**
    * Setting the background with a hook and access to the setting context
    */
   const { setSettingsState } = useContext(SettingsContext);
+  const { eventsState } = useContext(EventsContext);
   useBackgroundUpdater({
     backgroundKey: 'carnival',
     backgroundMap,
@@ -42,6 +45,19 @@ const JoinCarnival: React.FC = () => {
         <form className="form-container">
           <div className="form-title">Filler Registration</div>
           <div className="top-content">
+            <div className="input-card">
+              <label className="banner" htmlFor="manager-input">
+                Event
+              </label>
+
+              <EventSelect
+                options={eventsState.carnivalEvents}
+                setState={setFormStateCarnival}
+                state={formStateCarnival}
+                stateKey="event"
+                value={formStateCarnival.event}
+              />
+            </div>
             <div className="input-card">
               <label className="banner" htmlFor="manager-input">
                 Manager Name

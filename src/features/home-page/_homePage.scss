@@ -20,16 +20,16 @@
   .clickable-card {
     border-radius: 10px;
     padding: 10px;
-    background-color: rgb(var(--primary-color), 0.8);
+    background-color: rgb(var(--primary-color-rgb), 0.8);
     margin: 1rem;
     .card-title {
       color: white;
-      text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.641);
+      @include black-text-shadow;
     }
     .card-text {
       text-align: center;
       color: white;
-      text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.641);
+      @include black-text-shadow;
       font-family: $font-paragraph;
       font-size: 0.75rem;
     }
@@ -39,7 +39,7 @@
 .card-text {
   text-align: center;
   color: var(--primary-color);
-  text-shadow: 2px 2px 3px white;
+  @include white-text-shadow;
   font-family: $font-paragraph;
   font-size: 0.75rem;
 }
@@ -51,7 +51,7 @@
   .transition-base.home-page {
     position: relative;
     .form-container {
-      background-color: rgb(var(--dark-color), 0.3);
+      background-color: rgb(var(--dark-color-rgb), 0.3);
       border: none;
       width: 30%;
       position: absolute;
@@ -62,6 +62,7 @@
     .manager-home-cards {
       position: absolute;
       bottom: 6em;
+      justify-content: space-evenly;
       flex-direction: row;
     }
     .top-content,

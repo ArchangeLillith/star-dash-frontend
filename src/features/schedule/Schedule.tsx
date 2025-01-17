@@ -1,37 +1,43 @@
-import TransitionWrapper from '@/components/TransitionWrapper';
-import { SettingsContext } from '@/context/settings/SettingsProvider';
-import { backgroundMap } from '@/context/settings/settingsProvider.utils';
-import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
-import { TeamsPerHour } from '@/utils/types';
-
+// Third-party imports
 import { useContext, useState } from 'react';
+import { FaCaretDown } from 'react-icons/fa';
+import { IoIosSettings } from 'react-icons/io';
+
+// Component imports
+import TransitionWrapper from '@/components/TransitionWrapper';
+import PageControls from './components/PageControls';
 import FillerSelection from './components/hour-card-modes/FillerSelection';
 import TeamSelection from './components/hour-card-modes/TeamSelection';
 import TeamDisplay from './components/hour-card-modes/TeamDisplay';
+
+// Context imports
+import { SettingsContext } from '@/context/settings/SettingsProvider';
+import { EventsContext } from '@/context/events/EventsProvider';
+
+// Hook imports
+import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
+
+// Utility imports
 import {
   areFillersComplete,
   HourToFillers,
-  initializeHourToFillers,
-  initializeTeamsPerHour,
   isTeamFullySelected,
 } from './Schedule.utils';
-import { FaCaretDown } from 'react-icons/fa';
-import { IoIosSettings } from 'react-icons/io';
-import PageControls from './components/PageControls';
-import { DummyFillerData } from '@/utils/dummyData.db';
+import { backgroundMap } from '@/context/settings/settingsProvider.utils';
+import { TeamsPerHour } from '@/utils/types';
 
 const Schedule = () => {
+  const { eventsState } = useContext(EventsContext);
   const { setSettingsState } = useContext(SettingsContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [paginatedHours, setPaginatedHours] = useState<number[]>([]);
   const [showControls, setShowControls] = useState<boolean>(false);
 
-  const fillerDataFromSQL = DummyFillerData;
   const [fillersPerHour, setFillersPerHour] = useState<HourToFillers>(
-    initializeHourToFillers()
+    eventsState.selectedEvent.fillersPerHour
   );
   const [teamsPerHour, setTeamsPerHour] = useState<TeamsPerHour>(
-    initializeTeamsPerHour()
+    eventsState.selectedEvent.teamsPerHour
   );
 
   useBackgroundUpdater({
@@ -56,7 +62,7 @@ const Schedule = () => {
       <div className="select-container">
         <FillerSelection
           hour={`hour-${hour}`}
-          fillers={fillerDataFromSQL}
+          fillers={eventsState.selectedEvent.fillersAvaliable}
           fillersPerHour={fillersPerHour}
           setFillersPerHour={setFillersPerHour}
         />
@@ -106,7 +112,13 @@ const Schedule = () => {
             </div>
           </div>
         </div>
-        <div className="desktop-title schedule">Schedule</div>
+        <div className="desktop-title schedule-1">Schedule for</div>
+        <div className="desktop-title schedule-2">
+          {eventsState.selectedEvent.event_name}
+        </div>
+        <div className="desktop-title schedule-3">
+          Lead by: {eventsState.selectedEvent.lead_name}
+        </div>
       </div>
     </TransitionWrapper>
   );

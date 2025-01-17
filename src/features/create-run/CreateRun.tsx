@@ -17,15 +17,18 @@ import ConfirmPassInput from './components/ConfirmPassInput';
 
 import { CreateRunFormState } from './CreateRun.types';
 import { callRegex, ERegexHandler } from '@/utils/regex';
-import EventSelect from '@/components/styles/select/EventSelect';
+import EventSelect from '@/components/select/EventSelect';
 import runService from '../../services/run';
 import { AuthContext } from '@/context/auth/AuthProvider';
+import { EventsContext } from '@/context/events/EventsProvider';
+import { useNavigate } from 'react-router-dom';
 
 const CreateRun = () => {
   /**
    * Setting the background with a hook and access to the setting context
    */
-  const { setSettingsState, allEvents } = useContext(SettingsContext);
+  const { setSettingsState } = useContext(SettingsContext);
+  const { eventsState, setEventsState } = useContext(EventsContext);
   useBackgroundUpdater({
     backgroundKey: 'createRun',
     backgroundMap,
@@ -35,6 +38,7 @@ const CreateRun = () => {
   const [show, setShow] = useState<boolean>(false);
   const [formStateCreateRun, setFormStateCreateRun] =
     useState<CreateRunFormState>(InitializeCreateRun);
+  const navigate = useNavigate();
 
   const validateAndConfirmRun = (e: React.MouseEvent<HTMLButtonElement>) => {
     //Refactor we should prob use a debouncer for this at some point so they don't get like 4 errors :')
@@ -54,11 +58,35 @@ const CreateRun = () => {
 
   const submitRun = async () => {
     const run_info = await runService.createRun(formStateCreateRun, authState);
-    console.log(`RUNID`, run_info);
-    setSettingsState((prev) => ({
+    console.log(`run info`, run_info);
+    console.log(`current info`, eventsState.allEvents);
+    setEventsState((prev) => ({
       ...prev,
-      
+      activeEvents: [
+        ...prev.activeEvents,
+        {
+          event_id: run_info.event_id,
+          event_name: formStateCreateRun.selectedEvent.event_name,
+          event_type: formStateCreateRun.selectedEvent.event_type,
+        },
+      ],
+      selectedEvent: {
+        //Use the default values from the pre-intiialized teams and fillers per hour
+        ...prev.selectedEvent,
+        //Not ideal, but we ! here because there should be no way to get here without breaking everything if you're not a manager
+        lead_manager: authState.managerData!.id,
+        lead_name: authState.managerData!.username,
+        run_id: run_info.run_id,
+        event_id: run_info.event_id,
+        event_type: formStateCreateRun.selectedEvent.event_type,
+        event_name: formStateCreateRun.selectedEvent.event_name,
+        notesPerHour: [],
+        finishedHours: [],
+        fillersAvaliable: [],
+      },
     }));
+    console.log(formStateCreateRun.selectedEvent.event_name);
+    navigate('/schedule');
   };
 
   return (
@@ -70,7 +98,7 @@ const CreateRun = () => {
             <EventSelect
               value={formStateCreateRun.selectedEvent.event_name}
               state={formStateCreateRun}
-              options={allEvents}
+              options={eventsState.allEvents}
               stateKey="selectedEvent"
               setState={setFormStateCreateRun}
               defaultOption="Choose your event..."
