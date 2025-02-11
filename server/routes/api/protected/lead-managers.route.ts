@@ -1,7 +1,17 @@
 import { Router } from 'express';
+import {
+  checkLeadManagerStatus,
+  writeLeadManager,
+} from 'server/controllers/protected/managers.controller';
+
+//ROUTE:
+//api/protected/lead
 const router = Router();
 
-export default router;
-
-// GET /api/lead-manager return event data
+//GET
 router.get('/');
+router.get(`/:id`, checkLeadManagerStatus);
+//PUT
+router.post(`/:id`, writeLeadManager);
+
+export default router;

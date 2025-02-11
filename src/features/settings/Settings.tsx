@@ -38,11 +38,7 @@ const Settings = () => {
     if (authState.managerData?.id === undefined) {
       throw new Error('No manager ID found');
     }
-    const result = settingsService.updateSettings(
-      authState.managerData?.id,
-      settingsState
-    );
-    console.log(`Settings saved!`, result);
+    settingsService.updateSettings(authState.managerData?.id, settingsState);
   };
 
   const resetFav = () => {
@@ -50,7 +46,6 @@ const Settings = () => {
       ...settingsState,
       favoriteCharacters: [],
     });
-    console.log(`Reset hit`);
   };
 
   const selectAllFav = () => {
@@ -94,16 +89,11 @@ const Settings = () => {
     });
   };
 
-  useEffect(() => {
-    console.log(
-      `ChildComponent re-rendered with theme: ${settingsState.theme}`
-    );
-  }, [settingsState.theme]);
+  useEffect(() => {}, [settingsState.theme]);
 
   const toggleCharacter = (e: React.MouseEvent<HTMLButtonElement>) => {
     const character = e.currentTarget.value as ECharacter;
     if (settingsState.favoriteCharacters.includes(character)) {
-      console.log(`Removing ${character} from favorites`);
       setSettingsState({
         ...settingsState,
         favoriteCharacters: settingsState.favoriteCharacters.filter(
@@ -111,7 +101,6 @@ const Settings = () => {
         ),
       });
     } else {
-      console.log(`Adding ${character} to favorites`);
       setSettingsState({
         ...settingsState,
         favoriteCharacters: [...settingsState.favoriteCharacters, character],

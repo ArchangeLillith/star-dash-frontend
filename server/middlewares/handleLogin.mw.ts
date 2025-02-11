@@ -30,7 +30,6 @@ export const handleLogin = (
       //   next(error);
 
       req.currentUser = user;
-      console.log(`USER from handleLogin middleware`, user);
       next();
     }
   )(req, res, next);

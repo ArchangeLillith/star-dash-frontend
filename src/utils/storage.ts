@@ -15,7 +15,6 @@ const setToken = (token: string) => {
 //Removes the token from the users local storage
 const removeToken = () => {
   localStorage.removeItem(TOKEN_KEY);
-  console.log(`KEY?`, localStorage.key);
   return true;
 };
 

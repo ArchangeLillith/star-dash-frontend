@@ -3,6 +3,9 @@ import { useContext } from 'react';
 import NavItem from '../components/NavItem';
 import { defaultLinks, getMultiEventLinks } from './utils';
 import { EventsContext } from '@/context/events/EventsProvider';
+import { SettingsContext } from '@/context/settings/SettingsProvider';
+import { DefaultSettings } from '@/context/settings/settingsProvider.utils';
+import { useNavigate } from 'react-router-dom';
 
 interface AuthenticatedNavLinksParams {
   selectionMode: boolean;
@@ -15,6 +18,8 @@ const AuthenticatedNavLinks: React.FC<AuthenticatedNavLinksParams> = ({
 }) => {
   const { eventsState } = useContext(EventsContext);
   const { logoutFromAuthState } = useContext(AuthContext);
+  const { setSettingsState } = useContext(SettingsContext);
+  const navigate = useNavigate();
   const navLinks = defaultLinks;
   const totalEvents =
     (eventsState.activeEvents?.length || 0) +
@@ -23,13 +28,18 @@ const AuthenticatedNavLinks: React.FC<AuthenticatedNavLinksParams> = ({
   if (totalEvents > 1) {
     navLinks.push(...getMultiEventLinks());
   }
+  const logOut = () => {
+    logoutFromAuthState();
+    setSettingsState(DefaultSettings);
+    navigate('/');
+  };
 
   return (
     <>
       {navLinks.map((link) => (
         <NavItem key={link.href} {...link} closeMenu={closeMenu} />
       ))}
-      <button onClick={logoutFromAuthState} className="submit-btn logout">
+      <button onClick={logOut} className="submit-btn logout">
         Logout
       </button>
     </>

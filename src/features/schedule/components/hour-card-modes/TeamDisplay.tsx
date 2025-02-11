@@ -14,7 +14,6 @@ const TeamDisplay: React.FC<FillerSelectionProps> = ({
   const resetTeam = () => {
     setTeamsPerHour((prev) => ({ ...prev, [hour]: [] }));
   };
-  console.log(`teams per hour 1:`, teamsPerHour['hour-1']);
   return (
     <>
       {teamsPerHour[hour].map((filler) => (

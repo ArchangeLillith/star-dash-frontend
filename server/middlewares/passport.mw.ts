@@ -8,8 +8,6 @@ import config from '../config/config';
 import db from '../db/index';
 
 export function configurePassport(app: Express) {
-  console.log('Configuring Passport strategies...');
-
   if (!config.jwt.secret) {
     throw new Error('JWT secret is not defined in the configuration');
   }
@@ -21,7 +19,6 @@ export function configurePassport(app: Express) {
         session: false,
       },
       async (username, password, done) => {
-        console.log(`Local strategy invoked for username: ${username}`);
         try {
           const [userFound] = await db.managers.oneByUsername(username);
           if (userFound) {
@@ -36,7 +33,7 @@ export function configurePassport(app: Express) {
           }
           return done(null, false, { message: 'Invalid credentials' });
         } catch (error) {
-          console.log(`Error in local strategy:`, error);
+          console.error(`Error in local strategy:`, error);
           return done(error);
         }
       }
@@ -51,7 +48,6 @@ export function configurePassport(app: Express) {
         secretOrKey: config.jwt.secret,
       },
       (payload, done) => {
-        console.log(`JWT strategy invoked with payload:`, payload);
         done(null, payload);
       }
     )

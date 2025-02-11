@@ -1,10 +1,10 @@
 .transition-base.pub-help {
   @include flex-center-row;
   .scrollable-container {
-    background-color: rgba(var(--dark-color), 0.3);
+    background-color: rgba(var(--dark-color-rgb), 0.3);
   }
   .help-message {
-    background-color: rgba(var(--primary-color), 0.8);
+    background-color: rgba(var(--primary-color-rgb), 0.8);
     width: 90%;
   }
 }

@@ -10,8 +10,6 @@ export const verifyToken = (
     'jwt',
     { session: false },
     (error: Error, user, info) => {
-      console.log(`Check token`);
-
       if (error) {
         return next(error);
       }
@@ -19,12 +17,11 @@ export const verifyToken = (
       if (info && info.message === 'No auth token') {
         req.currentUser = undefined;
       } else if (!user) {
-        console.log(`info and message`, info, info.message);
+        console.error(`info and message`, info, info.message);
         return res.status(401).json({ message: info.message });
       } else {
         req.currentUser = user;
       }
-      console.log(`Current user`, req.currentUser);
       next();
     }
   )(req, res, next);

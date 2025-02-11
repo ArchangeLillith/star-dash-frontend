@@ -183,7 +183,7 @@ export const characterKeysMap: Record<ECharacter, string[]> = {
 };
 
 export const DefaultSettings: SettingsState = {
-  theme: EThemeNames.MIKU,
+  theme: EThemeNames.GAKUPO,
   favoriteCharacters: [],
   currentPageBackground: '',
   hoursPerPage: 10 as hoursPerPageOptions,

@@ -45,7 +45,7 @@ const loginManager = async (token: string): Promise<ManagerLoginObject> => {
       managerData: { username, id: userId },
     };
   } catch (error) {
-    console.log(`ERROR in auth.ts in services:`, error);
+    console.error(`ERROR in auth.ts in services:`, error);
     throw error;
   }
 };

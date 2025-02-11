@@ -6,7 +6,6 @@ export const eventsController = async (
   res: Response,
   next: NextFunction
 ): Promise<void> => {
-  console.log(`Hit events controleler`);
   try {
     const result = await db.events.all();
     res.json(result);

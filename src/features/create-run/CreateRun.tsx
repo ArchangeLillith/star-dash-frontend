@@ -1,44 +1,40 @@
 import React, { useContext, useState } from 'react';
-import { IoClose } from 'react-icons/io5';
 
 import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
 
+import TransitionWrapper from '../../components/TransitionWrapper';
+import Input from '../../components/Input';
+import TeamFields from '@/components/TeamFields';
+import EventSelect from '@/components/select/EventSelect';
+
 import { SettingsContext } from '../../context/settings/SettingsProvider';
+import { EventsContext } from '@/context/events/EventsProvider';
 
 import { backgroundMap } from '../../context/settings/settingsProvider.utils';
 import { TEXT_INPUT_SETTINGS } from '../../utils/variables';
 import { InitializeCreateRun } from './CreateRun.utils';
-
-import Input from '../../components/Input';
-import Modal from '@/components/Modal';
-import TeamFields from '@/components/TeamFields';
-import TransitionWrapper from '../../components/TransitionWrapper';
-import ConfirmPassInput from './components/ConfirmPassInput';
+import { callRegex, ERegexHandler } from '@/utils/regex';
 
 import { CreateRunFormState } from './CreateRun.types';
-import { callRegex, ERegexHandler } from '@/utils/regex';
-import EventSelect from '@/components/select/EventSelect';
-import runService from '../../services/run';
-import { AuthContext } from '@/context/auth/AuthProvider';
-import { EventsContext } from '@/context/events/EventsProvider';
-import { useNavigate } from 'react-router-dom';
+import { ModalContent } from './components/ModalContent';
 
 const CreateRun = () => {
   /**
    * Setting the background with a hook and access to the setting context
    */
   const { setSettingsState } = useContext(SettingsContext);
-  const { eventsState, setEventsState } = useContext(EventsContext);
+  const { eventsState } = useContext(EventsContext);
+
+  const [formStateCreateRun, setFormStateCreateRun] =
+    useState<CreateRunFormState>(InitializeCreateRun);
+  const [show, setShow] = useState<boolean>(false);
+
+  //Hook to set background
   useBackgroundUpdater({
     backgroundKey: 'createRun',
     backgroundMap,
     setSettingsState,
   });
-  const { authState } = useContext(AuthContext);
-  const [show, setShow] = useState<boolean>(false);
-  const [formStateCreateRun, setFormStateCreateRun] =
-    useState<CreateRunFormState>(InitializeCreateRun);
-  const navigate = useNavigate();
 
   const validateAndConfirmRun = (e: React.MouseEvent<HTMLButtonElement>) => {
     //Refactor we should prob use a debouncer for this at some point so they don't get like 4 errors :')
@@ -54,39 +50,6 @@ const CreateRun = () => {
     } else {
       setShow(true);
     }
-  };
-
-  const submitRun = async () => {
-    const run_info = await runService.createRun(formStateCreateRun, authState);
-    console.log(`run info`, run_info);
-    console.log(`current info`, eventsState.allEvents);
-    setEventsState((prev) => ({
-      ...prev,
-      activeEvents: [
-        ...prev.activeEvents,
-        {
-          event_id: run_info.event_id,
-          event_name: formStateCreateRun.selectedEvent.event_name,
-          event_type: formStateCreateRun.selectedEvent.event_type,
-        },
-      ],
-      selectedEvent: {
-        //Use the default values from the pre-intiialized teams and fillers per hour
-        ...prev.selectedEvent,
-        //Not ideal, but we ! here because there should be no way to get here without breaking everything if you're not a manager
-        lead_manager: authState.managerData!.id,
-        lead_name: authState.managerData!.username,
-        run_id: run_info.run_id,
-        event_id: run_info.event_id,
-        event_type: formStateCreateRun.selectedEvent.event_type,
-        event_name: formStateCreateRun.selectedEvent.event_name,
-        notesPerHour: [],
-        finishedHours: [],
-        fillersAvaliable: [],
-      },
-    }));
-    console.log(formStateCreateRun.selectedEvent.event_name);
-    navigate('/schedule');
   };
 
   return (
@@ -150,37 +113,7 @@ const CreateRun = () => {
             </div>
           </div>
           {show && (
-            <Modal>
-              <button
-                onClick={() => setShow((prev) => !prev)}
-                className="modal-close-btn"
-              >
-                <IoClose size="24px" />
-              </button>
-              <div className="modal-title">Password Confirmation</div>
-              <div className="banner-background">
-                <p className="notice-text italic banner">
-                  Make sure you remember this!{' '}
-                </p>
-                <p className="notice-text">
-                  It currently cannot be reset, and this is how other managers
-                  are added to your run. <br />
-                  <br />
-                  Everything else (except for the chosen event) can be changed
-                  later if you'd like to.
-                </p>
-              </div>
-              <ConfirmPassInput state={formStateCreateRun} />
-              <button className="submit-btn" onClick={submitRun}>
-                Submit
-              </button>
-              <button
-                className="submit-btn"
-                onClick={() => setShow((prev) => !prev)}
-              >
-                I don't like my password, let me redo it
-              </button>
-            </Modal>
+            <ModalContent state={formStateCreateRun} setShow={setShow} />
           )}
           <button className="submit-btn" onClick={validateAndConfirmRun}>
             Submit!
@@ -192,14 +125,3 @@ const CreateRun = () => {
   );
 };
 export default CreateRun;
-
-export type runnerDTO_type = {
-  runner: {
-    runner_name: string;
-    team: {
-      isv1: number;
-      isv2: number;
-      bp: number;
-    };
-  };
-};

@@ -15,14 +15,14 @@ const JoinRun = () => {
    */
   const { setSettingsState } = useContext(SettingsContext);
   const { eventsState } = useContext(EventsContext);
+  const [formStateJoinRun, setFormStateJoinRun] =
+    useState<JoinRunFormState>(InitializeJoinRun);
+
   useBackgroundUpdater({
     backgroundKey: 'joinRun',
     backgroundMap,
     setSettingsState,
   });
-
-  const [formStateJoinRun, setFormStateJoinRun] =
-    useState<JoinRunFormState>(InitializeJoinRun);
 
   const submit = () => {};
 

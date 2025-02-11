@@ -13,7 +13,7 @@ const router = Router();
 router.route('*').post(verifyToken).put(verifyToken).delete(verifyToken);
 
 router.use('/runners', runnerRouter);
-router.use('/lead-manager', leadManagerRouter);
+router.use('/lead', leadManagerRouter);
 router.use('/managers', managerRouter);
 router.use('/runs', runsRouter);
 router.use('/teams', teamsRouter);

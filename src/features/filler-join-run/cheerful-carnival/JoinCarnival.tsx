@@ -1,22 +1,24 @@
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import TransitionWrapper from '../../../components/TransitionWrapper';
-import { useContext, useState } from 'react';
-import { SettingsContext } from '../../../context/settings/SettingsProvider';
-import { backgroundMap } from '../../../context/settings/settingsProvider.utils';
-import TeamFields from '@/components/TeamFields';
-import Input from '@/components/Input';
-import { TEXT_INPUT_SETTINGS } from '@/utils/variables';
-import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
-import ToggleableTeamPanel from '@/components/ToggalableTeamPanel';
 import { IoMdArrowRoundForward } from 'react-icons/io';
+
+import TransitionWrapper from '../../../components/TransitionWrapper';
+import Input from '@/components/Input';
+import TeamFields from '@/components/TeamFields';
+import EventSelect from '@/components/select/EventSelect';
+import ToggleableTeamPanel from '@/components/ToggalableTeamPanel';
+
+import { SettingsContext } from '../../../context/settings/SettingsProvider';
+import { EventsContext } from '@/context/events/EventsProvider';
+import { backgroundMap } from '../../../context/settings/settingsProvider.utils';
+import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
+import { TEXT_INPUT_SETTINGS } from '@/utils/variables';
 import {
   CarnivalFormState,
   InitializeCarnivalState,
   ETeamNames,
   teamParentMap,
 } from './JoinCarnival.types';
-import { EventsContext } from '@/context/events/EventsProvider';
-import EventSelect from '@/components/select/EventSelect';
 
 const JoinCarnival: React.FC = () => {
   /**
@@ -24,16 +26,19 @@ const JoinCarnival: React.FC = () => {
    */
   const { setSettingsState } = useContext(SettingsContext);
   const { eventsState } = useContext(EventsContext);
+  const [formStateCarnival, setFormStateCarnival] = useState<CarnivalFormState>(
+    InitializeCarnivalState
+  );
+  const [sb2Show, setSb2Show] = useState(false);
+
+  //Hook to update background
   useBackgroundUpdater({
     backgroundKey: 'carnival',
     backgroundMap,
     setSettingsState,
   });
 
-  const [formStateCarnival, setFormStateCarnival] = useState<CarnivalFormState>(
-    InitializeCarnivalState
-  );
-  const [sb2Show, setSb2Show] = useState(false);
+  //Handler!
   const registerFiller = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     alert(formStateCarnival.sb2Team.isv1);

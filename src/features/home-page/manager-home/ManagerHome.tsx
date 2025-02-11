@@ -45,12 +45,9 @@ const SiteHome: React.FC = () => {
       const tempArray: string[] = [];
       settingsState.favoriteCharacters.forEach((character) => {
         const enumChar = character as ECharacter;
-        console.log(`enumChar: ${enumChar}`);
         if (characterKeysMap[enumChar]) {
           tempArray.push(...characterKeysMap[enumChar]);
         }
-
-        console.log(`tempArray: ${tempArray}`);
 
         const randomIndex = Math.floor(Math.random() * tempArray.length);
         const randomBackground = tempArray[randomIndex];

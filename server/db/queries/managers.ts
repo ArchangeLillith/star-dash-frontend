@@ -1,7 +1,6 @@
 import type { ResultSetHeader } from 'mysql2';
 import {
   EventQueryResult,
-  LeadManagersTable,
   ManagersTable,
   SettingsTable,
 } from 'server/types/db.types';
@@ -58,13 +57,6 @@ const insertManager = (values: {
   );
 };
 
-const findLead = (id: UUID): Promise<LeadManagersTable> => {
-  return Query(
-    /* sql */ 'SELECT * FROM sd_lead_managers WHERE manager_id = ?;',
-    [id]
-  );
-};
-
 const settingsById = (id: UUID): Promise<SettingsTable> => {
   return Query<SettingsTable>(
     /* sql */ `SELECT * FROM sd_settings WHERE manager_id = ?;`,
@@ -102,7 +94,6 @@ const ban = (
   email: string,
   username: string
 ): Promise<ResultSetHeader> => {
-  console.log(`ID`, id, username);
   return QueryMetadata(
     /* sql */ 'INSERT INTO kf_banned_authors (id, username) VALUES (?,?);',
     [id, username]
@@ -119,7 +110,6 @@ export default {
   eventsById,
   oneById,
   oneByUsername,
-  findLead,
   insertManager,
   insertPassword,
   ban,

@@ -2,14 +2,15 @@ import React, { createContext, useState, useEffect, useContext } from 'react';
 
 import loginService from '../../services/login';
 import storage from '../../utils/storage';
-import { AuthState, Manager } from '../../utils/types';
+import { AuthState } from '../../utils/types';
 import { SettingsContext } from '../settings/SettingsProvider';
 import {
   AuthContextType,
   AuthProviderProps,
+  LoginManagerResponse,
   unauthenticatedAuthState,
 } from './auth.utils';
-import { EThemeNames, SettingsState } from '../settings/settingsProvider.utils';
+import { EThemeNames } from '../settings/settingsProvider.utils';
 import useThemeAplication from '@/hooks/useThemeApplication';
 
 /**
@@ -22,7 +23,7 @@ export const AuthContext = createContext<AuthContextType>({
   },
   authLoading: true,
   setAuthState: () => {},
-  loginToAuthState: () => {},
+  loginToAuthState: async () => ({ activeEvents: [], archivedEvents: [] }),
   logoutFromAuthState: () => {},
   updateUserData: () => {},
 });
@@ -33,7 +34,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   );
   const { updateSettings } = useContext(SettingsContext);
   const [authLoading, setLoading] = useState(true);
-  const [theme, setTheme] = useState<EThemeNames>(EThemeNames.KAITO);
+  const [theme, setTheme] = useState<EThemeNames>(EThemeNames.GAKUPO);
 
   useThemeAplication(theme);
 
@@ -42,27 +43,30 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
    * @param token - a JWT
    */
   const loginToAuthState = async (token: string) => {
-    interface LoginManagerResponse {
-      settings: SettingsState;
-      managerData: Manager;
-    }
     try {
       //get settings
-      const { settings, managerData }: LoginManagerResponse =
-        await loginService.loginManager(token);
+      const {
+        settings,
+        activeEvents,
+        archivedEvents,
+        managerData,
+      }: LoginManagerResponse = await loginService.loginManager(token);
+      const managerRuns = { activeEvents, archivedEvents };
       updateSettings(settings);
       setTheme(settings.theme);
       setAuthState({
         authenticated: true,
         managerData,
       });
+      return managerRuns;
     } catch (error) {
-      console.log(`Error`, error);
+      console.error(`Error`, error);
       setAuthState((prev) => {
         if (!prev.authenticated) return prev;
         return unauthenticatedAuthState;
       });
       alert(error);
+      return { activeEvents: [], archivedEvents: [] };
     }
   };
 
@@ -106,7 +110,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       try {
         loginToAuthState(token);
       } catch (error) {
-        console.log(`error`, error);
+        console.error(`error`, error);
       }
     };
     checkUser();

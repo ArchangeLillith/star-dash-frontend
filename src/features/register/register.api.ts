@@ -12,9 +12,7 @@ const registerUserAndStoreToken = async (payload: {
   username: string;
   password: string;
 }) => {
-  console.log(`REGISTER AND STORE TOKEN`);
   const { token } = await baseService.post('/auth/register', payload);
-  console.log(`token in frontend`, token);
   if (!token) return;
   storage.setToken(token);
   return token;
@@ -40,7 +38,7 @@ const getUserFromToken = async (token: string): Promise<Manager> => {
     if (!user) throw new Error("user couldn't be fetched TT_TT");
     return user;
   } catch (error) {
-    console.log(`ERROR in register.api.ts in features:`, error);
+    console.error(`ERROR in register.api.ts in features:`, error);
     throw error;
   }
 };

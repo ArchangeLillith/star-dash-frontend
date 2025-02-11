@@ -6,7 +6,7 @@ const makeFetch = async (url: string, info: RequestInit) => {
 
   if (!response.ok) {
     const errorData = await response.json();
-    console.log(`ERROR`, errorData);
+    console.error(`ERROR`, errorData);
     if (response.status === 403) {
       alert(`${errorData.message}`);
     }
@@ -52,7 +52,7 @@ const get = (url: string) => {
   return json(url, 'GET');
 };
 const post = (url: string, payload: object) => {
-  console.log(`PAYLOAD`, payload);
+  console.log(`PAYLOAD in base service:`, payload);
   return json(url, 'POST', payload);
 };
 const put = (url: string, payload: object) => {

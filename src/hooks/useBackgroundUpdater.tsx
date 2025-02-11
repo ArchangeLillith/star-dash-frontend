@@ -1,5 +1,5 @@
+import { SettingsState } from '@/context/settings/settingsProvider.utils';
 import { useState, useEffect } from 'react';
-import { SettingsState } from '@/context/settings/SettingsProvider';
 
 type BackgroundMap = Record<string, string>;
 
@@ -14,7 +14,6 @@ const useBackgroundUpdater = ({
   backgroundMap,
   setSettingsState,
 }: UseBackgroundUpdaterProps) => {
-  console.log(`backgroundkey: ${backgroundKey}`);
   const [previousBackground, setPreviousBackground] = useState<string | null>(
     null
   );
@@ -29,7 +28,7 @@ const useBackgroundUpdater = ({
 
     // Update settings state with the new background after a delay
     const timeout = setTimeout(() => {
-      setSettingsState((prev) => ({
+      setSettingsState((prev: SettingsState) => ({
         ...prev,
         currentPageBackground: backgroundMap[backgroundKey],
       }));

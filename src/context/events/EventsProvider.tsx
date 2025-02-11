@@ -23,7 +23,6 @@ const EventsProvider: React.FC<EventsProviderProps> = ({ children }) => {
       try {
         //While this could be a little overkill, we'd rather do this here and set two more state variables instead of havign to calculate this over and over
         const eventData = await eventService.getEvents();
-        console.log(`Event data:`, eventData);
         const allEvents = eventData;
         const marathon = eventData.filter(
           (entry: EventType) => entry.event_type === 'M'

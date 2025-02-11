@@ -12,19 +12,17 @@ const router = Router();
 
 //POST /auth/register
 router.post('/', async (req, res, next) => {
-  console.log(`HIT /AUTH/REGISTER with body:`, req.body);
   try {
     const { password, username } = req.body;
     if (!username || !isValidUsername(username)) {
       const error = new Error('invalid username');
-      console.log(`invalid username`);
+      console.error(`invalid username`);
       throw error;
     }
     const [userFound] = await db.managers.oneByUsername(username);
-    console.log(`userfound???`, userFound);
     if (userFound) {
       const error = new Error('username already registered');
-      console.log(`username registered already`);
+      console.error(`username registered already`);
       throw error;
     }
 
@@ -53,7 +51,6 @@ router.post('/', async (req, res, next) => {
     //   'New user registered to site~',
     //   `Username: ${managerDTO.username}, Role: ${authorDTO.role}`
     // );
-    console.log(`token`, token);
     res.json({ token });
   } catch (error) {
     next(error);
