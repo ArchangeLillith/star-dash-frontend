@@ -1,7 +1,13 @@
 import { Filler } from '@/utils/types';
+import { HourToFillers } from '../../Schedule.utils';
 import { SetStateAction } from 'react';
 
-
+interface FillerSelectionProps {
+  hour: string;
+  fillers: Filler[];
+  fillersPerHour: HourToFillers;
+  setFillersPerHour: React.Dispatch<SetStateAction<HourToFillers>>;
+}
 const FillerSelection: React.FC<FillerSelectionProps> = ({
   hour,
   fillers,
@@ -59,7 +65,9 @@ const FillerSelection: React.FC<FillerSelectionProps> = ({
           value={fillersPerHour[hour]?.[i]?.name || 'default'} // Set value from state
           onChange={(e) => handleSettingFiller(e)}
         >
-          <option value="default">Select filler...</option>
+          <option key={`hour-${i}-default`} value="default">
+            Select filler...
+          </option>
           {renderOptions(i)}
         </select>
       ))}

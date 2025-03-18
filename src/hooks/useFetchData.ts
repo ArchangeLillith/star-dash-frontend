@@ -11,7 +11,6 @@ const useFetchData = <T extends Record<string, unknown>>(
   configs: FetchConfig[] | null,
   authLoading?: boolean
 ) => {
-  console.log(`useFetch enterede`);
   const [data, setData] = useState<T>({} as T);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<null | string>(null);
@@ -36,7 +35,7 @@ const useFetchData = <T extends Record<string, unknown>>(
         console.log(`Fetched data in fetch`, fetchedData);
         setData(fetchedData);
       } catch (err) {
-        console.log(`ERROR in fetch,`, err);
+        console.error(`ERROR in fetch,`, err);
         setError('Failed to load data');
       } finally {
         setLoading(false);

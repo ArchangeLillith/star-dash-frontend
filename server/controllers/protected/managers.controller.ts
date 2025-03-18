@@ -7,11 +7,9 @@ export const getManagerEvents = async (
   res: Response,
   next: NextFunction
 ): Promise<void> => {
-  console.log(`Hit manager events controller`);
   const id = req.params.id as UUID;
   try {
     const result = await db.managers.eventsById(id);
-    console.log(`RESULT from manager events controller:`, result);
     res.json(result);
   } catch (error) {
     next(error);
@@ -23,31 +21,39 @@ export const getManagerSettings = async (
   res: Response,
   next: NextFunction
 ): Promise<void> => {
-  console.log(`Hit manager events controller`);
   const id = req.params.id as UUID;
-  console.log(`ID from manager events controller:`, id);
   try {
     const result = await db.managers.settingsById(id);
-    console.log(`RESULT from manager events controller:`, result);
     res.json(result);
   } catch (error) {
     next(error);
   }
 };
+
+export const writeLeadManager = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  const { manager_id, event_id } = req.body;
+  try {
+    const result = await db.leadManagers.writeLeadManager(manager_id, event_id);
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const updateManagerSettings = async (
   req: Request,
   res: Response,
   next: NextFunction
 ): Promise<void> => {
-  console.log(`Hit manager events controller`);
   const id = req.params.id as UUID;
   const settings = req.body.settings;
-  console.log(` SETTINGS from manager events controller:`, settings);
-  console.log(`ID from manager events controller:`, id);
 
   try {
     const result = await db.managers.updateSettings(id, settings);
-    console.log(`RESULT from manager events controller:`, result);
     res.json(result);
   } catch (error) {
     next(error);
@@ -61,7 +67,8 @@ export const checkLeadManagerStatus = async (
 ): Promise<void> => {
   const id = req.params.id as UUID;
   try {
-    const result = await db.managers.findLead(id);
+    const result = await db.leadManagers.findLead(id);
+    console.log(`result`, result);
     res.json(result);
   } catch (error) {
     next(error);

@@ -46,7 +46,7 @@ const Register = () => {
         alert('logged in');
       }
     } catch (error) {
-      console.log(`EERRRORR logging in`, error);
+      console.error(`EERRRORR logging in`, error);
     }
   };
 

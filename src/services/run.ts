@@ -16,13 +16,15 @@ const createRun = async (
 
   //Does the manager lead another of the same event name?
   const leadManagerCheck = await managerService.leadManagerCheck(
-    authState.managerData?.id
+    authState.managerData?.id,
+    formState.selectedEvent.event_id
   );
   //If so, error
   if (leadManagerCheck) {
-    alert(
+    const error = new Error(
       "You already lead an event of this type, you're only allowed to lead one run per event"
     );
+    return error;
   }
 
   //If any of the form is wiped, error
@@ -50,14 +52,18 @@ const createRun = async (
     runner_id: '' as UUID,
   };
 
+  //Attach the lead to the event in the joint table
+  await managerService.addLeadManager(
+    authState.managerData.id,
+    formState.selectedEvent.event_id
+  );
+
   //Create the runner in the runners table and get back the ID
   const runnerId = await runnerService.createRunner(runnerDTO);
-  console.log(`runner ID:`, runnerId);
   runnerDTO.runner_id = runnerId;
 
   //Create the runners teams in the teams table, no need for ID
-  const runnerTeamRes = await teamService.writeTeam(runnerDTO);
-  console.log(`runner team res`, runnerTeamRes);
+  await teamService.writeTeam(runnerDTO);
 
   //Create the run payload
   const payload = {
@@ -67,7 +73,6 @@ const createRun = async (
   };
   //Post the run payload to the runs table
   const result = await baseService.post('/api/protected/runs', payload);
-  console.log(`result from run post`, result);
   //Finally, return from the database which should include the new run_id so we can pass that to the frontend and navigate there
   return result;
 };

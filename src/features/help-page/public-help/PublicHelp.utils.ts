@@ -2,7 +2,7 @@ export const questionsAndAnswers = [
   {
     question: 'What is this site?',
     answer:
-      "This site was made to make managers lives easier! You won't see much of the functionality if you're not a manager, but behind the login screen this website is a team builder, in short. When you enter your team data, it's associated with your manager and the event you're filling for along with all the other fillers! The manager(s) can then press a button and see the teams best suited for the hour based on who's signed up for that slot. This saves an immense amount of time and effort, as managers take a lot of time to calculate the best teams for their runner. The website really shines with the Cheerful Carnival event type, as it calculated the best teams within a target BP while also displaying ISV. For Marathon, it still is very useful to not have to manually enter the data into a spreadsheet and do all the work there.",
+      "This site was made to make managers lives easier! You won't see much of the functionality if you're not a manager, but behind the login screen this website is a team builder, in short. When you enter your team data, it's associated with your manager and the event you're filling for along with all the other fillers! The manager(s) can then press a button and see the teams best suited for the hour based on who's signed up for that slot. This saves an immense amount of time and effort, as managers take a lot of time to calculate the best teams for their runner. The website really shines with the Cheerful Carnival event type, as it calculated the best teams within a target BP while also displaying ISV. For Marathon, it still is very useful to not have to manually enter the data into a spreadsheet and do all the work there. And bonus points for geting to see cute stickers and cards!",
   },
   {
     question: 'Do I need an account?',
@@ -42,10 +42,9 @@ export const questionsAndAnswers = [
       "I gotchu, no worries. Reach out to me or ping the admins in the Discord and we'll get you sorted. Please know we're in EDT time, so if we don't respond we're probabaly asleep.",
   },
   {
-    question:
-      'What are those weird purple and white schedule screenshots my manager keeps sending?',
+    question: 'What are those weird screenshots my manager keeps sending?',
     answer:
-      " The core of this site includes a schedule tool! Managers can enter their fillers name into a list (as I imagine you've seen) and save that huge schedule. Normally, events are 200ish hours long so to be able to - at the press of a button - be able to recall the schedule and edit it from there is nice... But that's just an excel spreadsheet, right?? This website takes it one step farther by automatically calculating teams based on the hour! The manager will create the schedule, and when they choose, they can press a button and see what teams meet their requirments for that hour based on those fillers. Neat, huh? We're not just an excel spreadsheet anymore!",
+      "The core of this site includes a schedule tool! Managers can enter their fillers name into a list (as I imagine you've seen) and save that huge schedule. Normally, events are 200ish hours long so to be able to - at the press of a button - be able to recall the schedule and edit it from there is nice... But that's just an excel spreadsheet, right?? This website takes it one step farther by automatically calculating teams based on the hour! The manager will create the schedule, and when they choose, they can press a button and see what teams meet their requirments for that hour based on those fillers. Neat, huh? We're not just an excel spreadsheet anymore!",
   },
   {
     question: 'Why the name "StarDash"?',
@@ -55,7 +54,7 @@ export const questionsAndAnswers = [
   {
     question: 'Why does this exist?',
     answer:
-      "Like I said before, managers take a lot of time to prep things for their runner. My little sister is heavily involved in the community, and seeing her spreadsheet (that's putting it lightly - ask a manager to see their spreadsheet, it's *wild*) I offered to make this for the community. I don't personally play Project Sekai, but I've been a Miku fan since 2013. I love the effort both managers and runners put into this community, and I wanted to give to something I feel is a needed addition to every run, saving time and energy and perhaps confusion.",
+      "Like I said before, managers take a lot of time to prep things for their runner. My little sister is heavily involved in the community, and seeing her spreadsheet (that's putting it lightly - ask a manager to see their spreadsheet, it's *wild*) I offered to make this for the community. I don't personally play Project Sekai a ton, but I've been a Miku fan since 2013. I love the effort both managers and runners put into this community, and I wanted to give to something I feel is a needed addition to every run, saving time and energy and perhaps confusion.",
   },
   {
     question: 'Is my data - and my runners data - safe?',
@@ -66,11 +65,26 @@ export const questionsAndAnswers = [
     question:
       'Do managers / runners / fillers have to pay for this?? No one told me!!',
     answer:
-      "Short answer, no! I made this in my spare time over about three months, had our team test it in their spare time and have been absorbing all costs myself. I'd like to keep this up long term, but with how much monthly this costs that may not be realistic. I'm hoping people donate to the Patreon to keep us up and running. I'm very happy to cover the costs per month to a point, this is a gift to an amazing community, but I also have bills to pay. So far, to be very forward, our costs have been around 40USD or 60CAD a month without anyone using the database/website but me and the team for testing purposes, meaning that will increase with usage.",
+      "Short answer, no! I made this all by myself as a passion project, had friends test it in their spare time and have been absorbing all costs myself. I'd like to keep this up long term, but with how much monthly this costs that may not be realistic. I'm hoping people donate to the Patreon to keep us up and running. I'm very happy to cover the costs per month to a point, this is a gift to an amazing community, but I also have bills to pay. So far, to be very forward, our costs have been around 40USD or 60CAD a month without anyone using the database/website, meaning that will increase with usage.",
   },
   {
     question: 'What about the domain name?',
     answer:
-      "I am the incredibly proud registered owner of the website name StarDash.ca! I purchased it through GoDaddy and fought with Digital Ocean and GoDaddy for about two days to figure out how to get my droplet pointing to this domain. If you have no idea what that meant, t(complicated)dr, I spent two days wanting to yell at a computer since it wasn't doing what I was telling it.",
+      "I am the incredibly proud registered owner of the website name StarDash.ca! I purchased it through GoDaddy and fought with Heroku and GoDaddy for about two days to figure out how to get my deployment on Heroku pointing to this domain. If you have no idea what that meant, t(complicated)dr, I spent two days wanting to yell at a computer since it wasn't doing what I was telling it (85% of coding tbh).",
+  },
+  {
+    question: "Whooooa, cool backgroud swipe, how'd you do it?",
+    answer:
+      "It's really cool, right? It's leveraging React's hooks. Less complicated version, we keep track of the page you're on, then when you click somewhere it recognizes there should be a new background. We layer the old background behind the new one, slide the new one over top, then fade in the other stuff! More technically, it uses a custom React hook. This hook reads a global context to see where the user is coming from on new component mount, then sets a background of that, and animates the new background over top. It was really run to figure it out, and sort of a challenge when I added the semi-randomized manager home page (which, if you haven't seen, randomizes the background image based on favorite characters as set in settings).",
+  },
+  {
+    question: 'Elephant in the room, about MEIKO',
+    answer: `I'm going to have to address this at some point, so I'd rather be forthcoming. The theme setting for managers that's red based is called 'Teto Red' and no MEIKO cards are used for three reasons:
+      1) Frankly, I don't like MEIKO. AT ALL.
+      2) Tetoris had just come out, as had Mesmerizer, and I felt like Teto was WAY more popuplar. If I'm going to have to choose, I'm going to try and dissappoint the least people
+      3) Teto's more muted scheme fit the site better
+
+      I understand this could be incredibly dissappointing to some people, and that's rough. I've tried to keep my opinions out of my code, but at the end of the day I didn't want to include her it's my project. This was a decision I made so I wasn't dealing with her on a day to day. I apologize if some people are hurt by my decision, nothing against people who like her. However, I won't apologize for leaving her out. 
+      `,
   },
 ];

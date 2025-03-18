@@ -9,7 +9,6 @@ export const createTeam = async (
   res: Response,
   next: NextFunction
 ): Promise<void> => {
-  console.log(`req.body for create team controller:`, req.body);
   const team_id = generateUUID();
 
   let teamDTO: RunnerTeamDTO = {
@@ -23,10 +22,6 @@ export const createTeam = async (
   };
   try {
     const result = await db.teams.createRunnerTeam(teamDTO);
-    console.log(
-      `RESULT from manager events controller, just the runners write without the tea,m:`,
-      result
-    );
     res.json(result);
   } catch (error) {
     next(error);

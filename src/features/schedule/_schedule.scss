@@ -7,7 +7,7 @@
 
   .scrollable-container {
     @include flex-center-column;
-    background-color: rgb(var(--dark-color), 0.8);
+    background-color: rgb(var(--dark-color-rgb), 0.8);
     height: 80vh;
     justify-content: flex-start;
     position: relative;
@@ -22,7 +22,7 @@
       right: 30px;
       height: 26px;
       width: 26px;
-      border: 2px solid rgb(var(--darker-color), 0.8);
+      border: 2px solid rgb(var(--darker-color-rgb), 0.8);
       border-radius: 50%;
       margin-left: 30px;
       color: rgb(240, 240, 240);
@@ -111,7 +111,7 @@
           padding: 4px;
           margin: 5px;
           width: 60%;
-          border: 1px solid rgb(var(--dark-color), 0.6);
+          border: 1px solid rgb(var(--dark-color-rgb), 0.6);
           box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
@@ -128,7 +128,7 @@
         color: var(--darker-color);
         width: 100%;
         background: var(--light-color);
-        border: 4px solid rgb(var(--dark-color), 0.6);
+        border: 4px solid rgb(var(--dark-color-rgb), 0.6);
       }
 
       .average-bp {
@@ -144,7 +144,7 @@
     min-height: fit-content;
 
     .scrollable-container {
-      background-color: rgb(var(--dark-color), 0.4);
+      background-color: rgb(var(--dark-color-rgb), 0.4);
       margin-left: 2%;
       display: flex;
       flex-direction: column;
@@ -199,8 +199,33 @@
   }
 
   .desktop-title {
-    bottom: 0;
-    right: 20px;
-    z-index: -5;
+    cursor: default;
+    display: block;
+    color: white;
+    position: absolute;
+    right: 8%;
+    bottom: 20%;
+
+    font-family: $font-blocky-site-heading;
+    text-shadow: 4px 2px 3px var(--dark-color);
+
+    &.schedule-1 {
+      bottom: 150px;
+      font-size: 30px;
+      right: 20px;
+      z-index: -5;
+    }
+    &.schedule-2 {
+      bottom: 35px;
+      right: 20px;
+      z-index: -5;
+    }
+    &.schedule-3 {
+      bottom: 0;
+      right: 20px;
+      font-size: 30px;
+      z-index: -5;
+    }
   }
+  //Desktop titles
 }

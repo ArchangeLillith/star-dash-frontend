@@ -1,7 +1,11 @@
 import { AuthContext } from '@/context/auth/AuthProvider';
 import { useContext } from 'react';
 import NavItem from '../components/NavItem';
-import { getMultiEventLinks, getNoEventLinks } from './utils';
+import { defaultLinks, getMultiEventLinks } from './utils';
+import { EventsContext } from '@/context/events/EventsProvider';
+import { SettingsContext } from '@/context/settings/SettingsProvider';
+import { DefaultSettings } from '@/context/settings/settingsProvider.utils';
+import { useNavigate } from 'react-router-dom';
 
 interface AuthenticatedNavLinksParams {
   selectionMode: boolean;
@@ -12,28 +16,32 @@ interface AuthenticatedNavLinksParams {
 const AuthenticatedNavLinks: React.FC<AuthenticatedNavLinksParams> = ({
   closeMenu,
 }) => {
-  const { authState, logoutFromAuthState } = useContext(AuthContext);
-  const navLinks = [];
+  const { eventsState } = useContext(EventsContext);
+  const { logoutFromAuthState } = useContext(AuthContext);
+  const { setSettingsState } = useContext(SettingsContext);
+  const navigate = useNavigate();
+  const navLinks = defaultLinks;
   const totalEvents =
-    (authState.activeEvents?.length || 0) +
-    (authState.archivedEvents?.length || 0);
+    (eventsState.activeEvents?.length || 0) +
+    (eventsState.archivedEvents?.length || 0);
 
-  if (totalEvents === 0) {
-    navLinks.push(...getNoEventLinks());
-  } else if (totalEvents > 1) {
+  if (totalEvents > 1) {
     navLinks.push(...getMultiEventLinks());
   }
-
-  // if (authState.managerData) {
-  //   navLinks.push(...getAdminLinks());
-  // }
+  const logOut = () => {
+    logoutFromAuthState();
+    setSettingsState(DefaultSettings);
+    navigate('/');
+  };
 
   return (
     <>
       {navLinks.map((link) => (
         <NavItem key={link.href} {...link} closeMenu={closeMenu} />
       ))}
-      <button onClick={logoutFromAuthState}>Logout</button>
+      <button onClick={logOut} className="submit-btn logout">
+        Logout
+      </button>
     </>
   );
 };

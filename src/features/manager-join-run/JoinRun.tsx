@@ -6,21 +6,23 @@ import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
 import Input from '@/components/Input';
 import { TEXT_INPUT_SETTINGS } from '@/utils/variables';
 import { JoinRunFormState, InitializeJoinRun } from './JoinRun.utils';
-import EventSelect from '@/components/styles/select/EventSelect';
+import EventSelect from '@/components/select/EventSelect';
+import { EventsContext } from '@/context/events/EventsProvider';
 
 const JoinRun = () => {
   /**
    * Setting the background with a hook and access to the setting context
    */
-  const { setSettingsState, allEvents } = useContext(SettingsContext);
+  const { setSettingsState } = useContext(SettingsContext);
+  const { eventsState } = useContext(EventsContext);
+  const [formStateJoinRun, setFormStateJoinRun] =
+    useState<JoinRunFormState>(InitializeJoinRun);
+
   useBackgroundUpdater({
     backgroundKey: 'joinRun',
     backgroundMap,
     setSettingsState,
   });
-
-  const [formStateJoinRun, setFormStateJoinRun] =
-    useState<JoinRunFormState>(InitializeJoinRun);
 
   const submit = () => {};
 
@@ -68,7 +70,7 @@ const JoinRun = () => {
             <EventSelect
               value={formStateJoinRun.event.event_name}
               state={formStateJoinRun}
-              options={allEvents}
+              options={eventsState.allEvents}
               stateKey="event"
               setState={setFormStateJoinRun}
               defaultOption="Choose your event..."

@@ -183,7 +183,7 @@ export const characterKeysMap: Record<ECharacter, string[]> = {
 };
 
 export const DefaultSettings: SettingsState = {
-  theme: EThemeNames.MIKU,
+  theme: EThemeNames.GAKUPO,
   favoriteCharacters: [],
   currentPageBackground: '',
   hoursPerPage: 10 as hoursPerPageOptions,
@@ -224,6 +224,7 @@ export const backgroundMap: Record<string, string> = {
   settings: '/card-backgrounds/settings.webp',
   runData: '/card-backgrounds/run-data.webp',
   joinRun: '/card-backgrounds/join-run.webp',
+  changeEvent: '/card-backgrounds/changeEvent.webp',
   airi_1: '/card-backgrounds/manager/airi_1.webp',
   airi_2: '/card-backgrounds/manager/airi_2.webp',
   airi_3: '/card-backgrounds/manager/airi_3.webp',

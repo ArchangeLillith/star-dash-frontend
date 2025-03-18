@@ -5,6 +5,7 @@ import managers from './queries/managers';
 import teams from './queries/teams';
 import auth from './queries/auth';
 import runners from './queries/runners';
+import leadManagers from './queries/lead-managers';
 
 export default {
   runs,
@@ -12,6 +13,7 @@ export default {
   events,
   teams,
   managers,
+  leadManagers,
   auth,
   runners,
 };

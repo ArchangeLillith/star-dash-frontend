@@ -1,44 +1,55 @@
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import TransitionWrapper from '../../components/TransitionWrapper';
-import { SettingsContext } from '../../context/settings/SettingsProvider';
-import { backgroundMap } from '../../context/settings/settingsProvider.utils';
+import TransitionWrapper from '@/components/TransitionWrapper';
+import Input from '@/components/Input';
 import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
+
+import { SettingsContext } from '@/context/settings/SettingsProvider';
+import { AuthContext } from '@/context/auth/AuthProvider';
 import loginService from './login.api';
 
-import Input from '@/components/Input';
+import { backgroundMap } from '@/context/settings/settingsProvider.utils';
 import { TEXT_INPUT_SETTINGS } from '@/utils/variables';
 import { LoginFormState, InitializeLogin } from './Login.types';
-import { AuthContext } from '@/context/auth/AuthProvider';
 
 const Login = () => {
-  /**
-   * Setting the background with a hook and access to the setting context
-   */
+  //Declare state and navigation variables
   const { setSettingsState } = useContext(SettingsContext);
+  const { loginToAuthState } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  //Initialize the page state
+  const [formStateLogin, setFormStateLogin] =
+    useState<LoginFormState>(InitializeLogin);
+
+  //Update the background
   useBackgroundUpdater({
     backgroundKey: 'login',
     backgroundMap,
     setSettingsState,
   });
-  const { loginToAuthState } = useContext(AuthContext);
 
-  const [formStateLogin, setFormStateLogin] =
-    useState<LoginFormState>(InitializeLogin);
-  const navigate = useNavigate();
-
+  //Login onclick logic
   const login = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const { username, password } = formStateLogin;
+
     try {
       const token = await loginService.authenticateUserAndStoreToken({
         username,
         password,
       });
       if (!token) return;
-      loginToAuthState(token);
-      navigate(`/`);
+
+      const managerRuns = await loginToAuthState(token);
+
+      //Navigation logic!
+      const totalRuns =
+        managerRuns.archivedEvents.length + managerRuns.archivedEvents.length;
+
+      //Clean one line with ternary
+      navigate(totalRuns === 1 ? '/schedule' : `/change-event`);
     } catch (error) {
       console.error('Error logging in:', error);
     }

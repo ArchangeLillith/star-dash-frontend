@@ -19,13 +19,8 @@ export const createNewRun = async (
     event_id: req.body.event_id,
   };
 
-  console.log(`runDTO`, runDTO);
   try {
-    const result = await db.runs.createNewRun(runDTO);
-    console.log(
-      `RESULT from manager events controller, just the runners write without the tea,m:`,
-      result
-    );
+    await db.runs.createNewRun(runDTO);
     res.json(runDTO);
   } catch (error) {
     next(error);

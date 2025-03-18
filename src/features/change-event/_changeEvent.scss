@@ -1,0 +1,82 @@
+.active-events {
+}
+.archived-events {
+}
+.no-events {
+  @include flex-center-column;
+  .button-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .submit-btn {
+    @include black-text-shadow;
+    padding: 10px;
+    width: fit-content;
+    margin: 0.5rem;
+  }
+}
+.event-title {
+  @include white-text-shadow;
+  font-size: 20px;
+  padding: 10px;
+  text-align: center;
+}
+
+@media (min-width: $breakpoint-desktop) {
+  .transition-base::before.change-event {
+    background: url('/card-backgrounds/change-event.webp');
+  }
+  .form-title {
+    display: none;
+  }
+
+  .transition-base.change-event {
+    position: relative;
+    margin-top: 4%;
+    margin-right: 1em;
+    .form-container {
+      padding: 2em;
+      background-color: rgb(var(--dark-color-rgb), 0.3);
+      border: none;
+      width: 40%;
+      position: absolute;
+      margin-top: 0;
+      right: 8em;
+      top: 20%;
+      box-shadow: 4px 4px 15px rgb(var(--primary-color-rgb), 0.3);
+      .button-wrapper {
+        flex-direction: row;
+      }
+    }
+    .event-title {
+      color: white;
+      font-size: 25px;
+      @include black-text-shadow;
+    }
+    .submit-btn {
+      font-size: 18px;
+    }
+
+    .top-content,
+    .bottom-content {
+      width: 75%;
+    }
+    .password-group {
+      .notice-text {
+        font-size: 0.65rem;
+        font-style: italic;
+        color: white;
+      }
+      .banner {
+        color: var(--light-color);
+      }
+    }
+    .desktop-title {
+      position: absolute;
+      left: 1em;
+      bottom: 2em;
+    }
+  }
+}

@@ -10,18 +10,31 @@ import {
 } from '../../../context/settings/settingsProvider.utils';
 import useBackgroundUpdater from '@/hooks/useBackgroundUpdater';
 import { AuthContext } from '@/context/auth/AuthProvider';
-import { tiles } from './ManagerHome.utils';
+import { EventsContext } from '@/context/events/EventsProvider';
+import { getAllTiles, getDefaultTiles, TileType } from './ManagerHome.utils';
 
 const SiteHome: React.FC = () => {
   /**
    * Setting the background with a hook and access to the setting context
    * This will set the background to a random card if there are no favorites
    */
+  const { eventsState } = useContext(EventsContext);
   const { settingsState, setSettingsState } = useContext(SettingsContext);
   const { authState } = useContext(AuthContext);
   const [background, setBackground] = useState<string>(
     settingsState.currentPageBackground
   );
+  const tiles: TileType[] = [];
+
+  const totalEvents =
+    (eventsState.activeEvents?.length || 0) +
+    (eventsState.archivedEvents?.length || 0);
+
+  if (totalEvents === 0) {
+    tiles.push(...getDefaultTiles());
+  } else {
+    tiles.push(...getAllTiles());
+  }
 
   useEffect(() => {
     if (settingsState.favoriteCharacters.length === 0) {
@@ -32,12 +45,9 @@ const SiteHome: React.FC = () => {
       const tempArray: string[] = [];
       settingsState.favoriteCharacters.forEach((character) => {
         const enumChar = character as ECharacter;
-        console.log(`enumChar: ${enumChar}`);
         if (characterKeysMap[enumChar]) {
           tempArray.push(...characterKeysMap[enumChar]);
         }
-
-        console.log(`tempArray: ${tempArray}`);
 
         const randomIndex = Math.floor(Math.random() * tempArray.length);
         const randomBackground = tempArray[randomIndex];
