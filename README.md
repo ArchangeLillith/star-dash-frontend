@@ -3,15 +3,14 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/ArchangeLillith/knitters-fren">
+  <a href="https://github.com/ArchangeLillith/star-dash-frontend">
     <img src="public/images/Logo/logo.png" alt="Logo" width="700" height="250">
   </a>
 
   <p align="center">
-    A scheduling website for tiering (getting a high rank in a one time event) in <a href="https://colorfulstage.com/" target="_blank">Project: Sekai</a>
+    A scheduling website for tiering (getting a high rank in a one time event) in <a href="https://colorfulstage.com/">Project: Sekai</a>
     <br />
-    <a href="https://github.com/ArchangeLillith/knitters-fren"><strong>Explore the docs »</strong></a>
-    <br />
+  
   </p>
 </div>
 
