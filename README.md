@@ -26,7 +26,6 @@
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
-    <li><a href="#deployment">Deployment</a></li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#gallery">Gallery</a></li>
@@ -75,44 +74,30 @@ But how do we get filler information? Great question! The fillers themselves add
 </div>
 
 
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- GETTING STARTED -->
-## Deployment
-<div align="center">
-To explore Knitters Fren, go see it in action: 
-  <br/>
-  <br/>
-  
-  [![knitters-fren][knitters-fren]][knitters-fren-url]
-  
-</div>
-
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+<i>To understand used termimology, please review the short explination in the <a href="#about-the-project">About The Project</a> section.</i>
 
-I've found it challenging to know which of my patterns I'm looking for based on file name alone, and sometimes I forget I have a really pretty pattern I haven't used in a while. I'm hoping with the addition of pictures that I can more easily find what I'm looking for, and with the featured section rotating on every load I'll be exposed to more patterns!
-<br/>
-<br/>
-As this website gains more users, I'm also hoping I can make a positive enviornment that people can share wonderful patterns they've used and it becomes a place that knitters can find wonderful new patterns to try.
+If the user is a filler, they can register for an event without creating an account or logging in! Simply go to the 'Filler Registration' page and select the correct event type, event, and type in their manager's name. The manager's names are all unique and chosen by the manager, so there's no confusion on who the registered filler should go to. Within the form are places for all the teams a filler could have. Once everything is filler out, the user can submit their data, recieving a success message if an event of that name is associated with the manager - if the manager's name is wrong, a generic error will appear. Managers are informed that copying and pasting their name is the best way to ensure fillers are registered smoothly. 
+
+As for a manager, there are many more features! Creating an account is simple to do, and when the account is created it will automatically log in the user. If the manager has no events (either their own or they could have joined someone else's), the screen greeting them will prompt them to create and event themselves or join on an existing one. If the manager has one event, that event will automatically load and the manager will instead be directed to the schedule page. If the manager is associated with mor than one event, a screen will apprear asking them to eith create an event, join an event, or choose an existing event. From here, the user can explore their events, edit the one they choose to, peruse a list of fillers (and edit their data if need be), change their settings (themeing and pagination defaults), or join / create new events! 
+
+Events are never seen unless a manager is in an event, and there's a 'run password' that exists on every run that's needed to join a run, meaning no bad actor can just join a run and sabatoge it. Further, the manager that originally created the event - referred to as a lead manager - can see all managers associated with the run. If an issue arises, the lead manager can kick another manager from the run, requiring a run password change so that manager can't just join back. As of now, there's no way to hand lead status over to someone else.  
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
 <!-- ROADMAP -->
 ## Roadmap
-- [x] Create the base of the site with CRUD functionality
-- [x] Add styling
-- [x] Add search functionality
-- [ ] Allow the addition of images
+- [x] 
+- [x] 
+- [x] 
+- [ ] 
     - [ ] Add the gallery and allow submissions of finished works
 
 
