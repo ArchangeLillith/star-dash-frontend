@@ -39,7 +39,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<img src="screenshots/home.png" alt="home page screenshot" width="1000" height="500">
+<img src="screenshots/home.png" alt="home page screenshot" width="1000" height="400">
 
 My largest project to date, this website is, in a nutshell, a schedule maker. However, it goes far beyond that. To understand what this website does, a bit of background is needed; to 'tier' in Project: Sekai, you have a runner (the person who's trying to score high), at least one manager (the main contact and scheduler), and fillers. Fillers are people who donate their time to help the runner reach high scores. Events are one time only, and last for 200 hours each. This website is a tool for managers to easily manage the 30+ people involved in these events. 
 
@@ -97,52 +97,52 @@ Explore StarDash's vibrant pages below through images!
 
 <details open>
   <summary>Home View</summary>
- <img src="/screenshots/home.png" alt="home view" width="1000" height="500">
+ <img src="/screenshots/home.png" alt="home view" width="1000" height="400">
 </details>
 
 <details>
   <summary>Login</summary>
- <img src="/screenshots/login.png" alt="login screen page" width="1000" height="600">
+ <img src="/screenshots/login.png" alt="login screen page" width="1000" height="500">
 </details>
 
 <details>
   <summary>Register</summary>
-  <img src="/screenshots/register.png" alt="register as a manager" width="1000" height="600">
+  <img src="/screenshots/register.png" alt="register as a manager" width="1000" height="500">
 </details>
 
 <details>
   <summary>Filler Registration</summary>
-  <img src="/screenshots/filler-registration.png" alt="register as a filler" width="1000" height="600">
+  <img src="/screenshots/filler-registration.png" alt="register as a filler" width="1000" height="500">
 </details>
 
 <details>
   <summary>Manager Home</summary>
- <img src="/screenshots/manager-home.png" alt="home for managaers, logged in users only" width="1000" height="600">
+ <img src="/screenshots/manager-home.png" alt="home for managaers, logged in users only" width="1000" height="500">
 </details>
 
 <details open>
   <summary>Manager Greeting Page</summary>
- <img src="/screenshots/manager-login-front.png" alt="manager greeting page" width="1000" height="600">
+ <img src="/screenshots/manager-login-front.png" alt="manager greeting page" width="1000" height="500">
 </details>
 
 <details>
   <summary>Create Run Page</summary>
-  <img src="/screenshots/create-run.png" alt="create a new run as a manager" width="1000" height="600">
+  <img src="/screenshots/create-run.png" alt="create a new run as a manager" width="1000" height="500">
 </details>
 
 <details>
   <summary>Join Run</summary>
- <img src="/screenshots/join-run.png" alt="join an existing run as a manager" width="1000" height="600">
+ <img src="/screenshots/join-run.png" alt="join an existing run as a manager" width="1000" height="500">
 </details>
 
 <details>
   <summary>FAQ's</summary>
- <img src="/screenshots/faq.png" alt="faqs, will differ when logged in as to the content!" width="1000" height="600">
+ <img src="/screenshots/faq.png" alt="faqs, will differ when logged in as to the content!" width="1000" height="500">
 </details>
 
 <details>
   <summary>Manager Settings</summary>
- <img src="/screenshots/settings.png" alt="settings for managers" width="1000" height="600">
+ <img src="/screenshots/settings.png" alt="settings for managers" width="1000" height="500">
 </details>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
