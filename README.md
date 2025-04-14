@@ -27,7 +27,6 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#for-developers">For Developers</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
@@ -92,64 +91,59 @@ Events are never seen unless a manager is in an event, and there's a 'run passwo
 
 
 
-<!-- ROADMAP -->
-## Roadmap
-- [x] 
-- [x] 
-- [x] 
-- [ ] 
-    - [ ] Add the gallery and allow submissions of finished works
-
-
-See the [project board](https://github.com/users/ArchangeLillith/projects/1) for a full list of intended features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 <!-- GALLERY -->
 ## Gallery
-Explore the pages of KnittersFren below through images!
+Explore StarDash's vibrant pages below through images!
 
 <details open>
-  <summary>🏠 Home View</summary>
- <img src="/public/images/screenshots/home-view.png" alt="home view of knitter fren" width="1000" height="500">
+  <summary>Home View</summary>
+ <img src="/screenshots/home.png" alt="home view" width="1000" height="500">
 </details>
 
 <details>
-  <summary>📜 All Patterns List</summary>
- <img src="/public/images/screenshots/all-patterns-list.png" alt="all patterns in a list view" width="1000" height="500">
+  <summary>Login</summary>
+ <img src="/screenshots/login.png" alt="login screen page" width="1000" height="600">
 </details>
 
 <details>
-  <summary>🧵 Create a New Pattern</summary>
-  <img src="/public/images/screenshots/create-a-pattern.png" alt="create a pattern form view" width="1000" height="500">
+  <summary>Register</summary>
+  <img src="/screenshots/register.png" alt="register as a manager" width="1000" height="600">
 </details>
 
 <details>
-  <summary>🖼️ Detail View</summary>
-  <img src="/public/images/screenshots/updated-detail-view.png" alt="details page screenshot" width="1000" height="500">
+  <summary>Filler Registration</summary>
+  <img src="/screenshots/filler-registration.png" alt="register as a filler" width="1000" height="600">
 </details>
 
 <details>
-  <summary>🔑 Login</summary>
- <img src="/public/images/screenshots/login-page.png" alt="login page form view" width="1000" height="500">
+  <summary>Manager Home</summary>
+ <img src="/screenshots/manager-home.png" alt="home for managaers, logged in users only" width="1000" height="600">
 </details>
 
 <details open>
-  <summary>✏️ Register</summary>
- <img src="/public/images/screenshots/register-page.png" alt="register page form view" width="1000" height="500">
+  <summary>Manager Greeting Page</summary>
+ <img src="/screenshots/manager-login-front.png" alt="manager greeting page" width="1000" height="600">
 </details>
 
 <details>
-  <summary>🔍 Search View</summary>
-  <img src="/public/images/screenshots/search-view.png" alt="saerch view with search active to show return pattern card" width="1000" height="500">
+  <summary>Create Run Page</summary>
+  <img src="/screenshots/create-run.png" alt="create a new run as a manager" width="1000" height="600">
 </details>
 
 <details>
-  <summary>❌ Not Found Page</summary>
- <img src="/public/images/screenshots/404-page.png" alt="404 page with gif of nanachi" width="1000" height="500">
+  <summary>Join Run</summary>
+ <img src="/screenshots/join-run.png" alt="join an existing run as a manager" width="1000" height="600">
 </details>
 
+<details>
+  <summary>FAQ's</summary>
+ <img src="/screenshots/faq.png" alt="faqs, will differ when logged in as to the content!" width="1000" height="600">
+</details>
+
+<details>
+  <summary>Manager Settings</summary>
+ <img src="/screenshots/settings.png" alt="settings for managers" width="1000" height="600">
+</details>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!--DEV -->
@@ -173,7 +167,7 @@ If you'd like to run a local copy of this project, please follow the steps below
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Thank you to Elivaras who's been helping me learn version control and keeping my code clean by reviewing most of my commits! And thank you to [Covalence](https://covalence.io/) for their incredible support and amazing lectures (looking at you Luke and Andrew!)
+Thank you to Elivaras who's been reviewing my code here and there!
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
